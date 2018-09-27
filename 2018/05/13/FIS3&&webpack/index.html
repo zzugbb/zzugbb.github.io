@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>gbb</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="个人博客,"> 
+    <meta name="description" content="问题在 create-react-app 开发过程中， 出现 css全局污染。
+解决webpack 处理过程中 的 css-loader 可以解决全局污染问题。
+原理是最终页面渲染的类名变为自定义字,"> 
+    <meta name="author" content="gbb"> 
+    <link rel="alternative" href="atom.xml" title="gbb" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+</head>
+
+<body class="loading">
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">Fis3 && webpack</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Fis3 && webpack</h1>
+        <div class="stuff">
+            <span>五月 13, 2018</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Fis3/">Fis3</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/webpack/">webpack</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="FIS3"><a href="#FIS3" class="headerlink" title="FIS3"></a>FIS3</h1><p><strong>FIS3</strong> 是面向前端的工程构建工具。解决前端工程中性能优化、资源加载（异步、同步、按需、预加载、依赖管理、合并、内嵌）、模块化开发、自动化工具、开发规范、代码部署等问题。</p>
+<h2 id="常用功能"><a href="#常用功能" class="headerlink" title="常用功能"></a>常用功能</h2><ul>
+<li>资源提取。–从一推资源中提取指定的，发布到指定目录。</li>
+<li>资源压缩。</li>
+<li>资源版本号防止缓存。</li>
+</ul>
+<h2 id="常用配置"><a href="#常用配置" class="headerlink" title="常用配置"></a>常用配置</h2><h3 id="资源提取"><a href="#资源提取" class="headerlink" title="资源提取"></a>资源提取</h3><p><strong>fis-conf.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fis.match(<span class="string">'*.&#123;html,htm,tld,jsp,xml,inc,txt,md,java,properties,mar,list,aar,ftl,classes,doc,url,zip,php,db,json&#125;'</span>, &#123;</span><br><span class="line">  release : <span class="literal">false</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">fis.match(<span class="string">'*.&#123;gif,jpg,jpeg,png,ico,swf,ttf,TTF,js,css&#125;'</span>,&#123;</span><br><span class="line">  release : <span class="string">'/a/b/$0'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><strong>map.json</strong></p>
+<p><code>FIS</code> 识别 <code>__RESOURCE_MAP__</code> 关键字替换为静态资源版本信息</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__RESOURCE_MAP__</span><br></pre></td></tr></table></figure>
+<h3 id="资源发布"><a href="#资源发布" class="headerlink" title="资源发布"></a>资源发布</h3><p><strong>fis-conf.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">fis.media(<span class="string">'test'</span>).match(<span class="string">'*.&#123;css,js&#125;'</span>,&#123;</span><br><span class="line">  useHash: <span class="literal">false</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">fis.media(<span class="string">'test'</span>).match(<span class="string">'*.&#123;gif,jpg,jpeg,png,ico,swf,ttf,js,css,json&#125;'</span>,&#123;</span><br><span class="line">  useMap: <span class="literal">true</span>,</span><br><span class="line">  release: <span class="string">'/a/b/$0'</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">fis.media(<span class="string">'pro'</span>).match(<span class="string">'*.css'</span>,&#123;</span><br><span class="line">  useHash: <span class="literal">true</span>,</span><br><span class="line">  optimizer: fis.plugin(<span class="string">'clean-css'</span>)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">fis.media(<span class="string">'pro'</span>).match(<span class="string">'*.js'</span>,&#123;</span><br><span class="line">  useHash: <span class="literal">true</span>,</span><br><span class="line">  optimizer: fis.plugin(<span class="string">'uglify-js'</span>)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">fis.media(<span class="string">'pro'</span>).match(<span class="string">'*.&#123;gif,jpg,jpeg,png,ico,swf,ttf,js,css,json&#125;'</span>,&#123;</span><br><span class="line">  useMap: <span class="literal">true</span>,</span><br><span class="line">  release: <span class="string">'/a/b/$0'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><strong>map.json</strong>, 可以改名字，后续生成的对应关系就在对应文件中</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__RESOURCE_MAP__</span><br></pre></td></tr></table></figure>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fis3 release test -d ../c/d</span><br></pre></td></tr></table></figure>
+<h1 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h1><h2 id="webpack工程demo"><a href="#webpack工程demo" class="headerlink" title="webpack工程demo"></a>webpack工程demo</h2><p><a href="https://github.com/zzugbb/webpack-demo" target="_blank" rel="noopener">详见</a></p>
+<h2 id="对应资料"><a href="#对应资料" class="headerlink" title="对应资料"></a>对应资料</h2><p><a href="https://github.com/zzugbb/webpack-demo/wiki" target="_blank" rel="noopener">详见</a></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src="https://raw.githubusercontent.com/zzugbb/share-docs/master/resource/mp3/Faded-Alan.mp3">
+            </audio>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='3bea67f4c16a20a5d9a2'
+        data-cs='d38faaf81761abcbc9f09e26fe7ee51dbb56eb70'
+        data-r='zzugbb.github.io'
+        data-o='zzugbb'
+        data-a='zzugbb'
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#FIS3"><span class="toc-number">1.</span> <span class="toc-text">FIS3</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#常用功能"><span class="toc-number">1.1.</span> <span class="toc-text">常用功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用配置"><span class="toc-number">1.2.</span> <span class="toc-text">常用配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#资源提取"><span class="toc-number">1.2.1.</span> <span class="toc-text">资源提取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#资源发布"><span class="toc-number">1.2.2.</span> <span class="toc-text">资源发布</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用命令"><span class="toc-number">1.3.</span> <span class="toc-text">常用命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#webpack"><span class="toc-number">2.</span> <span class="toc-text">webpack</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack工程demo"><span class="toc-number">2.1.</span> <span class="toc-text">webpack工程demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对应资料"><span class="toc-number">2.2.</span> <span class="toc-text">对应资料</span></a></li></ol></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

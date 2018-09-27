@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>gbb</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="个人博客,"> 
+    <meta name="description" content="问题在 create-react-app 开发过程中， 出现 css全局污染。
+解决webpack 处理过程中 的 css-loader 可以解决全局污染问题。
+原理是最终页面渲染的类名变为自定义字,"> 
+    <meta name="author" content="gbb"> 
+    <link rel="alternative" href="atom.xml" title="gbb" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+</head>
+
+<body class="loading">
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">log4js</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">log4js</h1>
+        <div class="stuff">
+            <span>七月 28, 2018</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/log4js/">log4js</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>日常开发中，对于日志模块，<code>java</code>开发 -&gt; <code>log4j</code>，而 <code>nodejs</code>开发，则对应工具为 <code>log4js</code>。</p>
+<h1 id="log4js-介绍"><a href="#log4js-介绍" class="headerlink" title="log4js 介绍"></a><em>log4js</em> 介绍</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install log4js --save</span><br></pre></td></tr></table></figure>
+<h2 id="日志级别"><a href="#日志级别" class="headerlink" title="日志级别"></a>日志级别</h2><blockquote>
+<p> 等级由低到高：trace &lt; debug &lt; info &lt; warn &lt; Error &lt; Fatal;</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">logger.trace(<span class="string">'Entering cheese testing'</span>);</span><br><span class="line">logger.debug(<span class="string">'Got cheese.'</span>);</span><br><span class="line">logger.info(<span class="string">'Cheese is Gouda.'</span>);</span><br><span class="line">logger.warn(<span class="string">'Cheese is quite smelly.'</span>);</span><br><span class="line">logger.error(<span class="string">'Cheese is too ripe!'</span>);</span><br><span class="line">logger.fatal(<span class="string">'Cheese was breeding ground for listeria.'</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>debug 可以随意的使用于任何觉得有利于在调试时更详细的了解系统运行状态的东东；</li>
+<li>info  重要，输出信息：用来反馈系统的当前状态给最终用户的；</li>
+<li>warn, 可修复，系统可继续运行下去；</li>
+<li>Error, 可修复性，但无法确定系统会正常的工作下去;</li>
+<li>Fatal, 相当严重，可以肯定这种错误已经无法修复，并且如果系统继续运行下去的话后果严重。</li>
+</ul>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">getLogger(<span class="string">"参数"</span>) <span class="comment">//追踪产生此日志的文件.</span></span><br><span class="line"></span><br><span class="line">log4js.configure(log4jsConfig); <span class="comment">//设置配置项</span></span><br></pre></td></tr></table></figure>
+<h2 id="配置项"><a href="#配置项" class="headerlink" title="配置项"></a>配置项</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">"log4jsConfig": &#123;</span><br><span class="line">    "appenders": [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"console"</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"file"</span>, </span><br><span class="line">        "absolute": true, //绝对路径</span><br><span class="line">        "filename": "a.log", //存放日志文件的目录和文件名</span><br><span class="line">        "maxLogSize": 10000000, //每个日志文件大小</span><br><span class="line">        "backups": 100, //备份文件的数量，超过会被删除</span><br><span class="line">        "category": "http" //日志策略,类别，与级别不同的一个维度</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">    "levels": &#123;</span><br><span class="line">      "[all]": "INFO" //设置日志级别,只打印info级别及以上级别的</span><br><span class="line">    &#125;,</span><br><span class="line">    "replaceConsole": true //替换掉原来自带的console, 自带的没有颜色区分</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+<h2 id="记录请求"><a href="#记录请求" class="headerlink" title="记录请求"></a>记录请求</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//app.js</span></span><br><span class="line"></span><br><span class="line">app.use(log4js.connectLogger(log4js.getLogger(<span class="string">"http"</span>), &#123;</span><br><span class="line">  level: <span class="string">'auto'</span>,</span><br><span class="line">  format: <span class="string">':remote-addr - -'</span> + <span class="string">' ":method :url HTTP/:http-version"'</span> + <span class="string">' :status :content-length :response-time ":referrer"'</span> + <span class="string">' ":user-agent"'</span></span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
+<p>日志的一个重要功能不仅仅是在调试时使用，最重要的还是当前端发起请求时，能把该请求记录在日志中，该行代码的作用就是这个功能。</p>
+<p>其中的level参数表示日志输出级别，设置为auto，日志级别对应规则为：</p>
+<ul>
+<li>http返回码为3**：level=WARN；</li>
+<li>http返回码为4<strong>，5</strong>时，level=ERROR；</li>
+<li>其他的返回码，level=INFO</li>
+</ul>
+<h1 id="日志分片"><a href="#日志分片" class="headerlink" title="日志分片"></a>日志分片</h1><h2 id="按文件大小"><a href="#按文件大小" class="headerlink" title="按文件大小"></a>按文件大小</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">"log4jsConfig": &#123;</span><br><span class="line">    "appenders": [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"console"</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"file"</span>,</span><br><span class="line">        <span class="attr">"absolute"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">"filename"</span>: <span class="string">"a.log"</span>,</span><br><span class="line">        "maxLogSize": 10,  //单位应该是字节，设置 10000000 ，基本是10兆左右</span><br><span class="line">        "backups": 5,</span><br><span class="line">        "category": "http"</span><br><span class="line">      &#125;</span><br><span class="line">    ],</span><br><span class="line">    "levels": &#123;</span><br><span class="line">      "[all]": "DEBUG"</span><br><span class="line">    &#125;,</span><br><span class="line">    "replaceConsole": true</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+<h2 id="对应效果"><a href="#对应效果" class="headerlink" title="对应效果"></a>对应效果</h2><p>只能备份 <code>backups</code> 指定的份数，最新的会更新删除替换， 且每个文件为 <code>maxLogSize</code>的值。</p>
+<h2 id="按日期分片"><a href="#按日期分片" class="headerlink" title="按日期分片"></a>按日期分片</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">"log4jsConfig": &#123;</span><br><span class="line">    "appenders": [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"console"</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"dateFile"</span>,</span><br><span class="line">        <span class="attr">"absolute"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">"filename"</span>: <span class="string">"a-accesslog"</span>,</span><br><span class="line">        <span class="attr">"pattern"</span>: <span class="string">"-yyyy-MM-dd.log"</span>,</span><br><span class="line">        <span class="attr">"alwaysIncludePattern"</span> : <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">"category"</span>: <span class="string">"http"</span></span><br><span class="line">      &#125;</span><br><span class="line">    ],</span><br><span class="line">    "levels": &#123;</span><br><span class="line">      "[all]": "DEBUG"</span><br><span class="line">    &#125;,</span><br><span class="line">    "replaceConsole": true</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+<h2 id="对应效果-1"><a href="#对应效果-1" class="headerlink" title="对应效果"></a>对应效果</h2><p>日志按照日期进行分片，且不会限制大小。</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src="https://raw.githubusercontent.com/zzugbb/share-docs/master/resource/mp3/Faded-Alan.mp3">
+            </audio>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='3bea67f4c16a20a5d9a2'
+        data-cs='d38faaf81761abcbc9f09e26fe7ee51dbb56eb70'
+        data-r='zzugbb.github.io'
+        data-o='zzugbb'
+        data-a='zzugbb'
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#说明"><span class="toc-number">1.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#log4js-介绍"><span class="toc-number">2.</span> <span class="toc-text">log4js 介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">2.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#日志级别"><span class="toc-number">2.2.</span> <span class="toc-text">日志级别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数"><span class="toc-number">2.3.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置项"><span class="toc-number">2.4.</span> <span class="toc-text">配置项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#记录请求"><span class="toc-number">2.5.</span> <span class="toc-text">记录请求</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#日志分片"><span class="toc-number">3.</span> <span class="toc-text">日志分片</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#按文件大小"><span class="toc-number">3.1.</span> <span class="toc-text">按文件大小</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对应效果"><span class="toc-number">3.2.</span> <span class="toc-text">对应效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#按日期分片"><span class="toc-number">3.3.</span> <span class="toc-text">按日期分片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对应效果-1"><span class="toc-number">3.4.</span> <span class="toc-text">对应效果</span></a></li></ol></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
