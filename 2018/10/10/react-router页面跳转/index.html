@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>gbb</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="个人博客,"> 
+    <meta name="description" content="props.match.params此种方式，参数会显示在 url地址栏 上，直接输入地址或者刷新页面地址栏仍然含有此参数。
+地址形式为 / 连接的形式。
+
+路由写法
+ 多个参数，以 / 分割， ?,"> 
+    <meta name="author" content="gbb"> 
+    <link rel="alternative" href="atom.xml" title="gbb" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+</head>
+
+<body class="loading">
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">react-router 页面跳转</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">react-router 页面跳转</h1>
+        <div class="stuff">
+            <span>十月 10, 2018</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/react-router/">react-router</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/页面跳转/">页面跳转</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="props-match-params"><a href="#props-match-params" class="headerlink" title="props.match.params"></a>props.match.params</h2><p>此种方式，参数会显示在 <code>url地址栏</code> 上，直接输入地址或者刷新页面地址栏仍然含有此参数。</p>
+<p>地址形式为 <code>/</code> 连接的形式。</p>
+<ol>
+<li><p><em>路由写法</em></p>
+<p> 多个参数，以 <code>/</code> 分割， <code>?</code> 代表非必填</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Route path=<span class="string">"/a/:data1/:data2?"</span> component=&#123;a&#125;/&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><em>跳转写法</em></p>
+<p> 注意需要对参数编码，若参数中含有 <code>/</code> ，不编码导致多个参数截取错误</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//link组件</span></span><br><span class="line">&lt;Link to=&#123;<span class="string">"/a/"</span> + <span class="built_in">encodeURIComponent</span>(data1) + <span class="string">"/"</span> + <span class="built_in">encodeURIComponent</span>(data2)&#125;&gt;&lt;/Link&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//history</span></span><br><span class="line"><span class="keyword">this</span>.props.history.push(path)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><em>取值</em></p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.props.match.params);</span><br><span class="line"><span class="comment">//为对象，可以获取参数，注意转义</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="search"><a href="#search" class="headerlink" title="search"></a>search</h2><p>此种写法页面跳转参数在url上，且为 <code>?data1=1&amp;data2=2</code> 的形式。</p>
+<p>页面刷新或者输入地址，参数不会保留。</p>
+<ol>
+<li><p><em>路由写法</em></p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Route path=<span class="string">"/a"</span> component=&#123;a&#125;/&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><em>跳转写法</em></p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//link组件</span></span><br><span class="line">&lt;Link to=&#123;&#123;</span><br><span class="line">    pathname: <span class="string">"/courses"</span>,</span><br><span class="line">    search: <span class="string">"?sort=name&amp;hha=aa"</span>,</span><br><span class="line"> &#125;&#125;</span><br><span class="line">/&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//history</span></span><br><span class="line"><span class="keyword">this</span>.props.history.push(path)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><em>取值</em></p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.props.location.search);</span><br><span class="line"><span class="comment">//输出的值为一个字符串，不能区分出参数</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="state"><a href="#state" class="headerlink" title="state"></a>state</h2><p>此种写法页面跳转参数不在url上, 类似 <code>post</code> 提交， 刷新后参数都会丢失。</p>
+<ol>
+<li><p><em>路由写法</em></p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Route path=<span class="string">"/a"</span> component=&#123;a&#125;/&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><em>跳转写法</em></p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//link组件</span></span><br><span class="line">&lt;Link to=&#123;&#123;</span><br><span class="line">    pathname: <span class="string">"/courses"</span>,</span><br><span class="line">    state: &#123;</span><br><span class="line">      data1: <span class="number">1</span>,</span><br><span class="line">      data2: <span class="number">2</span></span><br><span class="line">    &#125;,</span><br><span class="line"> &#125;&#125;</span><br><span class="line">/&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//history</span></span><br><span class="line"><span class="keyword">this</span>.props.history.push(path)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><em>取值</em></p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.props.location.state);</span><br><span class="line"><span class="comment">//为对象，可以获取参数</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src="https://raw.githubusercontent.com/zzugbb/share-docs/master/resource/mp3/pdd.mp3">
+            </audio>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='3bea67f4c16a20a5d9a2'
+        data-cs='d38faaf81761abcbc9f09e26fe7ee51dbb56eb70'
+        data-r='zzugbb.github.io'
+        data-o='zzugbb'
+        data-a='zzugbb'
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#props-match-params"><span class="toc-number">1.</span> <span class="toc-text">props.match.params</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#search"><span class="toc-number">2.</span> <span class="toc-text">search</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#state"><span class="toc-number">3.</span> <span class="toc-text">state</span></a></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
