@@ -72,7 +72,7 @@
 </li>
 </ol>
 <h2 id="search"><a href="#search" class="headerlink" title="search"></a>search</h2><p>此种写法页面跳转参数在url上，且为 <code>?data1=1&amp;data2=2</code> 的形式。</p>
-<p>页面刷新或者输入地址，参数不会保留。</p>
+<p>页面刷新或者输入地址，参数保留。</p>
 <ol>
 <li><p><em>路由写法</em></p>
  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Route path=<span class="string">"/a"</span> component=&#123;a&#125;/&gt;</span><br></pre></td></tr></table></figure>
@@ -81,7 +81,7 @@
  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//link组件</span></span><br><span class="line">&lt;Link to=&#123;&#123;</span><br><span class="line">    pathname: <span class="string">"/courses"</span>,</span><br><span class="line">    search: <span class="string">"?sort=name&amp;hha=aa"</span>,</span><br><span class="line"> &#125;&#125;</span><br><span class="line">/&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//history</span></span><br><span class="line"><span class="keyword">this</span>.props.history.push(path)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><em>取值</em></p>
- <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.props.location.search);</span><br><span class="line"><span class="comment">//输出的值为一个字符串，不能区分出参数</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.props.location.search);</span><br><span class="line"><span class="comment">//输出的值为一个字符串，不能区分出参数，需要自己解析处理参数</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h2 id="state"><a href="#state" class="headerlink" title="state"></a>state</h2><p>此种写法页面跳转参数不在url上, 类似 <code>post</code> 提交， 刷新后参数都会丢失。</p>
