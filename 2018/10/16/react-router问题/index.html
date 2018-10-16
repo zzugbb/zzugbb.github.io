@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>gbb</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="个人博客,"> 
+    <meta name="description" content="React-Router关于 React-Router v4 版本的两种路由方式 HashRouter , BrowserRouter
+12BrowserRouter : http://localh,"> 
+    <meta name="author" content="gbb"> 
+    <link rel="alternative" href="atom.xml" title="gbb" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+</head>
+
+<body class="loading">
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">react-router 之 HashRouter & BrowserRouter</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">react-router 之 HashRouter & BrowserRouter</h1>
+        <div class="stuff">
+            <span>十月 16, 2018</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/BrowserRouter/">BrowserRouter</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/HashRouter/">HashRouter</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="React-Router"><a href="#React-Router" class="headerlink" title="React-Router"></a>React-Router</h2><p>关于 <code>React-Router</code> v4 版本的两种路由方式 <code>HashRouter</code> , <code>BrowserRouter</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BrowserRouter : http:<span class="comment">//localhost:3000/abc/def</span></span><br><span class="line">HashRouter: http:<span class="comment">//localhost:3000/#/abc/def  //hash地址就是指#号后面的url</span></span><br></pre></td></tr></table></figure>
+<p><code>BrowserRouter</code> 基于 url 的 <code>pathName</code> 字段, <code>HashRouter</code> 则基于 <code>hash</code> 段。</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>采用 <code>BrowserRouter</code> 写法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;BrowserRouter&gt;</span><br><span class="line">  &lt;Route exact path=<span class="string">"/"</span> component=&#123;Index&#125;/&gt;</span><br><span class="line">  &lt;Route path=<span class="string">"/Search"</span> component=&#123;Search&#125;/&gt;</span><br><span class="line">&lt;<span class="regexp">/BrowserRouter&gt;</span></span><br></pre></td></tr></table></figure>
+<p>开发时正常，打包后的静态页面空白, 访问时无法访问。</p>
+<ol>
+<li>查看发现静态资源引用异常，修改静态资源引用，改为相对路径，本身是 <code>/static/js -&gt; ./static/js</code>。<br> 在package.json文件中添加homepage字段并设置为”.” || 直接修改生成后的静态页面引用。</li>
+<li>发现静态资源正常，但是页面还是加载不到。</li>
+<li>改为 <code>HashRouter</code> 可以访问。</li>
+</ol>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><ol>
+<li><p>HashRouter<br> <code>hashHistory</code> 使用URL中的hash（#）部分去创建路由.<br> 举例来说，用户访问 /search, 实际会看到的是 <code>http://localhost:3000/#/search</code> 加载对应组件。<br> 访问 /（<code>http://localhost:3000/#/</code>）时 加载对应组件。</p>
+</li>
+<li><p>BrowserRouter<br> <code>browserHistory</code> 是使用 React-Router 的应用推荐的 history方案。它使用浏览器中的 History API 用于处理 URL.创建一个真实的URL.<br> 在 browserHistory 模式下，URL 是指向真实 URL 的资源路径。<br> 当通过真实 URL 访问网站的时候，由于路径是指向服务器的真实路径，但并没有对应物理路径/文件 ，实际所有内容是通过React-Router去渲染React组件，<br> 所以用户访问的资源不存在，则空白。</p>
+</li>
+</ol>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><ol>
+<li>采用 HashRouter–开发时可以，打包后的页面访问也可用。</li>
+<li>采用 BrowserRouter—开发时可以，打包后的页面不可直接访问。<br> 本地开发时可以通过配置 webpack-devServer 的 historyApiFallback，create-react-app 已配置。<ul>
+<li><a href="https://webpack.js.org/configuration/dev-server/#devserver-historyapifallback" target="_blank" rel="noopener">devServer.historyApiFallback</a></li>
+<li><a href="http://echizen.github.io/tech/2016/07-05-webpack-dev-server-react-router-config" target="_blank" rel="noopener">webpack-dev-server使用react-router browserHistory的配置</a></li>
+</ul>
+</li>
+<li>采用 BrowserRouter–服务端支持<ul>
+<li>nginx 方式。指定目的文件夹，指定 index.html。全部导到index。</li>
+<li>nodejs处理（express或koa）.</li>
+<li><a href="https://www.thinktxt.com/react/2017/02/26/react-router-browserHistory-refresh-404-solution.html" target="_blank" rel="noopener">React-Router browserHistory浏览器刷新出现页面404解决方案</a></li>
+</ul>
+</li>
+</ol>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="attribute">server_name</span> react.com;</span><br><span class="line">  <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">root</span> /user/src/React-Demo/dist;</span><br><span class="line">  <span class="attribute">index</span> index.html;</span><br><span class="line">  <span class="attribute">location</span> / &#123;</span><br><span class="line">    <span class="attribute">try_files</span> <span class="variable">$uri</span> /index.html;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置静态资源目录</span></span><br><span class="line">app.use(express.static(path.join(__dirname, <span class="string">'./build'</span>)));</span><br><span class="line"></span><br><span class="line"><span class="comment">//所有访问，都指定返回 index.html</span></span><br><span class="line"><span class="comment">//而index.html会根据React-Router规则去匹配任何一个route</span></span><br><span class="line">app.get(<span class="string">'/*'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  res.sendFile(path.join(__dirname, <span class="string">'./build'</span>, <span class="string">'index.html'</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置服务器</span></span><br><span class="line"><span class="keyword">var</span> server = app.listen(<span class="number">3001</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> host = server.address().address;</span><br><span class="line">  <span class="keyword">var</span> port = server.address().port;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'众享后台 listening at http://%s:%s'</span>, host, port);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src="https://raw.githubusercontent.com/zzugbb/share-docs/master/resource/mp3/Faded-Alan.mp3">
+            </audio>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='3bea67f4c16a20a5d9a2'
+        data-cs='d38faaf81761abcbc9f09e26fe7ee51dbb56eb70'
+        data-r='zzugbb.github.io'
+        data-o='zzugbb'
+        data-a='zzugbb'
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#React-Router"><span class="toc-number">1.</span> <span class="toc-text">React-Router</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题"><span class="toc-number">2.</span> <span class="toc-text">问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原因"><span class="toc-number">3.</span> <span class="toc-text">原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决"><span class="toc-number">4.</span> <span class="toc-text">解决</span></a></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
