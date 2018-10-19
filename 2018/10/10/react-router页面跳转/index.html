@@ -53,7 +53,7 @@
 
         </div>
         <div class="content markdown">
-            <h2 id="props-match-params"><a href="#props-match-params" class="headerlink" title="props.match.params"></a>props.match.params</h2><p>此种方式，参数会显示在 <code>url地址栏</code> 上，直接输入地址或者刷新页面地址栏仍然含有此参数。</p>
+            <h2 id="props-match-params"><a href="#props-match-params" class="headerlink" title="props.match.params"></a>props.match.params</h2><p>此种方式，参数会显示在 <code>url地址栏</code> 上。</p>
 <p>地址形式为 <code>/</code> 连接的形式。</p>
 <ol>
 <li><p><em>路由写法</em></p>
@@ -69,7 +69,6 @@
 </li>
 </ol>
 <h2 id="search"><a href="#search" class="headerlink" title="search"></a>search</h2><p>此种写法页面跳转参数在url上，且为 <code>?data1=1&amp;data2=2</code> 的形式。</p>
-<p>页面刷新或者输入地址，新开页面，参数不会保留。</p>
 <ol>
 <li><p><em>路由写法</em></p>
  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Route path=<span class="string">"/a"</span> component=&#123;a&#125;/&gt;</span><br></pre></td></tr></table></figure>
@@ -81,7 +80,7 @@
  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.props.location.search);</span><br><span class="line"><span class="comment">//输出的值为一个字符串，不能区分出参数，需要自己解析处理参数</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h2 id="state"><a href="#state" class="headerlink" title="state"></a>state</h2><p>此种写法页面跳转参数不在url上, 类似 <code>post</code> 提交， 刷新后参数都会丢失。</p>
+<h2 id="state"><a href="#state" class="headerlink" title="state"></a>state</h2><p>此种写法页面跳转参数不在url上, 类似 <code>post</code> 提交。</p>
 <ol>
 <li><p><em>路由写法</em></p>
  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Route path=<span class="string">"/a"</span> component=&#123;a&#125;/&gt;</span><br></pre></td></tr></table></figure>
@@ -90,8 +89,11 @@
  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//link组件</span></span><br><span class="line">&lt;Link to=&#123;&#123;</span><br><span class="line">    pathname: <span class="string">"/courses"</span>,</span><br><span class="line">    state: &#123;</span><br><span class="line">      data1: <span class="number">1</span>,</span><br><span class="line">      data2: <span class="number">2</span></span><br><span class="line">    &#125;,</span><br><span class="line"> &#125;&#125;</span><br><span class="line">/&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//history</span></span><br><span class="line"><span class="keyword">this</span>.props.history.push(path)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><em>取值</em></p>
- <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.props.location.state);</span><br><span class="line"><span class="comment">//为对象，可以获取参数</span></span><br></pre></td></tr></table></figure></li>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.props.location.state);</span><br><span class="line"><span class="comment">//为对象，可以获取参数</span></span><br></pre></td></tr></table></figure>
+</li>
 </ol>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>页面重定向，直接传 location 对象，而不是 location.pathName, 否则造成参数丢失</p>
+<p>this.props.history.push(this.props.history.location)</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
@@ -114,7 +116,7 @@
     </div>
     
         <div class='side'>
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#props-match-params"><span class="toc-number">1.</span> <span class="toc-text">props.match.params</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#search"><span class="toc-number">2.</span> <span class="toc-text">search</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#state"><span class="toc-number">3.</span> <span class="toc-text">state</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#props-match-params"><span class="toc-number">1.</span> <span class="toc-text">props.match.params</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#search"><span class="toc-number">2.</span> <span class="toc-text">search</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#state"><span class="toc-number">3.</span> <span class="toc-text">state</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意"><span class="toc-number">4.</span> <span class="toc-text">注意</span></a></li></ol>
         </div>
     
 </div>
