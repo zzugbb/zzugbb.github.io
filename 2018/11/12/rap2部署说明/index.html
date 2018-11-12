@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>gbb</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="个人博客,"> 
+    <meta name="description" content="介绍rap2-阿里前端团队开源接口管理工具RAP第二代
+
+相关链接
+官网
+RAP-github
+RAP2-github
+Api 文档管理系统 RAP2环境搭建
+非官方rap2-delos部署文档
+
+,"> 
+    <meta name="author" content="gbb"> 
+    <link rel="alternative" href="atom.xml" title="gbb" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+</head>
+
+<body class="loading">
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">rap2部署说明</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">rap2部署说明</h1>
+        <div class="stuff">
+            <span>十一月 12, 2018</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/rap2/">rap2</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/可视化接口管理工具/">可视化接口管理工具</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><code>rap2</code>-阿里前端团队开源接口管理工具RAP第二代</p>
+<p><small style="vertical-align:middle;display:inline-block"><iframe src="http://ghbtns.com/github-btn.html?user=thx&repo=rap2-delos&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20" style="width:110px;height:20px;  background-color: transparent;"></iframe><iframe src="http://ghbtns.com/github-btn.html?user=thx&repo=rap2-delos&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20" style="width:110px;height:20px;  background-color: transparent;"></iframe><iframe src="http://ghbtns.com/github-btn.html?user=thx&repo=rap2-delos&type=follow&count=false" allowtransparency="true" frameborder="0" scrolling="0" width="170" height="20" style="width:170px;height:20px;  background-color: transparent;"></iframe></small></p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><a href="http://rapapi.org/org/index.do" target="_blank" rel="noopener">官网</a></li>
+<li><a href="https://github.com/thx/RAP" target="_blank" rel="noopener">RAP-github</a></li>
+<li><a href="https://github.com/thx/rap2-delos" target="_blank" rel="noopener">RAP2-github</a></li>
+<li><a href="https://incoder.org/2018/03/27/rap2/" target="_blank" rel="noopener">Api 文档管理系统 RAP2环境搭建</a></li>
+<li><a href="https://github.com/thx/rap2-delos/issues/119" target="_blank" rel="noopener">非官方rap2-delos部署文档</a></li>
+</ul>
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><strong>RAP2</strong> 包含两个组件 客户端：<em><a href="https://github.com/thx/rap2-dolores" target="_blank" rel="noopener">rap2-dolores</a></em> 和 服务端：<em><a href="https://github.com/thx/rap2-delos" target="_blank" rel="noopener">rap2-delos</a></em></p>
+<p>部署RAP2需要亲具有Node+Linux+MySQL的运维知识，如果亲对此不是很了解，建议用<a href="http://rap2.taobao.org" target="_blank" rel="noopener">http://rap2.taobao.org</a> 线上版本就可以了。</p>
+<h3 id="部署准备"><a href="#部署准备" class="headerlink" title="部署准备"></a>部署准备</h3><ul>
+<li><a href="https://git-scm.com/downloads" target="_blank" rel="noopener">git</a></li>
+<li><a href="https://nodejs.org/zh-cn/download/" target="_blank" rel="noopener">Node 8.9.4+</a></li>
+<li><a href="https://www.mysql.com/cn/downloads/" target="_blank" rel="noopener">MySQL 5.7+</a></li>
+<li><a href="https://redis.io/download" target="_blank" rel="noopener">Redis 4.0+</a></li>
+<li><a href="https://code.visualstudio.com/download" target="_blank" rel="noopener">VS code</a>(非必需)</li>
+</ul>
+<h2 id="服务端部署"><a href="#服务端部署" class="headerlink" title="服务端部署"></a>服务端部署</h2><p>下面先讲述 <code>rap2-delos</code> 服务端部署</p>
+<h3 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h3><ol>
+<li><code>node</code> 版本升级</li>
+<li><code>mysql</code> 下载安装</li>
+<li><code>redis</code> 下载安装</li>
+<li><code>工程克隆</code> git clone <a href="https://github.com/thx/rap2-delos.git" target="_blank" rel="noopener">https://github.com/thx/rap2-delos.git</a></li>
+<li>导入 <code>VS Code</code> //这里的开发编辑工具推荐，当然你也可以用自己熟悉的开发工具</li>
+</ol>
+<blockquote>
+<p>mysql 下载安装的时候，新手上路可以直接下载 <code>msi</code> 格式的安装包，而不是下载压缩包，不然还需要配置。</p>
+<ul>
+<li><a href="https://www.cnblogs.com/ayyl/p/5978418.html" target="_blank" rel="noopener">参考-MySQL基础知识-安装MySQL</a></li>
+</ul>
+</blockquote>
+<h3 id="Redis-安装说明"><a href="#Redis-安装说明" class="headerlink" title="Redis 安装说明"></a>Redis 安装说明</h3><ol>
+<li><em><a href="https://incoder.org/2018/05/15/linux-build/" target="_blank" rel="noopener">Linux 常用应用安装</a></em></li>
+<li><em><a href="https://www.cnblogs.com/yougmi/p/6119259.html" target="_blank" rel="noopener">Windows 下的 Redis 的启动</a></em></li>
+<li><em><a href="https://jingyan.baidu.com/article/7f766daff725cf4101e1d0d1.html" target="_blank" rel="noopener">windows下安装和启动redis服务</a></em></li>
+</ol>
+<p>说明：按照<strong>windows</strong>下相关操作即可。</p>
+<p>常用命令</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*启动*/</span></span><br><span class="line">redis-server.exe redis.windows.conf</span><br><span class="line"></span><br><span class="line"><span class="comment">/*新窗口连接*/</span></span><br><span class="line">redis-cli.exe 如果没有改默认配置的端口号</span><br><span class="line">redis-cli.exe -h <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> -p <span class="number">6379</span> 改了端口号</span><br><span class="line"></span><br><span class="line"><span class="comment">/*[13164] 27 Dec 20:57:07.820 # Creating Server TCP listening socket 127.0.0.1:6379*/</span></span><br><span class="line"><span class="comment">//错误解决</span></span><br><span class="line"><span class="number">1.</span> redis-cli.exe</span><br><span class="line"><span class="number">2.</span> shutdown</span><br><span class="line"><span class="number">3.</span> exit</span><br><span class="line"><span class="number">4.</span> redis-server.exe redis.windows.conf</span><br></pre></td></tr></table></figure>
+<h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">进入mysql命令后执行</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> <span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> RAP2_DELOS_APP <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span> utf8 <span class="keyword">COLLATE</span> utf8_general_ci;</span><br></pre></td></tr></table></figure>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><ul>
+<li>目录：rap2-delos/src/config</li>
+<li>文件：config.dev.ts;其中dev，表示开发环境，其他同理</li>
+<li>修改：config.dev.ts文件中db对象中username，password参数与本地或者开发环境的数据库信息匹配</li>
+</ul>
+<h3 id="项目启动"><a href="#项目启动" class="headerlink" title="项目启动"></a>项目启动</h3><ol>
+<li><code>npm install</code> </li>
+<li><code>npm run create-db</code> –初始化数据库</li>
+<li><code>npm run check</code> –执行mocha测试用例和js代码规范检查</li>
+<li><code>npm run dev</code> –启动开发模式的服务器 监视并在发生代码变更时自动重启</li>
+<li><code>npm start</code> –启动生产模式服务器</li>
+</ol>
+<p><strong><a href="http://localhost:8080/" target="_blank" rel="noopener">http://localhost:8080/</a></strong> 看到浏览器中如下提示，表示服务端delos已经部署成功</p>
+<blockquote>
+<p>RAP2后端服务已启动，请从前端服务(rap2-dolores)访问。 RAP2 back-end server is started, please visit via front-end service (rap2-dolores).</p>
+</blockquote>
+<h3 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h3><ol>
+<li><p>执行 <strong>npm run create-d</strong> , 提示没有 <em>/dist</em></p>
+<p> <code>原因</code>：运行 npm run build 就可以启动 ts 编译，把源文件编译到 dist 文件夹里面，就有 dist/ 目录了。</p>
+</li>
+<li><p>执行 <strong>npm run create-db</strong> 命令, Unable to connect to the database: { SequelizeConnectionError: Client does not support authentication protocol requested by server; consider upgrading MySQL client    </p>
+<p> <code>解决</code>：建议使用旧密码哈希算法, 执行如下sql</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> <span class="string">'USER'</span>@<span class="string">'localhost'</span> <span class="keyword">identified</span> <span class="keyword">with</span> mysql_native_password <span class="keyword">by</span> <span class="string">'PASSWORD'</span></span><br></pre></td></tr></table></figure>
+<p> <em><a href="https://github.com/mysqljs/mysql/issues/1574" target="_blank" rel="noopener">参考</a></em></p>
+</li>
+<li><p>执行 <strong>npm run create-db</strong> 命令，提示Unable to connect to the database:{ SequelizeAccessDeniedError: Access denied for user ‘root‘@’localhost’ (using password:NO)}</p>
+<p> <code>原因</code>：未修改rap2-delos/src/config目录下数据库配置文件，或者是与文件中的数据库信息与之连接的数据库信息不匹配</p>
+</li>
+</ol>
+<h2 id="客户端部署"><a href="#客户端部署" class="headerlink" title="客户端部署"></a>客户端部署</h2><ol>
+<li><em>git clone <a href="https://github.com/thx/rap2-dolores" target="_blank" rel="noopener">https://github.com/thx/rap2-dolores</a></em> –克隆工程</li>
+<li><em>npm install</em></li>
+<li><em>npm run dev</em> –开发模式, 自动监视改变后重新编译</li>
+<li><em>npm run test</em> –备注：测试用例</li>
+<li><em>npm run build</em> –生产模式, 编译React生产包</li>
+<li><em>serve -s ./build -p 80</em> –用serve命令或nginx服务器路由到编译产出的build文件夹作为静态服务器即可</li>
+</ol>
+<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p>访问: <a href="http://localhost:3000" target="_blank" rel="noopener">http://localhost:3000</a>, 即可看到对应功能</p>
+<h2 id="使用总结"><a href="#使用总结" class="headerlink" title="使用总结"></a>使用总结</h2><ol>
+<li><code>rap2-delos</code> 服务端启动 <em>npm run dev</em> {:&amp;.moveIn}</li>
+<li><code>rap2-dolores</code> 客户端启动 <em>npm run dev</em></li>
+<li><code>redis</code> 缓存启动 <em>redis-server.exe redis.windows.conf</em></li>
+<li><code>mysql</code> 数据库 <em>数据库连接</em></li>
+<li><code>http://localhost:3000</code> <em>页面登录访问</em></li>
+</ol>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src="https://raw.githubusercontent.com/zzugbb/share-docs/master/resource/mp3/pdd.mp3">
+            </audio>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='3bea67f4c16a20a5d9a2'
+        data-cs='d38faaf81761abcbc9f09e26fe7ee51dbb56eb70'
+        data-r='zzugbb.github.io'
+        data-o='zzugbb'
+        data-a='zzugbb'
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关链接"><span class="toc-number">2.</span> <span class="toc-text">相关链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#部署"><span class="toc-number">3.</span> <span class="toc-text">部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">3.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部署准备"><span class="toc-number">3.2.</span> <span class="toc-text">部署准备</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#服务端部署"><span class="toc-number">4.</span> <span class="toc-text">服务端部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#环境安装"><span class="toc-number">4.1.</span> <span class="toc-text">环境安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-安装说明"><span class="toc-number">4.2.</span> <span class="toc-text">Redis 安装说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建数据库"><span class="toc-number">4.3.</span> <span class="toc-text">创建数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件"><span class="toc-number">4.4.</span> <span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#项目启动"><span class="toc-number">4.5.</span> <span class="toc-text">项目启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见错误"><span class="toc-number">4.6.</span> <span class="toc-text">常见错误</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#客户端部署"><span class="toc-number">5.</span> <span class="toc-text">客户端部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#效果"><span class="toc-number">5.1.</span> <span class="toc-text">效果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用总结"><span class="toc-number">6.</span> <span class="toc-text">使用总结</span></a></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
