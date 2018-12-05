@@ -58,10 +58,15 @@
 <h2 id="主要特性"><a href="#主要特性" class="headerlink" title="主要特性"></a>主要特性</h2><ul>
 <li>内建负载均衡（使用Node cluster 集群模块）</li>
 <li>后台运行</li>
-<li>0秒停机重载</li>
-<li>具有Ubuntu和CentOS 的启动脚本</li>
+<li>0秒停机重载–pm2 reload</li>
+<li>具有Ubuntu和CentOS 的启动脚本, windows 则可用 pm2-windows-startup</li>
+<li>控制台检测–pm2 monit</li>
+</ul>
+<blockquote>
+<p>上面特性已体验，下面暂未体验到</p>
+</blockquote>
+<ul>
 <li>停止不稳定的进程（避免无限循环）</li>
-<li>控制台检测</li>
 <li>提供 HTTP API</li>
 <li>远程控制和实时的接口API ( Nodejs 模块,允许和PM2进程管理器交互 )</li>
 </ul>
