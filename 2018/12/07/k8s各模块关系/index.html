@@ -28,7 +28,7 @@ Kubernetes 是容器集群管理系统，是一个开源的平台，可以实现
     <div class="bar" style="width: 0;"></div>
     <a class="icon-home image-icon" href="javascript:;"></a>
     <div title="播放/暂停" class="icon-play"></div>
-    <h3 class="subtitle">Get 与 Post 区别</h3>
+    <h3 class="subtitle">k8s 各模块关系</h3>
     <div class="social">
         <!--<div class="like-icon">-->
             <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -45,48 +45,49 @@ Kubernetes 是容器集群管理系统，是一个开源的平台，可以实现
     <div class="section">
         <div class="article">
     <div class='main'>
-        <h1 class="title">Get 与 Post 区别</h1>
+        <h1 class="title">k8s 各模块关系</h1>
         <div class="stuff">
-            <span>十一月 20, 2018</span>
+            <span>十二月 07, 2018</span>
             
-  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Get/">Get</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Post/">Post</a></li></ul>
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Deployment-ReplicaSet-Service-pod/">Deployment/ReplicaSet/Service/pod</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/k8s/">k8s</a></li></ul>
 
 
         </div>
         <div class="content markdown">
-            <h2 id="什么是-HTTP"><a href="#什么是-HTTP" class="headerlink" title="什么是 HTTP ?"></a>什么是 HTTP ?</h2><blockquote>
-<p>超文本传输协议（HTTP）的设计目的是保证客户机与服务器之间的通信。<br>HTTP 的工作方式是客户机与服务器之间的请求-应答协议。<br>web 浏览器可能是客户端，而计算机上的网络应用程序也可能作为服务器端。<br>举例：客户端（浏览器）向服务器提交 HTTP 请求；服务器向客户端返回响应。响应包含关于请求的状态信息以及可能被请求的内容。</p>
+            <h2 id="关与-Kubernetes"><a href="#关与-Kubernetes" class="headerlink" title="关与 Kubernetes"></a>关与 <strong>Kubernetes</strong></h2><blockquote>
+<p><code>Kubernetes</code> 是容器集群管理系统，是一个开源的平台，可以实现容器集群的自动化部署、自动扩缩容、维护等功能。<br><code>Kubernetes</code> 的名字来自希腊语，意思是“舵手” 或 “领航员”。K8s是将8个字母“ubernete”替换为“8”的缩写。</p>
 </blockquote>
-<h2 id="HTTP请求方法：GET-和-POST"><a href="#HTTP请求方法：GET-和-POST" class="headerlink" title="HTTP请求方法：GET 和 POST"></a>HTTP请求方法：GET 和 POST</h2><ul>
-<li>GET - 从指定的资源请求数据。</li>
-<li>POST - 向指定的资源提交要被处理的数据</li>
-</ul>
-<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><ul>
-<li><code>GET</code> 参数通过 url 传递，<code>POST</code> 放在 request body中</li>
-<li><code>GET</code> 请求在URL中传送的参数是有长度限制的(2048 个字符)，而 <code>POST</code> 没有</li>
-<li><code>GET</code> 比 <code>post</code> 更不安全，因为参数直接暴露在url中，所以不能用来传递敏感信息</li>
-<li><code>GET</code> 请求只能进行url编码，而 <code>POST</code> 支持多种编码方式</li>
-<li><code>GET</code> 请求会被浏览器主动cache，而 <code>POST</code> 不会，除非手动设置</li>
-<li><code>GET</code> 请求参数会被完整保留在浏览器历史记录里，而 <code>POST</code> 中的参数不会被保留</li>
-<li><code>GET</code> 在浏览器回退时是无害的，而 <code>POST</code> 会再次提交请求</li>
-<li><code>GET</code> 只接受ASCII字符的参数的数据类型，，而 <code>POST</code> 没有限制</li>
-<li><code>GET</code> 产生的URL地址可以被Bookmark-书签，而 <code>POST</code> 不可以。</li>
-</ul>
-<h2 id="本质"><a href="#本质" class="headerlink" title="本质"></a>本质</h2><ul>
-<li><code>GET</code> 和 <code>POST</code> 本质上就是TCP链接，并无差别。但是由于HTTP的规定和浏览器/服务器的限制，导致他们在应用过程中体现出一些不同。</li>
-<li><p><code>GET</code> 产生一个TCP数据包, <code>POST</code> 产生两个TCP数据包。</p>
-<ul>
-<li>对于 <code>GET</code> 方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）；</li>
-<li>对于 <code>POST</code>，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据）。</li>
-<li>据研究，在网络环境好的情况下，发一次包的时间和发两次包的时间差别基本可以无视。而在网络环境差的情况下，两次包的TCP在验证数据包完整性上，有非常大的优点。</li>
-<li>并不是所有浏览器都会在 <code>POST</code> 中发送两次包，Firefox就只发送一次。</li>
-</ul>
-</li>
+<h2 id="各模块关系图"><a href="#各模块关系图" class="headerlink" title="各模块关系图"></a>各模块关系图</h2><p><img src="/images/k8s.png"></p>
+<h2 id="Kubernetes-Pod-概述"><a href="#Kubernetes-Pod-概述" class="headerlink" title="Kubernetes Pod 概述"></a><strong>Kubernetes Pod</strong> 概述</h2><blockquote>
+<p><code>Pod</code> 是 <code>Kubernetes</code> 创建或部署的最小/最简单的基本单位，一个 <code>Pod</code> 代表集群上正在运行的一个进程。</p>
+</blockquote>
+<blockquote>
+<p>创建 <code>Deployment</code> 时，<code>Kubernetes</code> 会创建了一个 <code>Pod</code> 来托管应用。<code>Pod</code> 是 <code>Kubernetes</code> 中一个抽象化概念，由一个或多个容器组合在一起得共享资源<br><code>Pod</code> 代表部署的一个单位：<code>Kubernetes</code> 中单个应用的实例，它可能由单个容器或多个容器共享组成的资源。</p>
+</blockquote>
+<h2 id="Kubernetes-Replica-Sets-概述"><a href="#Kubernetes-Replica-Sets-概述" class="headerlink" title="Kubernetes Replica Sets 概述"></a><strong>Kubernetes Replica Sets</strong> 概述</h2><blockquote>
+<p><code>ReplicaSet（RS）</code> 是 <code>Replication Controller（RC）</code> 的升级版本。</p>
+</blockquote>
+<blockquote>
+<p>主要被 <code>Deployments</code> 用作 <code>pod</code> 机制的创建、删除和更新。当使用 <code>Deployment</code> 时，你不必担心创建 <code>pod</code> 的 <code>ReplicaSets</code>，因为可以通过 <code>Deployment</code> 实现管理 <code>ReplicaSets</code></p>
+</blockquote>
+<h2 id="Kubernetes-Deployment-概述"><a href="#Kubernetes-Deployment-概述" class="headerlink" title="Kubernetes Deployment 概述"></a><strong>Kubernetes Deployment</strong> 概述</h2><blockquote>
+<p><code>Deployment</code> 为 <code>Pod</code> 和 <code>Replica Set</code>（升级版的 Replication Controller）提供声明式更新。</p>
+</blockquote>
+<blockquote>
+<p>负责创建和更新应用，应用实例创建完成后，<code>Kubernetes Deployment Controller</code> 会持续监视这些实例。如果管理实例的节点被关闭或删除，那么 <code>Deployment Controller</code> 将会替换它们，实现自我修复能力。</p>
+</blockquote>
+<h2 id="Kubernetes-Service-概述"><a href="#Kubernetes-Service-概述" class="headerlink" title="Kubernetes Service 概述"></a><strong>Kubernetes Service</strong> 概述</h2><blockquote>
+<p><code>Kubernetes Service</code> 定义了这样一种抽象：一个 <code>Pod</code> 的逻辑分组，一种可以访问它们的策略 —— 通常称为微服务。这一组 Pod 能够被 Service 访问到，</p>
+</blockquote>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="http://docs.kubernetes.org.cn/" target="_blank" rel="noopener">Kubernetes中文社区|中文文档</a>  </li>
+<li><a href="http://docs.kubernetes.org.cn/683.html" target="_blank" rel="noopener">Kubernetes kubectl 命令表</a></li>
+<li><a href="https://blog.csdn.net/ucsheep/article/details/81781509" target="_blank" rel="noopener">k8s(Kubernetes)中Pod,Deployment,ReplicaSet,Service之间关系分析</a></li>
 </ul>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
-                <source type="audio/mpeg" src="https://raw.githubusercontent.com/zzugbb/share-docs/master/resource/mp3/Faded-Alan.mp3">
+                <source type="audio/mpeg" src="https://raw.githubusercontent.com/zzugbb/share-docs/master/resource/mp3/horizon.mp3">
             </audio>
             
         </div>
@@ -105,7 +106,7 @@ Kubernetes 是容器集群管理系统，是一个开源的平台，可以实现
     </div>
     
         <div class='side'>
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是-HTTP"><span class="toc-number">1.</span> <span class="toc-text">什么是 HTTP ?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP请求方法：GET-和-POST"><span class="toc-number">2.</span> <span class="toc-text">HTTP请求方法：GET 和 POST</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#区别"><span class="toc-number">3.</span> <span class="toc-text">区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本质"><span class="toc-number">4.</span> <span class="toc-text">本质</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关与-Kubernetes"><span class="toc-number">1.</span> <span class="toc-text">关与 Kubernetes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#各模块关系图"><span class="toc-number">2.</span> <span class="toc-text">各模块关系图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kubernetes-Pod-概述"><span class="toc-number">3.</span> <span class="toc-text">Kubernetes Pod 概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kubernetes-Replica-Sets-概述"><span class="toc-number">4.</span> <span class="toc-text">Kubernetes Replica Sets 概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kubernetes-Deployment-概述"><span class="toc-number">5.</span> <span class="toc-text">Kubernetes Deployment 概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kubernetes-Service-概述"><span class="toc-number">6.</span> <span class="toc-text">Kubernetes Service 概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">7.</span> <span class="toc-text">参考</span></a></li></ol>
         </div>
     
 </div>
