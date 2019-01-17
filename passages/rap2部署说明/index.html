@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="author" content="董沅鑫, yuanxin.me@gmail.com">
+  
+  
+  
+  <title>rap2部署说明 | gbb</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="rap2,可视化接口管理工具,">
+  
+
+  <script>
+    console.log('\n%c Hexo-theme-bmw v4.0 ' + '%c 🎉 https://github.com/dongyuanxin/theme-bmw 🎉\n' + '\n%c View demo online ' + '%c 🔍 https://godbmw.com/ 🔍  \n' , 'color: #fadfa3; background: #030307; padding:3px 0;', '', 'color: #fadfa3; background: #030307; padding:3px 0;', '');
+  </script>
+
+  
+    <meta name="description" content="个人博客">
+  
+
+  
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/icon/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+
+  <script src="/js/util.js"></script>
+<script src="/js/valine.min.js"></script>
+
+  
+
+  
+    <link href="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js" async></script>
+  
+
+  
+    <link href="https://cdn.bootcss.com/social-share.js/1.0.16/css/share.min.css" rel="stylesheet">
+  
+  
+  <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js" async></script>
+  
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.0/dist/av-min.js"></script>
+  
+
+</head>
+
+  <body>
+
+    
+
+    <div id="app">
+
+      <div class="header-wrap">
+  <header>
+    <div class="site-brand">
+      <div class="site-title">
+        <a href="/">gbb.com</a>
+      </div>
+    </div>
+    <nav class="site-navigation">
+      <ul class="nav-menu">
+      
+        <li class="nav-item" data-path="/">
+          
+            <a href="/" target="_self">
+              主页
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          
+            <a href="/archives/" target="_self">
+              归档
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="/categories/">
+          
+            <a href="/categories/" target="_self">
+              分类
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          
+            <a href="/tags/" target="_self">
+              标签
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="/whoami/">
+          
+            <a href="/whoami/" target="_self">
+              关于
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="">
+          
+            <a href="javascript:void(0);" v-else="">抓到我</a>
+            <ul class="nav-menu--dropdown">
+              
+                <li>
+                  <a href="https://github.com/zzugbb" target="_blank">
+                    Github
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+      
+      </ul>
+    </nav>
+    <i class="iconfont icon-menu"></i>
+  </header>
+</div>
+
+<script>
+  let links = document.querySelectorAll('.nav-item');
+  for(let link of links){
+    let childrenLink = link.querySelector('ul');
+    link.addEventListener('mouseenter', () => {
+      if(childrenLink) {
+        childrenLink.className = "nav-menu--dropdown active";
+      }
+    })
+    link.addEventListener('mouseleave', () => {
+      if(childrenLink) {
+        childrenLink.className = "nav-menu--dropdown";
+      }
+    })
+  }
+  let rootRealPath = getRealPath(window.location.pathname, true);
+  for(let link of links) {
+    let linkPath = link.getAttribute("data-path");
+    if(linkPath && getRealPath(linkPath, true) === rootRealPath) {
+      link.className = "nav-item hover";
+    }
+  }
+
+  let iconMenu = document.querySelector("i.iconfont.icon-menu"),
+    iconMenuClicked = false;
+  let navDOM = document.querySelector("nav.site-navigation");
+  iconMenu.addEventListener("click", () => {
+    iconMenuClicked 
+      ? navDOM.className = "site-navigation active"
+      : navDOM.className = "site-navigation";
+    iconMenuClicked = !iconMenuClicked;
+  })
+</script>
+
+      
+
+
+
+
+
+
+
+
+<div class="container post-index">
+
+  
+
+<div class="post">
+  <h1 class="article-title">
+    <span>rap2部署说明</span>
+  </h1>
+  <div class="article-top-meta">
+    <span>
+      发布 : 
+      2018-11-12
+    </span>
+    
+    
+      <span>
+        浏览 : <span class="article-timer" data-identity="rap2部署说明"></span>
+      </span>
+    
+  </div>
+
+  
+
+  <div class="article-content">
+    <div class="markdown-body">
+      <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><code>rap2</code>-阿里前端团队开源接口管理工具RAP第二代</p>
+<p><small style="vertical-align:middle;display:inline-block"><iframe src="https://ghbtns.com/github-btn.html?user=thx&repo=rap2-delos&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20" style="width:110px;height:20px;  background-color: transparent;"></iframe><iframe src="https://ghbtns.com/github-btn.html?user=thx&repo=rap2-delos&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20" style="width:110px;height:20px;  background-color: transparent;"></iframe><iframe src="https://ghbtns.com/github-btn.html?user=thx&repo=rap2-delos&type=follow&count=false" allowtransparency="true" frameborder="0" scrolling="0" width="170" height="20" style="width:170px;height:20px;  background-color: transparent;"></iframe></small></p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><a href="http://rapapi.org/org/index.do" target="_blank" rel="noopener">官网</a></li>
+<li><a href="https://github.com/thx/RAP" target="_blank" rel="noopener">RAP-github</a></li>
+<li><a href="https://github.com/thx/rap2-delos" target="_blank" rel="noopener">RAP2-github</a></li>
+<li><a href="https://incoder.org/2018/03/27/rap2/" target="_blank" rel="noopener">Api 文档管理系统 RAP2环境搭建</a></li>
+<li><a href="https://github.com/thx/rap2-delos/issues/119" target="_blank" rel="noopener">非官方rap2-delos部署文档</a></li>
+</ul>
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><strong>RAP2</strong> 包含两个组件 客户端：<em><a href="https://github.com/thx/rap2-dolores" target="_blank" rel="noopener">rap2-dolores</a></em> 和 服务端：<em><a href="https://github.com/thx/rap2-delos" target="_blank" rel="noopener">rap2-delos</a></em></p>
+<p>部署RAP2需要亲具有Node+Linux+MySQL的运维知识，如果亲对此不是很了解，建议用<a href="http://rap2.taobao.org" target="_blank" rel="noopener">http://rap2.taobao.org</a> 线上版本就可以了。</p>
+<h3 id="部署准备"><a href="#部署准备" class="headerlink" title="部署准备"></a>部署准备</h3><ul>
+<li><a href="https://git-scm.com/downloads" target="_blank" rel="noopener">git</a></li>
+<li><a href="https://nodejs.org/zh-cn/download/" target="_blank" rel="noopener">Node 8.9.4+</a></li>
+<li><a href="https://www.mysql.com/cn/downloads/" target="_blank" rel="noopener">MySQL 5.7+</a></li>
+<li><a href="https://redis.io/download" target="_blank" rel="noopener">Redis 4.0+</a></li>
+<li><a href="https://code.visualstudio.com/download" target="_blank" rel="noopener">VS code</a>(非必需)</li>
+</ul>
+<h2 id="服务端部署"><a href="#服务端部署" class="headerlink" title="服务端部署"></a>服务端部署</h2><p>下面先讲述 <code>rap2-delos</code> 服务端部署</p>
+<h3 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h3><ol>
+<li><code>node</code> 版本升级</li>
+<li><code>mysql</code> 下载安装</li>
+<li><code>redis</code> 下载安装</li>
+<li><code>工程克隆</code> git clone <a href="https://github.com/thx/rap2-delos.git" target="_blank" rel="noopener">https://github.com/thx/rap2-delos.git</a></li>
+<li>导入 <code>VS Code</code> //这里的开发编辑工具推荐，当然你也可以用自己熟悉的开发工具</li>
+</ol>
+<blockquote>
+<p>mysql 下载安装的时候，新手上路可以直接下载 <code>msi</code> 格式的安装包，而不是下载压缩包，不然还需要配置。</p>
+<ul>
+<li><a href="https://www.cnblogs.com/ayyl/p/5978418.html" target="_blank" rel="noopener">参考-MySQL基础知识-安装MySQL</a></li>
+</ul>
+</blockquote>
+<h3 id="Redis-安装说明"><a href="#Redis-安装说明" class="headerlink" title="Redis 安装说明"></a>Redis 安装说明</h3><ol>
+<li><em><a href="https://incoder.org/2018/05/15/linux-build/" target="_blank" rel="noopener">Linux 常用应用安装</a></em></li>
+<li><em><a href="https://www.cnblogs.com/yougmi/p/6119259.html" target="_blank" rel="noopener">Windows 下的 Redis 的启动</a></em></li>
+<li><em><a href="https://jingyan.baidu.com/article/7f766daff725cf4101e1d0d1.html" target="_blank" rel="noopener">windows下安装和启动redis服务</a></em></li>
+</ol>
+<p>说明：按照<strong>windows</strong>下相关操作即可。</p>
+<p>常用命令</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*启动*/</span></span><br><span class="line">redis-server.exe redis.windows.conf</span><br><span class="line"></span><br><span class="line"><span class="comment">/*新窗口连接*/</span></span><br><span class="line">redis-cli.exe 如果没有改默认配置的端口号</span><br><span class="line">redis-cli.exe -h <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> -p <span class="number">6379</span> 改了端口号</span><br><span class="line"></span><br><span class="line"><span class="comment">/*[13164] 27 Dec 20:57:07.820 # Creating Server TCP listening socket 127.0.0.1:6379*/</span></span><br><span class="line"><span class="comment">//错误解决</span></span><br><span class="line"><span class="number">1.</span> redis-cli.exe</span><br><span class="line"><span class="number">2.</span> shutdown</span><br><span class="line"><span class="number">3.</span> exit</span><br><span class="line"><span class="number">4.</span> redis-server.exe redis.windows.conf</span><br></pre></td></tr></table></figure>
+<h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">进入mysql命令后执行</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> <span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> RAP2_DELOS_APP <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span> utf8 <span class="keyword">COLLATE</span> utf8_general_ci;</span><br></pre></td></tr></table></figure>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><ul>
+<li>目录：rap2-delos/src/config</li>
+<li>文件：config.dev.ts;其中dev，表示开发环境，其他同理</li>
+<li>修改：config.dev.ts文件中db对象中username，password参数与本地或者开发环境的数据库信息匹配</li>
+</ul>
+<h3 id="项目启动"><a href="#项目启动" class="headerlink" title="项目启动"></a>项目启动</h3><ol>
+<li><code>npm install</code> </li>
+<li><code>npm run create-db</code> –初始化数据库</li>
+<li><code>npm run check</code> –执行mocha测试用例和js代码规范检查</li>
+<li><code>npm run dev</code> –启动开发模式的服务器 监视并在发生代码变更时自动重启</li>
+<li><code>npm start</code> –启动生产模式服务器</li>
+</ol>
+<p><strong><a href="http://localhost:8080/" target="_blank" rel="noopener">http://localhost:8080/</a></strong> 看到浏览器中如下提示，表示服务端delos已经部署成功</p>
+<blockquote>
+<p>RAP2后端服务已启动，请从前端服务(rap2-dolores)访问。 RAP2 back-end server is started, please visit via front-end service (rap2-dolores).</p>
+</blockquote>
+<h3 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h3><ol>
+<li><p>执行 <strong>npm run create-d</strong> , 提示没有 <em>/dist</em></p>
+<p> <code>原因</code>：运行 npm run build 就可以启动 ts 编译，把源文件编译到 dist 文件夹里面，就有 dist/ 目录了。</p>
+</li>
+<li><p>执行 <strong>npm run create-db</strong> 命令, Unable to connect to the database: { SequelizeConnectionError: Client does not support authentication protocol requested by server; consider upgrading MySQL client    </p>
+<p> <code>解决</code>：建议使用旧密码哈希算法, 执行如下sql</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> <span class="string">'USER'</span>@<span class="string">'localhost'</span> <span class="keyword">identified</span> <span class="keyword">with</span> mysql_native_password <span class="keyword">by</span> <span class="string">'PASSWORD'</span></span><br></pre></td></tr></table></figure>
+<p> <em><a href="https://github.com/mysqljs/mysql/issues/1574" target="_blank" rel="noopener">参考</a></em></p>
+</li>
+<li><p>执行 <strong>npm run create-db</strong> 命令，提示Unable to connect to the database:{ SequelizeAccessDeniedError: Access denied for user ‘root‘@’localhost’ (using password:NO)}</p>
+<p> <code>原因</code>：未修改rap2-delos/src/config目录下数据库配置文件，或者是与文件中的数据库信息与之连接的数据库信息不匹配</p>
+</li>
+</ol>
+<h2 id="客户端部署"><a href="#客户端部署" class="headerlink" title="客户端部署"></a>客户端部署</h2><ol>
+<li><em>git clone <a href="https://github.com/thx/rap2-dolores" target="_blank" rel="noopener">https://github.com/thx/rap2-dolores</a></em> –克隆工程</li>
+<li><em>npm install</em></li>
+<li><em>npm run dev</em> –开发模式, 自动监视改变后重新编译</li>
+<li><em>npm run test</em> –备注：测试用例</li>
+<li><em>npm run build</em> –生产模式, 编译React生产包</li>
+<li><em>serve -s ./build -p 80</em> –用serve命令或nginx服务器路由到编译产出的build文件夹作为静态服务器即可</li>
+</ol>
+<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p>访问: <a href="http://localhost:3000" target="_blank" rel="noopener">http://localhost:3000</a>, 即可看到对应功能</p>
+<h2 id="使用总结"><a href="#使用总结" class="headerlink" title="使用总结"></a>使用总结</h2><ol>
+<li><code>rap2-delos</code> 服务端启动 <em>npm run dev</em> {:&amp;.moveIn}</li>
+<li><code>rap2-dolores</code> 客户端启动 <em>npm run dev</em></li>
+<li><code>redis</code> 缓存启动 <em>redis-server.exe redis.windows.conf</em></li>
+<li><code>mysql</code> 数据库 <em>数据库连接</em></li>
+<li><code>http://localhost:3000</code> <em>页面登录访问</em></li>
+</ol>
+
+    </div>
+  </div>
+  
+  
+  
+    <div class="social-share" style="margin-top: -2rem" data-wechat-qrcode-title="<p>微信扫一扫</p>" data-wechat-qrcode-helper="<p>微信右上角, 扫一扫分享</p>" data-sites="qzone, qq, weibo, wechat, douban, google, facebook, twitter">
+  <span style="color: #6b7487; font-size: 1.4rem;">分享到: </span>
+</div>
+<script src="https://cdn.bootcss.com/social-share.js/1.0.16/js/social-share.min.js" async></script>
+  
+
+  
+    <div id="reward">
+  
+    <p id="reward-meta">知识 & 情怀 | 二者兼得</p>
+  
+  <button id="reward-btn">
+    
+    <span>投食</span>
+  </button>
+  <div id="reward-qrcode">
+    
+      <div class="reward-qrcode--container">
+        <img class="qrcode-img" src="/images/wechat.png" alt="微信扫一扫, 向我投食">
+        <p class="qrcode-meta">微信扫一扫, 向我投食</p>
+      </div>
+    
+      <div class="reward-qrcode--container">
+        <img class="qrcode-img" src="/images/alipay.png" alt="支付宝扫一扫, 向我投食">
+        <p class="qrcode-meta">支付宝扫一扫, 向我投食</p>
+      </div>
+    
+  </div>
+
+</div>
+
+<script>
+  (() => {
+    let button = document.querySelector('#reward-btn'),
+      qrcode = document.querySelector('#reward-qrcode'),
+      display = false;
+    
+    button.addEventListener('click', () => {
+      qrcode.style.display = display ? 'none' : 'block'
+      display = !display
+    }, false)
+  })()
+</script>
+  
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+      <span>
+        
+          <i class="iconfont icon-06tags"></i>标签: 
+          
+          <span class="span--tag">
+            <a href="/tags/rap2/">
+              #rap2
+            </a>
+          </span>
+          
+          <span class="span--tag">
+            <a href="/tags/可视化接口管理工具/">
+              #可视化接口管理工具
+            </a>
+          </span>
+          
+        
+      </span>
+    </div>
+    <div class="article-meta pull-right">
+    </div>
+  </div>
+</div>
+
+
+  <aside id="sidebar">
+    <p id="sidebar-header"></p>
+    <ol id="sidebar-toc"></ol>
+  </aside>
+  <script async>setTimeout(generateToc, 10);</script>
+
+
+  <nav class="post-navigation">
+    
+      <div class="nav-pre">
+        <i class="iconfont icon-prev"></i>
+        上一篇:
+        <a href="/passages/react-router问题/" target="_self">react-router 之 HashRouter & BrowserRouter</a>
+      </div>
+    
+    
+      <div class="nav-next">
+        下一篇:
+        <a href="/passages/create脚手架使用antd(less, css-module,主题)/" target="_self">create脚手架使用antd(开启less,css module,定制主题)</a>
+        <i class="iconfont icon-next"></i>
+      </div>
+    
+  </nav>
+
+  
+    <a href="#comment" class="comment-anchor"></a>
+<div class="comment-title"><i class="iconfont icon-footprint"></i> 留下足迹 <i class="iconfont icon-footprint"></i></div>
+<div id="vcomments"></div>
+
+<script defer>
+  if( true ) {
+    let path = getRealPath()
+    new Valine({
+      el: "#vcomments",
+      appId: "5gmxTwVFMDWYxzhkUr6kJqCu-gzGzoHsz",
+      appKey: "UYfK9MIPOKVB0ChdRQQ8Ddcn",
+      notify: false,
+      verify: false,
+      avatar: "robohash",
+      placeholder: "正确填写邮箱, 才能及时收到回复哦♪(^∇^*)",
+      path
+    });
+  }
+</script>
+   
+
+  
+    <script defer>
+const valineAPI = (() => {
+  try {
+    AV.init("5gmxTwVFMDWYxzhkUr6kJqCu-gzGzoHsz", "UYfK9MIPOKVB0ChdRQQ8Ddcn");
+  } catch(error) {}
+  const isExist = (identity) => {
+    identity = identity || getRealPath();
+    let query = new AV.Query('Timer');
+    return new Promise((resolve, reject) => {
+      query.equalTo("identity", identity);
+      query.find().then(results => {
+        resolve(results.length > 0);
+      }, error => reject(error));
+    })
+  }
+
+  const _get = (identity) => {
+    let query = null;
+    if(identity && identity instanceof Array){
+      let querys = [];
+      for(let i = 0; i < identity.length; ++i) {
+        querys[i] = new AV.Query('Timer');
+        querys[i].equalTo('identity', identity[i]);
+      }
+      query = AV.Query.or.apply(null ,querys);
+    } else {
+      identity = identity || getRealPath();
+      query = new AV.Query("Timer");
+      query.equalTo("identity", identity);
+    }
+
+    return new Promise((resolve, reject) => {
+      query.find()
+      .then(results => resolve(results))
+      .catch(error => reject(error))
+    })
+  }
+
+  const create = (identity) => {
+    identity = identity || getRealPath();
+    return new Promise((resolve, reject) => {
+      let Todo = AV.Object.extend('Timer');
+      let todo = new Todo();
+      todo.set("times", 1);
+      todo.set("identity", identity);
+      todo.save().then(res => resolve(true), error => reject(error));
+    })
+  }
+
+  const update = (identity) => {
+    identity = identity || getRealPath();
+    return new Promise((resolve, reject) => {
+      let query = new AV.Query('Timer');
+      query.equalTo("identity", identity);
+      query.find().then(todos => {
+        todos.forEach(todo => {
+          todo.set("times", todo.attributes.times + 1);
+        });
+        return AV.Object.saveAll(todos);
+      }).then(todos => resolve(true), error => reject(error));
+    })
+  }
+
+  return {
+    isExist,
+    _get,
+    update,
+    create
+  }
+})()
+
+const calcAndWriteTimes = () => {
+  let isPost = true;
+
+  let timerAllDOM = document.querySelectorAll(".article-timer");
+
+  if(isPost) {
+    let identity = timerAllDOM[0].getAttribute("data-identity");
+    valineAPI.isExist(identity)
+    .then(exist => {
+      if(exist) {
+        return valineAPI.update(identity);
+      }
+      return new Promise(resolve => resolve(true));
+    })
+    .then( succuess => valineAPI._get(identity))
+    .then( result => timerAllDOM[0].innerText = result[0].attributes.times)
+    .catch(error => console.log(error.message))
+    return ;
+  }
+
+  let timerDOMCache = {};
+
+  for(let timerDOM of timerAllDOM) {
+    let identity = timerDOM.getAttribute("data-identity");
+    if(timerDOMCache.hasOwnProperty(identity)){
+      timerDOMCache[identity].dom.push(timerDOM);
+    }else{
+      timerDOMCache[identity] = {
+        dom: [timerDOM],
+        times: undefined
+      };
+    }
+  }
+
+  let identities = Object.keys(timerDOMCache);
+  valineAPI._get(identities).then(results => {
+    for(let result of results) {
+      let {identity, times} = result.attributes;
+      timerDOMCache[identity].times = times;
+      timerDOMCache[identity].dom.map(item => item.innerText = times);
+    }
+    for(let identity of identities) {
+      if(timerDOMCache[identity].times){
+        continue;
+      }
+      timerDOMCache[identity].dom.map(item => item.innerText = 1);
+      valineAPI.create(identity);
+    }
+  }).catch(error => console.log(error.message))
+}
+
+if(true){
+  calcAndWriteTimes();
+}
+</script>
+   
+
+</div>
+
+
+      <footer>
+  <p class="site-info">
+    博客已萌萌哒运行<span id="time-to-now"></span><span class="my-face">(●'◡'●)ﾉ♥</span>
+    <br>
+    Theme - <a href="https://github.com/dongyuanxin/theme-bmw">BMW</a> | Made With 💗 | Powered by <a href="https://godbmw.com/">GodBMW</a>
+    <br>
+    
+  </p>
+</footer>
+
+
+
+<script>
+const timeToNowDOM = document.querySelector("#time-to-now");
+const startTimestamp = new Date(2018, 8, 10).getTime();
+
+const updateTimeStr = () => {
+  let offset = parseInt(
+      (new Date().getTime() - startTimestamp) / 1000,
+      10
+    ),
+    day = Math.floor(offset / 86400),
+    hour = Math.floor((offset % 86400) / 3600),
+    minute = Math.floor(((offset % 86400) % 3600) / 60),
+    second = Math.floor(((offset % 86400) % 3600) % 60);
+  timeToNowDOM.innerHTML =
+    day + "天" + hour + "小时" + minute + "分钟" + second + "秒";
+  setTimeout(updateTimeStr, 500);
+}
+
+setTimeout(updateTimeStr, 500);
+</script>
+
+
+      <div class="back-to-top hidden">
+  <span>
+    <i class="iconfont icon-60"></i><span></span>%
+  </span>
+</div>
+
+<script>
+const updateIconToTop = percent => {
+  let dom = document.querySelector(".back-to-top span span");
+  dom.innerText = percent;
+  if(percent < 1) {
+    document.querySelector(".back-to-top").className = "back-to-top hidden";
+  } else {
+    document.querySelector(".back-to-top").className = "back-to-top";
+  }
+}
+
+const handleScoll = () => {
+  let isRunning = false;
+  return () => {
+    if (isRunning) return;
+    isRunning = true;
+    window.requestAnimationFrame(timestamp => {
+      let scrollTop =
+          document.documentElement.scrollTop || document.body.scrollTop,
+        scrollHeight =
+          document.documentElement.scrollHeight ||
+          document.body.scrollHeight,
+        clientHeight =
+          document.documentElement.clientHeight ||
+          document.body.clientHeight;
+      isRunning = false;
+      if (scrollTop <= 1) {
+        updateIconToTop(0);
+        return;
+      }
+      if (scrollTop + clientHeight >= scrollHeight) {
+        updateIconToTop(100);
+      } else {
+        updateIconToTop(parseInt(
+          100 * scrollTop / (scrollHeight - clientHeight),
+          10
+        ));
+      }
+    });
+  };
+}
+
+const backToTop = () => {
+  let scrollTop =
+      document.documentElement.scrollTop || document.body.scrollTop,
+    delay = 10,
+    time = 200;
+  if (scrollTop <= 20) {
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    return;
+  }
+  let step = Math.ceil(scrollTop * delay / time);
+  let timer = setInterval(() => {
+    scrollTop =
+      document.documentElement.scrollTop || document.body.scrollTop;
+    if (scrollTop - step <= 0) {
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      clearInterval(timer);
+    } else {
+      document.documentElement.scrollTop = scrollTop - step;
+      document.body.scrollTop = scrollTop - step;
+    }
+  }, delay);
+}
+
+document.addEventListener("scroll", handleScoll(), false);
+
+document.querySelector(".back-to-top").addEventListener("click", backToTop, false);
+
+</script>
+
+    </div>
+
+    
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+<script>
+  (() => {
+    const mathjaxConfig = {
+      showProcessingMessages: false, //关闭js加载过程信息
+      messageStyle: "none", //不显示信息
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+      }
+    }
+
+    let mathjaxInterval = setInterval(() => {
+      if(!window.MathJax){
+        return;
+      }
+      window.MathJax.Hub.Config(mathjaxConfig)
+      window.MathJax.Hub.Queue(["Typeset", MathJax.Hub, document.getElementById('app')])
+
+      clearInterval(mathjaxInterval)
+    }, 10)    
+  })()
+</script>
+    
+
+    <script src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script>
+<script async>
+  let fancyTimer = setInterval(function(){
+    if(!window.$){
+      return;
+    }
+    $(document).ready(function() {
+      $(".post img").each(function () {
+        if($(this).parent().get(0).tagName.toLowerCase() === "a") {
+          return;
+        }
+        // $(this).attr("data-fancybox", "gallery"); // if you add 'data-fancybox', img will display after showed
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "gallery");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      });
+      
+      clearInterval(fancyTimer);
+    });
+  }, 10);
+</script>
+
+    
+  </body>
+
+</html>

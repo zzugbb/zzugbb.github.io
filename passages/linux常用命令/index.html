@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="author" content="董沅鑫, yuanxin.me@gmail.com">
+  
+  
+  
+  <title>linux常用命令 | gbb</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="linux,">
+  
+
+  <script>
+    console.log('\n%c Hexo-theme-bmw v4.0 ' + '%c 🎉 https://github.com/dongyuanxin/theme-bmw 🎉\n' + '\n%c View demo online ' + '%c 🔍 https://godbmw.com/ 🔍  \n' , 'color: #fadfa3; background: #030307; padding:3px 0;', '', 'color: #fadfa3; background: #030307; padding:3px 0;', '');
+  </script>
+
+  
+    <meta name="description" content="个人博客">
+  
+
+  
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/icon/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+
+  <script src="/js/util.js"></script>
+<script src="/js/valine.min.js"></script>
+
+  
+
+  
+    <link href="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js" async></script>
+  
+
+  
+    <link href="https://cdn.bootcss.com/social-share.js/1.0.16/css/share.min.css" rel="stylesheet">
+  
+  
+  <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js" async></script>
+  
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.0/dist/av-min.js"></script>
+  
+
+</head>
+
+  <body>
+
+    
+
+    <div id="app">
+
+      <div class="header-wrap">
+  <header>
+    <div class="site-brand">
+      <div class="site-title">
+        <a href="/">gbb.com</a>
+      </div>
+    </div>
+    <nav class="site-navigation">
+      <ul class="nav-menu">
+      
+        <li class="nav-item" data-path="/">
+          
+            <a href="/" target="_self">
+              主页
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          
+            <a href="/archives/" target="_self">
+              归档
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="/categories/">
+          
+            <a href="/categories/" target="_self">
+              分类
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          
+            <a href="/tags/" target="_self">
+              标签
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="/whoami/">
+          
+            <a href="/whoami/" target="_self">
+              关于
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="">
+          
+            <a href="javascript:void(0);" v-else="">抓到我</a>
+            <ul class="nav-menu--dropdown">
+              
+                <li>
+                  <a href="https://github.com/zzugbb" target="_blank">
+                    Github
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+      
+      </ul>
+    </nav>
+    <i class="iconfont icon-menu"></i>
+  </header>
+</div>
+
+<script>
+  let links = document.querySelectorAll('.nav-item');
+  for(let link of links){
+    let childrenLink = link.querySelector('ul');
+    link.addEventListener('mouseenter', () => {
+      if(childrenLink) {
+        childrenLink.className = "nav-menu--dropdown active";
+      }
+    })
+    link.addEventListener('mouseleave', () => {
+      if(childrenLink) {
+        childrenLink.className = "nav-menu--dropdown";
+      }
+    })
+  }
+  let rootRealPath = getRealPath(window.location.pathname, true);
+  for(let link of links) {
+    let linkPath = link.getAttribute("data-path");
+    if(linkPath && getRealPath(linkPath, true) === rootRealPath) {
+      link.className = "nav-item hover";
+    }
+  }
+
+  let iconMenu = document.querySelector("i.iconfont.icon-menu"),
+    iconMenuClicked = false;
+  let navDOM = document.querySelector("nav.site-navigation");
+  iconMenu.addEventListener("click", () => {
+    iconMenuClicked 
+      ? navDOM.className = "site-navigation active"
+      : navDOM.className = "site-navigation";
+    iconMenuClicked = !iconMenuClicked;
+  })
+</script>
+
+      
+
+
+
+
+
+
+
+
+<div class="container post-index">
+
+  
+
+<div class="post">
+  <h1 class="article-title">
+    <span>linux常用命令</span>
+  </h1>
+  <div class="article-top-meta">
+    <span>
+      发布 : 
+      2018-12-06
+    </span>
+    
+    
+      <span>
+        浏览 : <span class="article-timer" data-identity="linux常用命令"></span>
+      </span>
+    
+  </div>
+
+  
+
+  <div class="article-content">
+    <div class="markdown-body">
+      <h1 id="新手常用的linux命令"><a href="#新手常用的linux命令" class="headerlink" title="新手常用的linux命令"></a>新手常用的linux命令</h1><blockquote>
+<p>命令名称 [命令参数] [命令对象]</p>
+</blockquote>
+<p>注意，命令名称、命令参数、命令对象之间请用空格键分隔。</p>
+<p>命令对象一般是指要处理的文件、目录、用户等资源，而命令参数可以用长格式（完整的选项名称），也可以用短格式（单个字母的缩写），两者分别用–与-作为前缀。</p>
+<p>命令参数的长格式与短格式示例<br>长格式 <code>man --help</code><br>短格式 <code>man -h</code></p>
+<style>
+.code pre .line {
+  color:#f8f8f2;
+}
+
+.code pre .line .section {
+  color:slategray;
+}
+</style>  
+
+<h2 id="常用系统工作命令"><a href="#常用系统工作命令" class="headerlink" title="常用系统工作命令"></a>常用系统工作命令</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># echo命令用于在shell中打印shell变量的值，或者直接输出指定的字符串</span></span><br><span class="line">echo 命令: echo(选项)(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># date命令是显示或设置系统时间与日期。</span></span><br><span class="line">date 命令: date(选项)(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># reboot命令用来重新启动正在运行的Linux操作系统。</span></span><br><span class="line">reboot 命令: reboot(选项)</span><br><span class="line"></span><br><span class="line"><span class="section"># poweroff命令用来关闭计算机操作系统并且切断系统电源。</span></span><br><span class="line">poweroff 命令: poweroff(选项)</span><br><span class="line"></span><br><span class="line"><span class="section"># wget命令用来从指定的URL下载文件</span></span><br><span class="line">wget 命令: wget(选项)(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># ps命令用于报告当前系统的进程状态。</span></span><br><span class="line">ps 命令: ps(选项) ps -ef | grep ""</span><br><span class="line"></span><br><span class="line"><span class="section"># top命令可以实时动态地查看系统的整体运行情况，</span></span><br><span class="line">top 命令: top(选项)</span><br><span class="line"></span><br><span class="line"><span class="section"># pidof命令用于查找指定名称的进程的进程号id号。</span></span><br><span class="line">pidof 命令: pidof(选项)(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># kill命令用来删除执行中的程序或工作 kill -9 进程 强制删除</span></span><br><span class="line">kill 命令: kill(选项)(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># killall命令使用进程的名称来杀死进程，使用此指令可以杀死一组同名进程</span></span><br><span class="line">killall 命令</span><br></pre></td></tr></table></figure>
+<p>如果我们在系统终端中执行一个命令后想立即停止它，可以同时按下Ctrl + C组合键（生产环境中比较常用的一个快捷键），这样将立即终止该命令的进程。或者，如果有些命令在执行时不断地在屏幕上输出信息，影响到后续命令的输入，则可以在执行命令时在末尾添加上一个&amp;符号，这样命令将进入系统后台来执行。</p>
+<h2 id="系统状态检测命令"><a href="#系统状态检测命令" class="headerlink" title="系统状态检测命令"></a>系统状态检测命令</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># ifconfig命令被用于配置和显示Linux内核中网络接口的网络参数</span></span><br><span class="line">ifconfig 命令: ifconfig(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># uname命令用于打印当前系统相关信息</span></span><br><span class="line">uname 命令: uname(选项)</span><br><span class="line"></span><br><span class="line"><span class="section"># uptime命令能够打印系统总共运行了多长时间和系统的平均负载。</span></span><br><span class="line">uptime 命令: uptime(选项)</span><br><span class="line"></span><br><span class="line"><span class="section"># free命令可以显示当前系统未使用的和已使用的内存数目，显示被内核使用的内存缓冲区。</span></span><br><span class="line">free 命令: free(选项)</span><br><span class="line"></span><br><span class="line"><span class="section"># who命令是显示目前登录系统的用户信息</span></span><br><span class="line">who 命令: who(选项)(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># last命令用于显示用户最近登录信息</span></span><br><span class="line">last 命令: last(选项)(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># history命令用于显示指定数目的指令命令</span></span><br><span class="line">history 命令: history(选项)(参数)</span><br></pre></td></tr></table></figure>
+<h2 id="工作目录切换命令"><a href="#工作目录切换命令" class="headerlink" title="工作目录切换命令"></a>工作目录切换命令</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># 以绝对路径的方式显示用户当前工作目录</span></span><br><span class="line">pwd 命令: pwd（选项）</span><br><span class="line"></span><br><span class="line"><span class="section"># cd命令用来切换工作目录至dirname</span></span><br><span class="line">cd 命令: cd (选项) (参数)  </span><br><span class="line"></span><br><span class="line"><span class="section"># ls命令用来显示目标列表</span></span><br><span class="line">ls 命令: ls（选项）（参数）</span><br></pre></td></tr></table></figure>
+<h2 id="文本文件编辑命令"><a href="#文本文件编辑命令" class="headerlink" title="文本文件编辑命令"></a>文本文件编辑命令</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># cat命令连接文件并打印到标准输出设备上，cat经常用来显示文件的内容，</span></span><br><span class="line">cat 命令: cat(选项)(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># more命令是一个基于vi编辑器文本过滤器，它以全屏幕的方式按页显示文本文件的内容</span></span><br><span class="line"><span class="section"># more名单中内置快捷键，H-获得帮助信息，Enter-向下翻滚一行，空格-向下滚动一屏，Q-退出命令。</span></span><br><span class="line">more 命令: more(语法)(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># head命令用于显示文件的开头的内容</span></span><br><span class="line"><span class="section"># 默认情况下，head命令显示文件的头10行内容。</span></span><br><span class="line">head 命令: head(选项)(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># tail命令用于输入文件中的尾部内容。</span></span><br><span class="line"><span class="section"># tail命令默认在屏幕上显示指定文件的末尾10行</span></span><br><span class="line">tail 命令: tail(选项)(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># tr命令可以对来自标准输入的字符进行替换、压缩和删除</span></span><br><span class="line">tr 命令: tr(选项)(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># wc命令用来计算数字。</span></span><br><span class="line">wc 命令: wc(选项)(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># stat命令用于显示文件的状态信息。</span></span><br><span class="line">stat 命令: stat(选项)(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># cut命令用来显示行中的指定部分，删除文件中指定字段。</span></span><br><span class="line">cut 命令: cut(选项)(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># diff命令在最简单的情况下，比较给定的两个文件的不同</span></span><br><span class="line">diff 命令: diff(选项)(参数)</span><br></pre></td></tr></table></figure>
+<h2 id="文件目录管理命令"><a href="#文件目录管理命令" class="headerlink" title="文件目录管理命令"></a>文件目录管理命令</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># 一是用于把已存在文件的时间标签更新为系统当前的时间（默认方式）</span></span><br><span class="line"><span class="section"># 二是用来创建新的空文件</span></span><br><span class="line">touch 命令: touch(选项)(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># mkdir命令用来创建目录</span></span><br><span class="line">mkdir 命令: mkdir (选项)(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># cp命令用来将一个或多个源文件或者目录复制到指定的目的文件或目录。</span></span><br><span class="line">cp 命令: cp(选项)(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># mv命令用来对文件或目录重新命名，或者将文件从一个目录移到另一个目录中。</span></span><br><span class="line">mv 命令: mv(选项)(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># rm命令可以删除一个目录中的一个或多个文件或目录，也可以将某个目录及其下属的所有文件及其子目录均删除掉。</span></span><br><span class="line">rm 命令: rm (选项)(参数)  rm -rf (参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># dd命令用于复制文件并对原文件的内容进行转换和格式化处理</span></span><br><span class="line">dd 命令: dd(选项)</span><br><span class="line"></span><br><span class="line"><span class="section"># file命令用来探测给定文件的类型。</span></span><br><span class="line"><span class="section"># file命令对文件的检查分为文件系统、魔法幻数检查和语言检查3个过程。</span></span><br><span class="line">file 命令: file(选项)(参数)</span><br></pre></td></tr></table></figure>
+<h2 id="打包压缩与搜索命令"><a href="#打包压缩与搜索命令" class="headerlink" title="打包压缩与搜索命令"></a>打包压缩与搜索命令</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># tar命令可以为linux的文件和目录创建档案。</span></span><br><span class="line">tar 命令: tar(选项)(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># grep是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹配的行打印出来。</span></span><br><span class="line"><span class="section"># grep match_pattern file_name  cat file_name | grep "text"</span></span><br><span class="line">grep 命令</span><br><span class="line"></span><br><span class="line"><span class="section"># find命令用来在指定目录下查找文件。</span></span><br><span class="line">find 命令: find(选项)(参数)</span><br></pre></td></tr></table></figure>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a href="http://man.linuxde.net/" target="_blank" rel="noopener">Linux命令大全(手册)_Linux常用命令行实例详解_Linux命令学习手册</a></li>
+<li><a href="https://www.cnblogs.com/yjd_hycf_space/p/7730690.html" target="_blank" rel="noopener">Linux常用命令大全</a></li>
+</ul>
+
+    </div>
+  </div>
+  
+  
+  
+    <div class="social-share" style="margin-top: -2rem" data-wechat-qrcode-title="<p>微信扫一扫</p>" data-wechat-qrcode-helper="<p>微信右上角, 扫一扫分享</p>" data-sites="qzone, qq, weibo, wechat, douban, google, facebook, twitter">
+  <span style="color: #6b7487; font-size: 1.4rem;">分享到: </span>
+</div>
+<script src="https://cdn.bootcss.com/social-share.js/1.0.16/js/social-share.min.js" async></script>
+  
+
+  
+    <div id="reward">
+  
+    <p id="reward-meta">知识 & 情怀 | 二者兼得</p>
+  
+  <button id="reward-btn">
+    
+    <span>投食</span>
+  </button>
+  <div id="reward-qrcode">
+    
+      <div class="reward-qrcode--container">
+        <img class="qrcode-img" src="/images/wechat.png" alt="微信扫一扫, 向我投食">
+        <p class="qrcode-meta">微信扫一扫, 向我投食</p>
+      </div>
+    
+      <div class="reward-qrcode--container">
+        <img class="qrcode-img" src="/images/alipay.png" alt="支付宝扫一扫, 向我投食">
+        <p class="qrcode-meta">支付宝扫一扫, 向我投食</p>
+      </div>
+    
+  </div>
+
+</div>
+
+<script>
+  (() => {
+    let button = document.querySelector('#reward-btn'),
+      qrcode = document.querySelector('#reward-qrcode'),
+      display = false;
+    
+    button.addEventListener('click', () => {
+      qrcode.style.display = display ? 'none' : 'block'
+      display = !display
+    }, false)
+  })()
+</script>
+  
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+      <span>
+        
+          <i class="iconfont icon-06tags"></i>标签: 
+          
+          <span class="span--tag">
+            <a href="/tags/linux/">
+              #linux
+            </a>
+          </span>
+          
+        
+      </span>
+    </div>
+    <div class="article-meta pull-right">
+    </div>
+  </div>
+</div>
+
+
+  <aside id="sidebar">
+    <p id="sidebar-header"></p>
+    <ol id="sidebar-toc"></ol>
+  </aside>
+  <script async>setTimeout(generateToc, 10);</script>
+
+
+  <nav class="post-navigation">
+    
+      <div class="nav-pre">
+        <i class="iconfont icon-prev"></i>
+        上一篇:
+        <a href="/passages/pm2学习/" target="_self">pm2学习</a>
+      </div>
+    
+    
+      <div class="nav-next">
+        下一篇:
+        <a href="/passages/k8s各模块关系/" target="_self">k8s 各模块关系</a>
+        <i class="iconfont icon-next"></i>
+      </div>
+    
+  </nav>
+
+  
+    <a href="#comment" class="comment-anchor"></a>
+<div class="comment-title"><i class="iconfont icon-footprint"></i> 留下足迹 <i class="iconfont icon-footprint"></i></div>
+<div id="vcomments"></div>
+
+<script defer>
+  if( true ) {
+    let path = getRealPath()
+    new Valine({
+      el: "#vcomments",
+      appId: "5gmxTwVFMDWYxzhkUr6kJqCu-gzGzoHsz",
+      appKey: "UYfK9MIPOKVB0ChdRQQ8Ddcn",
+      notify: false,
+      verify: false,
+      avatar: "robohash",
+      placeholder: "正确填写邮箱, 才能及时收到回复哦♪(^∇^*)",
+      path
+    });
+  }
+</script>
+   
+
+  
+    <script defer>
+const valineAPI = (() => {
+  try {
+    AV.init("5gmxTwVFMDWYxzhkUr6kJqCu-gzGzoHsz", "UYfK9MIPOKVB0ChdRQQ8Ddcn");
+  } catch(error) {}
+  const isExist = (identity) => {
+    identity = identity || getRealPath();
+    let query = new AV.Query('Timer');
+    return new Promise((resolve, reject) => {
+      query.equalTo("identity", identity);
+      query.find().then(results => {
+        resolve(results.length > 0);
+      }, error => reject(error));
+    })
+  }
+
+  const _get = (identity) => {
+    let query = null;
+    if(identity && identity instanceof Array){
+      let querys = [];
+      for(let i = 0; i < identity.length; ++i) {
+        querys[i] = new AV.Query('Timer');
+        querys[i].equalTo('identity', identity[i]);
+      }
+      query = AV.Query.or.apply(null ,querys);
+    } else {
+      identity = identity || getRealPath();
+      query = new AV.Query("Timer");
+      query.equalTo("identity", identity);
+    }
+
+    return new Promise((resolve, reject) => {
+      query.find()
+      .then(results => resolve(results))
+      .catch(error => reject(error))
+    })
+  }
+
+  const create = (identity) => {
+    identity = identity || getRealPath();
+    return new Promise((resolve, reject) => {
+      let Todo = AV.Object.extend('Timer');
+      let todo = new Todo();
+      todo.set("times", 1);
+      todo.set("identity", identity);
+      todo.save().then(res => resolve(true), error => reject(error));
+    })
+  }
+
+  const update = (identity) => {
+    identity = identity || getRealPath();
+    return new Promise((resolve, reject) => {
+      let query = new AV.Query('Timer');
+      query.equalTo("identity", identity);
+      query.find().then(todos => {
+        todos.forEach(todo => {
+          todo.set("times", todo.attributes.times + 1);
+        });
+        return AV.Object.saveAll(todos);
+      }).then(todos => resolve(true), error => reject(error));
+    })
+  }
+
+  return {
+    isExist,
+    _get,
+    update,
+    create
+  }
+})()
+
+const calcAndWriteTimes = () => {
+  let isPost = true;
+
+  let timerAllDOM = document.querySelectorAll(".article-timer");
+
+  if(isPost) {
+    let identity = timerAllDOM[0].getAttribute("data-identity");
+    valineAPI.isExist(identity)
+    .then(exist => {
+      if(exist) {
+        return valineAPI.update(identity);
+      }
+      return new Promise(resolve => resolve(true));
+    })
+    .then( succuess => valineAPI._get(identity))
+    .then( result => timerAllDOM[0].innerText = result[0].attributes.times)
+    .catch(error => console.log(error.message))
+    return ;
+  }
+
+  let timerDOMCache = {};
+
+  for(let timerDOM of timerAllDOM) {
+    let identity = timerDOM.getAttribute("data-identity");
+    if(timerDOMCache.hasOwnProperty(identity)){
+      timerDOMCache[identity].dom.push(timerDOM);
+    }else{
+      timerDOMCache[identity] = {
+        dom: [timerDOM],
+        times: undefined
+      };
+    }
+  }
+
+  let identities = Object.keys(timerDOMCache);
+  valineAPI._get(identities).then(results => {
+    for(let result of results) {
+      let {identity, times} = result.attributes;
+      timerDOMCache[identity].times = times;
+      timerDOMCache[identity].dom.map(item => item.innerText = times);
+    }
+    for(let identity of identities) {
+      if(timerDOMCache[identity].times){
+        continue;
+      }
+      timerDOMCache[identity].dom.map(item => item.innerText = 1);
+      valineAPI.create(identity);
+    }
+  }).catch(error => console.log(error.message))
+}
+
+if(true){
+  calcAndWriteTimes();
+}
+</script>
+   
+
+</div>
+
+
+      <footer>
+  <p class="site-info">
+    博客已萌萌哒运行<span id="time-to-now"></span><span class="my-face">(●'◡'●)ﾉ♥</span>
+    <br>
+    Theme - <a href="https://github.com/dongyuanxin/theme-bmw">BMW</a> | Made With 💗 | Powered by <a href="https://godbmw.com/">GodBMW</a>
+    <br>
+    
+  </p>
+</footer>
+
+
+
+<script>
+const timeToNowDOM = document.querySelector("#time-to-now");
+const startTimestamp = new Date(2018, 8, 10).getTime();
+
+const updateTimeStr = () => {
+  let offset = parseInt(
+      (new Date().getTime() - startTimestamp) / 1000,
+      10
+    ),
+    day = Math.floor(offset / 86400),
+    hour = Math.floor((offset % 86400) / 3600),
+    minute = Math.floor(((offset % 86400) % 3600) / 60),
+    second = Math.floor(((offset % 86400) % 3600) % 60);
+  timeToNowDOM.innerHTML =
+    day + "天" + hour + "小时" + minute + "分钟" + second + "秒";
+  setTimeout(updateTimeStr, 500);
+}
+
+setTimeout(updateTimeStr, 500);
+</script>
+
+
+      <div class="back-to-top hidden">
+  <span>
+    <i class="iconfont icon-60"></i><span></span>%
+  </span>
+</div>
+
+<script>
+const updateIconToTop = percent => {
+  let dom = document.querySelector(".back-to-top span span");
+  dom.innerText = percent;
+  if(percent < 1) {
+    document.querySelector(".back-to-top").className = "back-to-top hidden";
+  } else {
+    document.querySelector(".back-to-top").className = "back-to-top";
+  }
+}
+
+const handleScoll = () => {
+  let isRunning = false;
+  return () => {
+    if (isRunning) return;
+    isRunning = true;
+    window.requestAnimationFrame(timestamp => {
+      let scrollTop =
+          document.documentElement.scrollTop || document.body.scrollTop,
+        scrollHeight =
+          document.documentElement.scrollHeight ||
+          document.body.scrollHeight,
+        clientHeight =
+          document.documentElement.clientHeight ||
+          document.body.clientHeight;
+      isRunning = false;
+      if (scrollTop <= 1) {
+        updateIconToTop(0);
+        return;
+      }
+      if (scrollTop + clientHeight >= scrollHeight) {
+        updateIconToTop(100);
+      } else {
+        updateIconToTop(parseInt(
+          100 * scrollTop / (scrollHeight - clientHeight),
+          10
+        ));
+      }
+    });
+  };
+}
+
+const backToTop = () => {
+  let scrollTop =
+      document.documentElement.scrollTop || document.body.scrollTop,
+    delay = 10,
+    time = 200;
+  if (scrollTop <= 20) {
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    return;
+  }
+  let step = Math.ceil(scrollTop * delay / time);
+  let timer = setInterval(() => {
+    scrollTop =
+      document.documentElement.scrollTop || document.body.scrollTop;
+    if (scrollTop - step <= 0) {
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      clearInterval(timer);
+    } else {
+      document.documentElement.scrollTop = scrollTop - step;
+      document.body.scrollTop = scrollTop - step;
+    }
+  }, delay);
+}
+
+document.addEventListener("scroll", handleScoll(), false);
+
+document.querySelector(".back-to-top").addEventListener("click", backToTop, false);
+
+</script>
+
+    </div>
+
+    
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+<script>
+  (() => {
+    const mathjaxConfig = {
+      showProcessingMessages: false, //关闭js加载过程信息
+      messageStyle: "none", //不显示信息
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+      }
+    }
+
+    let mathjaxInterval = setInterval(() => {
+      if(!window.MathJax){
+        return;
+      }
+      window.MathJax.Hub.Config(mathjaxConfig)
+      window.MathJax.Hub.Queue(["Typeset", MathJax.Hub, document.getElementById('app')])
+
+      clearInterval(mathjaxInterval)
+    }, 10)    
+  })()
+</script>
+    
+
+    <script src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script>
+<script async>
+  let fancyTimer = setInterval(function(){
+    if(!window.$){
+      return;
+    }
+    $(document).ready(function() {
+      $(".post img").each(function () {
+        if($(this).parent().get(0).tagName.toLowerCase() === "a") {
+          return;
+        }
+        // $(this).attr("data-fancybox", "gallery"); // if you add 'data-fancybox', img will display after showed
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "gallery");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      });
+      
+      clearInterval(fancyTimer);
+    });
+  }, 10);
+</script>
+
+    
+  </body>
+
+</html>

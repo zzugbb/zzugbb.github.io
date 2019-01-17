@@ -1,0 +1,171 @@
+<!--
+    Powered By nodeppt - This is probably the best web presentation tool so far!
+    version: 1.4.5
+    site: https://github.com/ksky521/nodeppt
+    date: 2018年11月1日
+-->
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>个人介绍 - By gbb</title>
+    <link rel="stylesheet" media="all" href="./css/nodeppt.css">
+    <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="./css/phone.css">
+    
+    <link rel="stylesheet" href="./js/highlight/styles/monokai_sublime.css">
+    <link rel="stylesheet" href="./css/font-awesome.css">
+    
+<link rel="stylesheet" href="./css/theme.moon.css">
+</head>
+<body>
+<div class="slides">
+    <slides id="container">
+        <slide class="slide" data-transition="vertical3d"><section class="slide-wrapper"><article>
+<div style="position:absolute;top: 10px; left:-140px">
+  <a href="https://zzugbb.github.io/"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+</div><h2>前端程序员一枚</h2>
+<div class="columns4">
+  <img src="./img/logo3.png" style="position:absolute;top:100px;left:10px;">
+</div><style>
+h2 {
+  font-size: 30px !important;
+}
+</style>
+</article></section></slide>
+<slide class="slide" data-transition="glue"><section class="slide-wrapper"><hgroup>
+<h2>个人信息</h2>
+
+</hgroup><article>
+
+<ul class="personal-info">
+  <li><i class="fa fa-birthday-cake" aria-hidden="true"></i>出生年月: 1994/06</li>
+  <li><i class="fa fa-university" aria-hidden="true"></i>所在城市: 郑州</li>
+  <li><i class="fa fa-graduation-cap" aria-hidden="true"></i>毕业学校: 郑州大学（Zhengzhou University）</li>
+  <li><i class="fa fa-hand-o-right" aria-hidden="true"></i>专业: 软件工程</li>
+  <li><i class="fa fa-paper-plane" aria-hidden="true"></i>邮箱: 1019178691@qq.com</li>
+</ul>
+
+<style>
+.slide-wrapper {
+  height: 83% !important;
+}
+
+.personal-info {
+  list-style:none
+}
+
+.fa {
+  margin-right: 15px;
+}
+</style>
+</article></section></slide>
+<slide class="slide" data-transition="cards"><section class="slide-wrapper"><hgroup>
+<h2>个人技能</h2>
+
+</hgroup><article>
+
+<button class="btn btn-lg btn-default">HTML</button>
+<button class="btn btn-lg btn-primary">JS</button>
+<button class="btn btn-lg btn-warning">CSS</button>
+<button class="btn btn-lg btn-success">JQuery</button>
+<button class="btn btn-lg btn-danger">nodejs</button>
+<button class="btn btn-lg btn-default">React.js 全家桶</button>
+<button class="btn btn-lg btn-primary">微信小程序</button>
+</article></section></slide>
+<slide class="slide" data-transition="zoomin"><section class="slide-wrapper"><hgroup>
+<h2>常用技术栈</h2>
+
+</hgroup><article>
+
+<button class="btn btn-lg btn-default">web 网页开发</button>
+<button class="btn btn-lg btn-primary">h5 页面开发</button>
+<button class="btn btn-lg btn-warning">HTML + CSS + JQuery + Nodejs(express)</button>
+<button class="btn btn-lg btn-success">ES6 + React + Nodejs(express, koa)</button>
+<button class="btn btn-lg btn-danger">微信小程序开发</button>
+
+<div style="margin-bottom:20px">
+</div><button class="btn btn-lg" style="background-color:#7546C9;color:#ffffff">docker + k8s + nginx 工程部署</button>
+
+<style>
+.slide-wrapper {
+  height: 88% !important;
+}
+</style>
+</article></section></slide>
+        
+
+        <!-- <slide class="slide logoslide dark nobackground">
+            <article class="flexbox vcenter">
+                <h2 style="color: white;">Powered By nodeppt v1.4.5</h2>
+            </article>
+        </slide> -->
+        <div class="slideTip" id="tip"></div>
+    </slides>
+</div>
+<canvas id="drawBoard" class="draw-board" width="900" height="700"></canvas>
+<div class="progress"><span id="progress"></span></div>
+<div id="_buttons">
+    <div class="_btn-box" id="_btn-box" style="display:none;">
+        <button class="fa fa-arrow-circle-left" id="_btn-prev"></button>
+        <button class="fa fa-arrow-circle-right" id="_btn-next"></button>
+        <button class="fa fa-paint-brush" id="_btn-brush"></button>
+        <button class="fa fa-compress" id="_btn-overview" data-toggle="fa fa-expand"></button>
+    </div>
+    <button class="fa fa-bars" id="_btn-bar"  data-toggle="fa fa-close"></button>
+</div>
+<script src="./js/mixjs/lib/mix.0.3.0.min.js"></script>
+<script>
+    var ASSET_RELATIVE_DIR = ".";
+</script>
+<script>
+var base = location.protocol + '//' + location.host;
+
+var path = (location.pathname + '#').split('/').filter(function(v){
+    return !!v;
+});
+path.pop();
+path = path.join('/');
+if (typeof ASSET_RELATIVE_DIR === 'string') {
+    path = path + '/' + ASSET_RELATIVE_DIR;
+}
+MixJS.config({
+    baseURL: [ base, path, 'js'].join('/')+'/'
+});
+
+</script>
+<script src="./js/mixjs/lib/event/broadcast.js"></script>
+<script src="./js/nodeppt.js"></script>
+<script>
+Slide.init({
+    containerID: 'container',
+    drawBoardID: 'drawBoard',
+    slideClass: '.slide',
+    buildClass: '.build',
+    progressID: 'progress',
+    transition: 'slide3',
+    width: 1100,
+    dir: './',
+    
+    //打开下面的注释就开启postMessage方式
+    //访问网址127.0.0.1:8080/ppt/demo#client
+    control:{
+        type: 'postMessage',
+        args:{
+            isControl:  false
+        }
+    },
+    
+    tipID: 'tip'
+});
+MixJS.loadJS('highlight/highlight.pack.js',function(){
+    hljs.tabReplace = '  ';
+    hljs.initHighlightingOnLoad();
+});
+</script>
+<script src="./js/demo.js"></script>
+<link rel="stylesheet" href="./css/demo.css">
+<script src="./js/zoom.js"></script>
+
+<!--placeholder-->
+</body>
+</html>
