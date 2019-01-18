@@ -4,7 +4,7 @@
   
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
-  <meta name="author" content="董沅鑫, yuanxin.me@gmail.com">
+  <meta name="author" content="高炳炳">
   
   
   
@@ -17,7 +17,7 @@
   
 
   <script>
-    console.log('\n%c Hexo-theme-bmw v4.0 ' + '%c 🎉 https://github.com/dongyuanxin/theme-bmw 🎉\n' + '\n%c View demo online ' + '%c 🔍 https://godbmw.com/ 🔍  \n' , 'color: #fadfa3; background: #030307; padding:3px 0;', '', 'color: #fadfa3; background: #030307; padding:3px 0;', '');
+    //console.log('\n%c Hexo-theme-bmw v4.0 ' + '%c 🎉 https://github.com/dongyuanxin/theme-bmw 🎉\n' + '\n%c View demo online ' + '%c 🔍 https://godbmw.com/ 🔍  \n' , 'color: #fadfa3; background: #030307; padding:3px 0;', '', 'color: #fadfa3; background: #030307; padding:3px 0;', '');
   </script>
 
   
@@ -32,14 +32,17 @@
   
 
   <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
   <link rel="stylesheet" href="/css/base.css">
 <link rel="stylesheet" href="/icon/iconfont.css">
 <link rel="stylesheet" href="/css/github-markdown.css">
 <link rel="stylesheet" href="/css/highlight.css">
 
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
   <script src="/js/util.js"></script>
 <script src="/js/valine.min.js"></script>
-
+<script src="/js/md5.min.js"></script>
+  
   
 
   
@@ -417,25 +420,22 @@
   </nav>
 
   
-    <a href="#comment" class="comment-anchor"></a>
-<div class="comment-title"><i class="iconfont icon-footprint"></i> 留下足迹 <i class="iconfont icon-footprint"></i></div>
-<div id="vcomments"></div>
+    <div id="gitalk-container"></div>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: "3bea67f4c16a20a5d9a2",
+    clientSecret: "d38faaf81761abcbc9f09e26fe7ee51dbb56eb70",
+    repo: "zzugbb.github.io",
+    owner: "zzugbb",
+    admin: "zzugbb",
+    id: window.location.pathname,
+  });
+  gitalk.render('gitalk-container');
+</script> 
 
-<script defer>
-  if( true ) {
-    let path = getRealPath()
-    new Valine({
-      el: "#vcomments",
-      appId: "5gmxTwVFMDWYxzhkUr6kJqCu-gzGzoHsz",
-      appKey: "UYfK9MIPOKVB0ChdRQQ8Ddcn",
-      notify: false,
-      verify: false,
-      avatar: "robohash",
-      placeholder: "正确填写邮箱, 才能及时收到回复哦♪(^∇^*)",
-      path
-    });
-  }
-</script>
+
+   
+  
    
 
   
