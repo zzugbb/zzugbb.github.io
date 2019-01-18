@@ -357,7 +357,8 @@
   </nav>
 
   
-    <div id="gitalk-container"></div>
+    <div class="comment-title"></div><i class="iconfont icon-footprint"></i> 留下足迹 <i class="iconfont icon-footprint"></i>
+<div id="gitalk-container"></div>
 <script type="text/javascript">
   var gitalk = new Gitalk({
     clientID: "3bea67f4c16a20a5d9a2",
@@ -365,7 +366,7 @@
     repo: "zzugbb.github.io",
     owner: "zzugbb",
     admin: "zzugbb",
-    id: window.location.pathname,
+    id: md5(window.location.pathname),
   });
   gitalk.render('gitalk-container');
 </script> 
