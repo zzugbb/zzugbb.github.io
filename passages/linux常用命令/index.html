@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="linux,">
+    <meta name="keywords" content="工程部署,linux,">
   
 
   <script>
@@ -107,14 +107,6 @@
           
         </li>
       
-        <li class="nav-item" data-path="/whoami/">
-          
-            <a href="/whoami/" target="_self">
-              关于
-            </a>
-          
-        </li>
-      
         <li class="nav-item" data-path="">
           
             <a href="javascript:void(0);" v-else="">抓到我</a>
@@ -123,6 +115,12 @@
                 <li>
                   <a href="https://github.com/zzugbb" target="_blank">
                     Github
+                  </a>
+                </li>
+              
+                <li>
+                  <a href="/whoami/" target="_blank">
+                    关于我
                   </a>
                 </li>
               
@@ -193,6 +191,13 @@
       2018-12-06
     </span>
     
+      <span>
+        分类 : 
+          <a href="/categories/工程部署/">
+            工程部署
+          </a>
+      </span>
+    
     
       <span>
         浏览 : <span class="article-timer" data-identity="linux常用命令"></span>
@@ -200,6 +205,26 @@
     
   </div>
 
+  
+    <div id="linux常用命令" style="margin: 4rem 2px"></div>
+<script async>
+  (function(){
+    let playerTimer = setInterval(function(){
+      if(!window.APlayer){
+        return
+      }
+
+      new APlayer({
+        container: document.getElementById('linux常用命令'),
+        theme: '#e96900',
+        listFolded: false,
+        audio: [{"name":"Legends Never Die","artist":"Against the Current","url":"//music.163.com/song/media/outer/url?id=506196018.mp3","cover":"http://p1.music.126.net/raAqjrUB_OMiVbbPkrGtXg==/109951162926087188.jpg?param=130y130"}]
+      });
+      
+      clearInterval(playerTimer)
+    }, 10);
+  })()
+</script>
   
 
   <div class="article-content">
@@ -210,16 +235,6 @@
 <p>注意，命令名称、命令参数、命令对象之间请用空格键分隔。</p>
 <p>命令对象一般是指要处理的文件、目录、用户等资源，而命令参数可以用长格式（完整的选项名称），也可以用短格式（单个字母的缩写），两者分别用–与-作为前缀。</p>
 <p>命令参数的长格式与短格式示例<br>长格式 <code>man --help</code><br>短格式 <code>man -h</code></p>
-<style>
-.code pre .line {
-  color:#f8f8f2;
-}
-
-.code pre .line .section {
-  color:slategray;
-}
-</style>  
-
 <h2 id="常用系统工作命令"><a href="#常用系统工作命令" class="headerlink" title="常用系统工作命令"></a>常用系统工作命令</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># echo命令用于在shell中打印shell变量的值，或者直接输出指定的字符串</span></span><br><span class="line">echo 命令: echo(选项)(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># date命令是显示或设置系统时间与日期。</span></span><br><span class="line">date 命令: date(选项)(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># reboot命令用来重新启动正在运行的Linux操作系统。</span></span><br><span class="line">reboot 命令: reboot(选项)</span><br><span class="line"></span><br><span class="line"><span class="section"># poweroff命令用来关闭计算机操作系统并且切断系统电源。</span></span><br><span class="line">poweroff 命令: poweroff(选项)</span><br><span class="line"></span><br><span class="line"><span class="section"># wget命令用来从指定的URL下载文件</span></span><br><span class="line">wget 命令: wget(选项)(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># ps命令用于报告当前系统的进程状态。</span></span><br><span class="line">ps 命令: ps(选项) ps -ef | grep ""</span><br><span class="line"></span><br><span class="line"><span class="section"># top命令可以实时动态地查看系统的整体运行情况，</span></span><br><span class="line">top 命令: top(选项)</span><br><span class="line"></span><br><span class="line"><span class="section"># pidof命令用于查找指定名称的进程的进程号id号。</span></span><br><span class="line">pidof 命令: pidof(选项)(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># kill命令用来删除执行中的程序或工作 kill -9 进程 强制删除</span></span><br><span class="line">kill 命令: kill(选项)(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># killall命令使用进程的名称来杀死进程，使用此指令可以杀死一组同名进程</span></span><br><span class="line">killall 命令</span><br></pre></td></tr></table></figure>
 <p>如果我们在系统终端中执行一个命令后想立即停止它，可以同时按下Ctrl + C组合键（生产环境中比较常用的一个快捷键），这样将立即终止该命令的进程。或者，如果有些命令在执行时不断地在屏幕上输出信息，影响到后续命令的输入，则可以在执行命令时在末尾添加上一个&amp;符号，这样命令将进入系统后台来执行。</p>
 <h2 id="系统状态检测命令"><a href="#系统状态检测命令" class="headerlink" title="系统状态检测命令"></a>系统状态检测命令</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># ifconfig命令被用于配置和显示Linux内核中网络接口的网络参数</span></span><br><span class="line">ifconfig 命令: ifconfig(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># uname命令用于打印当前系统相关信息</span></span><br><span class="line">uname 命令: uname(选项)</span><br><span class="line"></span><br><span class="line"><span class="section"># uptime命令能够打印系统总共运行了多长时间和系统的平均负载。</span></span><br><span class="line">uptime 命令: uptime(选项)</span><br><span class="line"></span><br><span class="line"><span class="section"># free命令可以显示当前系统未使用的和已使用的内存数目，显示被内核使用的内存缓冲区。</span></span><br><span class="line">free 命令: free(选项)</span><br><span class="line"></span><br><span class="line"><span class="section"># who命令是显示目前登录系统的用户信息</span></span><br><span class="line">who 命令: who(选项)(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># last命令用于显示用户最近登录信息</span></span><br><span class="line">last 命令: last(选项)(参数)</span><br><span class="line"></span><br><span class="line"><span class="section"># history命令用于显示指定数目的指令命令</span></span><br><span class="line">history 命令: history(选项)(参数)</span><br></pre></td></tr></table></figure>
@@ -231,13 +246,12 @@
 <li><a href="http://man.linuxde.net/" target="_blank" rel="noopener">Linux命令大全(手册)_Linux常用命令行实例详解_Linux命令学习手册</a></li>
 <li><a href="https://www.cnblogs.com/yjd_hycf_space/p/7730690.html" target="_blank" rel="noopener">Linux常用命令大全</a></li>
 </ul>
-
     </div>
   </div>
   
   
   
-    <div class="social-share" style="margin-top: -2rem" data-wechat-qrcode-title="<p>微信扫一扫</p>" data-wechat-qrcode-helper="<p>微信右上角, 扫一扫分享</p>" data-sites="qzone, qq, weibo, wechat, douban, google, facebook, twitter">
+    <div class="social-share" style="margin-top: 3rem" data-wechat-qrcode-title="<p>微信扫一扫</p>" data-wechat-qrcode-helper="<p>微信右上角, 扫一扫分享</p>" data-sites="qzone, qq, weibo, wechat, douban, google, facebook, twitter">
   <span style="color: #6b7487; font-size: 1.4rem;">分享到: </span>
 </div>
 <script src="https://cdn.bootcss.com/social-share.js/1.0.16/js/social-share.min.js" async></script>
@@ -487,6 +501,8 @@ if(true){
     <br>
     Theme - <a href="https://github.com/dongyuanxin/theme-bmw">BMW</a> | Made With 💗 | Powered by <a href="https://godbmw.com/">GodBMW</a>
     <br>
+    
+      本站所有音乐均引用自<a href="https://music.163.com/#" target="_blank"> 网易云 </a>的资源，详情可到网易云查看了解，无商业行为，若涉及版权问题请联系删除
     
   </p>
 </footer>

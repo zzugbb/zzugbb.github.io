@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="log4js,">
+    <meta name="keywords" content="日志,log4js,">
   
 
   <script>
@@ -107,14 +107,6 @@
           
         </li>
       
-        <li class="nav-item" data-path="/whoami/">
-          
-            <a href="/whoami/" target="_self">
-              关于
-            </a>
-          
-        </li>
-      
         <li class="nav-item" data-path="">
           
             <a href="javascript:void(0);" v-else="">抓到我</a>
@@ -123,6 +115,12 @@
                 <li>
                   <a href="https://github.com/zzugbb" target="_blank">
                     Github
+                  </a>
+                </li>
+              
+                <li>
+                  <a href="/whoami/" target="_blank">
+                    关于我
                   </a>
                 </li>
               
@@ -193,6 +191,13 @@
       2018-07-28
     </span>
     
+      <span>
+        分类 : 
+          <a href="/categories/日志/">
+            日志
+          </a>
+      </span>
+    
     
       <span>
         浏览 : <span class="article-timer" data-identity="log4js"></span>
@@ -200,6 +205,26 @@
     
   </div>
 
+  
+    <div id="log4js" style="margin: 4rem 2px"></div>
+<script async>
+  (function(){
+    let playerTimer = setInterval(function(){
+      if(!window.APlayer){
+        return
+      }
+
+      new APlayer({
+        container: document.getElementById('log4js'),
+        theme: '#e96900',
+        listFolded: false,
+        audio: [{"name":"Warriors","artist":"Imagine Dragons","url":"//music.163.com/song/media/outer/url?id=29401226.mp3","cover":"http://p2.music.126.net/70OuBx8PQfW6ie8UIes8dw==/2536573325307180.jpg?param=130y130"}]
+      });
+      
+      clearInterval(playerTimer)
+    }, 10);
+  })()
+</script>
   
 
   <div class="article-content">
@@ -231,13 +256,12 @@
 <h2 id="对应效果"><a href="#对应效果" class="headerlink" title="对应效果"></a>对应效果</h2><p>只能备份 <code>backups</code> 指定的份数，最新的会更新删除替换， 且每个文件为 <code>maxLogSize</code>的值。</p>
 <h2 id="按日期分片"><a href="#按日期分片" class="headerlink" title="按日期分片"></a>按日期分片</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">"log4jsConfig": &#123;</span><br><span class="line">    "appenders": [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"console"</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"dateFile"</span>,</span><br><span class="line">        <span class="attr">"absolute"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">"filename"</span>: <span class="string">"a-accesslog"</span>,</span><br><span class="line">        <span class="attr">"pattern"</span>: <span class="string">"-yyyy-MM-dd.log"</span>,</span><br><span class="line">        <span class="attr">"alwaysIncludePattern"</span> : <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">"category"</span>: <span class="string">"http"</span></span><br><span class="line">      &#125;</span><br><span class="line">    ],</span><br><span class="line">    "levels": &#123;</span><br><span class="line">      "[all]": "DEBUG"</span><br><span class="line">    &#125;,</span><br><span class="line">    "replaceConsole": true</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
 <h2 id="对应效果-1"><a href="#对应效果-1" class="headerlink" title="对应效果"></a>对应效果</h2><p>日志按照日期进行分片，且不会限制大小。</p>
-
     </div>
   </div>
   
   
   
-    <div class="social-share" style="margin-top: -2rem" data-wechat-qrcode-title="<p>微信扫一扫</p>" data-wechat-qrcode-helper="<p>微信右上角, 扫一扫分享</p>" data-sites="qzone, qq, weibo, wechat, douban, google, facebook, twitter">
+    <div class="social-share" style="margin-top: 3rem" data-wechat-qrcode-title="<p>微信扫一扫</p>" data-wechat-qrcode-helper="<p>微信右上角, 扫一扫分享</p>" data-sites="qzone, qq, weibo, wechat, douban, google, facebook, twitter">
   <span style="color: #6b7487; font-size: 1.4rem;">分享到: </span>
 </div>
 <script src="https://cdn.bootcss.com/social-share.js/1.0.16/js/social-share.min.js" async></script>
@@ -321,7 +345,7 @@
     
       <div class="nav-next">
         下一篇:
-        <a href="/passages/gulp&amp;grunt/" target="_self">Gulp&&Grunt</a>
+        <a href="/passages/gulp&amp;grunt/" target="_self">Gulp && Grunt</a>
         <i class="iconfont icon-next"></i>
       </div>
     
@@ -487,6 +511,8 @@ if(true){
     <br>
     Theme - <a href="https://github.com/dongyuanxin/theme-bmw">BMW</a> | Made With 💗 | Powered by <a href="https://godbmw.com/">GodBMW</a>
     <br>
+    
+      本站所有音乐均引用自<a href="https://music.163.com/#" target="_blank"> 网易云 </a>的资源，详情可到网易云查看了解，无商业行为，若涉及版权问题请联系删除
     
   </p>
 </footer>

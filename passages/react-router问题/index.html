@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="HashRouter,BrowserRouter,">
+    <meta name="keywords" content="react,react-router,HashRouter,BrowserRouter,">
   
 
   <script>
@@ -107,14 +107,6 @@
           
         </li>
       
-        <li class="nav-item" data-path="/whoami/">
-          
-            <a href="/whoami/" target="_self">
-              关于
-            </a>
-          
-        </li>
-      
         <li class="nav-item" data-path="">
           
             <a href="javascript:void(0);" v-else="">抓到我</a>
@@ -123,6 +115,12 @@
                 <li>
                   <a href="https://github.com/zzugbb" target="_blank">
                     Github
+                  </a>
+                </li>
+              
+                <li>
+                  <a href="/whoami/" target="_blank">
+                    关于我
                   </a>
                 </li>
               
@@ -193,6 +191,13 @@
       2018-10-16
     </span>
     
+      <span>
+        分类 : 
+          <a href="/categories/react/">
+            react
+          </a>
+      </span>
+    
     
       <span>
         浏览 : <span class="article-timer" data-identity="react-router问题"></span>
@@ -200,6 +205,26 @@
     
   </div>
 
+  
+    <div id="react-router问题" style="margin: 4rem 2px"></div>
+<script async>
+  (function(){
+    let playerTimer = setInterval(function(){
+      if(!window.APlayer){
+        return
+      }
+
+      new APlayer({
+        container: document.getElementById('react-router问题'),
+        theme: '#e96900',
+        listFolded: false,
+        audio: [{"name":"Sugar","artist":"Maroon 5","url":"//music.163.com/song/media/outer/url?id=29019227.mp3","cover":"http://p2.music.126.net/RkbAVgGxk1Nr5fjuaR9dww==/19175482788569403.jpg?param=130y130"}]
+      });
+      
+      clearInterval(playerTimer)
+    }, 10);
+  })()
+</script>
   
 
   <div class="article-content">
@@ -243,13 +268,12 @@
 <li>若路径中含有 /api/, 上步没有设置开头，则页面被转发到 node 服务器。<br> 返回的虽然设置了 <code>index.html</code>, 但是加载对应 <code>index.html</code> 中的静态资源的时候，返回的也是页面，不是静态资源。<br> 如果资源返回正常，页面是可以正常加载的，因为只要都返回静态页面，具体路由是有对应js处理的。</li>
 </ol>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"proxy"</span>: &#123;</span><br><span class="line">  <span class="string">"^/api/"</span>: &#123;</span><br><span class="line">    <span class="string">"target"</span>: <span class="string">"http://localhost:3001"</span>,</span><br><span class="line">    <span class="string">"changeOrigin"</span>: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
     </div>
   </div>
   
   
   
-    <div class="social-share" style="margin-top: -2rem" data-wechat-qrcode-title="<p>微信扫一扫</p>" data-wechat-qrcode-helper="<p>微信右上角, 扫一扫分享</p>" data-sites="qzone, qq, weibo, wechat, douban, google, facebook, twitter">
+    <div class="social-share" style="margin-top: 3rem" data-wechat-qrcode-title="<p>微信扫一扫</p>" data-wechat-qrcode-helper="<p>微信右上角, 扫一扫分享</p>" data-sites="qzone, qq, weibo, wechat, douban, google, facebook, twitter">
   <span style="color: #6b7487; font-size: 1.4rem;">分享到: </span>
 </div>
 <script src="https://cdn.bootcss.com/social-share.js/1.0.16/js/social-share.min.js" async></script>
@@ -299,6 +323,12 @@
       <span>
         
           <i class="iconfont icon-06tags"></i>标签: 
+          
+          <span class="span--tag">
+            <a href="/tags/react-router/">
+              #react-router
+            </a>
+          </span>
           
           <span class="span--tag">
             <a href="/tags/HashRouter/">
@@ -505,6 +535,8 @@ if(true){
     <br>
     Theme - <a href="https://github.com/dongyuanxin/theme-bmw">BMW</a> | Made With 💗 | Powered by <a href="https://godbmw.com/">GodBMW</a>
     <br>
+    
+      本站所有音乐均引用自<a href="https://music.163.com/#" target="_blank"> 网易云 </a>的资源，详情可到网易云查看了解，无商业行为，若涉及版权问题请联系删除
     
   </p>
 </footer>
