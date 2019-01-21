@@ -8,12 +8,12 @@
   
   
   
-  <title>Gulp &amp;&amp; Grunt | gbb</title>
+  <title>分类: 打包工具 | gbb</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="打包工具,gulp,grunt,">
+    <meta name="keywords" content="Hexo, 个人博客">
   
 
   
@@ -176,239 +176,24 @@
   })
 </script>
 
-      
-
-
-
-
-
-
-
-
-<div class="container post-index">
-
-  
-
-<div class="post">
-  <h1 class="article-title">
-    <span>Gulp && Grunt</span>
-  </h1>
-  <div class="article-top-meta">
-    <span>
-      <i class="fa fa-calendar"></i> &nbsp;发布 : 
-      2018-08-04
-    </span>
+      <div class="container">
+  <div class="timeline">
+  <span class="archive-move-on"></span>
+  <span class="archive-page-counter">
     
-      
-
-<span>
-  <i class="fa fa-keyboard-o"></i> &nbsp;字数统计 : 1.1k 字
-</span>
-
-<span>
-  <i class="fa fa-hourglass-half"></i> &nbsp;阅读时长 : 4 分
-</span>
-
+      <span>当前位于 1/1 页</span>
     
-    
-      <span>
-          <i class="iconfont icon-tag" style="font-size:12px;"></i> &nbsp;分类 : 
-          <a href="/categories/打包工具/">
-            打包工具
-          </a>
-      </span>
-    
-    
-      <span>
-        <i class="iconfont icon-view"></i> &nbsp;浏览 : <span class="article-timer" data-identity="gulp&grunt"></span>
-      </span>
-    
-  </div>
-
-  
-    <div id="gulp&grunt" style="margin: 4rem 2px"></div>
-<script async>
-  (function(){
-    let playerTimer = setInterval(function(){
-      if(!window.APlayer){
-        return
-      }
-
-      new APlayer({
-        container: document.getElementById('gulp&grunt'),
-        theme: '#e96900',
-        listFolded: false,
-        audio: [{"name":"PDD","artist":"徐梦圆","url":"//music.163.com/song/media/outer/url?id=454129387.mp3","cover":"http://p1.music.126.net/hCcCWnrzYYgsHtDvjvJAGQ==/109951162844915317.jpg?param=130y130"}]
-      });
-      
-      clearInterval(playerTimer)
-    }, 10);
-  })()
-</script>
-  
-
-  <div class="article-content">
-    <div class="markdown-body">
-      <h1 id="gulp"><a href="#gulp" class="headerlink" title="gulp"></a>gulp</h1><p>用自动化构建工具增强你的工作流程！</p>
-<ul>
-<li><code>易于使用</code>，通过代码优于配置的策略，Gulp 让简单的任务简单，复杂的任务可管理。</li>
-<li><code>构建快速</code>，利用 Node.js 流的威力，你可以快速构建项目并减少频繁的 IO 操作。</li>
-<li><code>插件高质</code>，Gulp 严格的插件指南确保插件如你期望的那样简洁高质得工作。</li>
-<li><code>易于学习</code>，通过最少的 API，掌握 Gulp 毫不费力，构建工作尽在掌握：如同一系列流管道。</li>
-</ul>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install gulp -g  <span class="comment">//全局安装</span></span><br><span class="line">npm install --save-dev gulp  <span class="comment">//作为项目开发依赖安装</span></span><br></pre></td></tr></table></figure>
-<h2 id="gulpfile-js"><a href="#gulpfile-js" class="headerlink" title="gulpfile.js"></a>gulpfile.js</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</span><br><span class="line">gulp.task(<span class="string">'default'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 将你的默认的任务代码放在这</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gulp  <span class="comment">//默认执行default任务</span></span><br><span class="line"><span class="comment">//手动指定一个 gulpfile 的路径，这在你有很多个 gulpfile 的时候很有用</span></span><br><span class="line">gulp --gulpfile &lt;gulpfile path&gt;</span><br></pre></td></tr></table></figure>
-<p>Task 可以通过 <code>gulp &lt;task&gt; &lt;othertask&gt;</code> 方式来执行。如果只运行 <code>gulp</code> 命令，则会执行所注册的名为 <code>default</code> 的 task，如果没有这个 task，那么 gulp 会报错。</p>
-<h2 id="gulp与grunt区别"><a href="#gulp与grunt区别" class="headerlink" title="gulp与grunt区别"></a>gulp与grunt区别</h2><p><code>Grunt</code> 主要是以文件为媒介来运行它的工作流的，比如在Grunt中执行完一项任务后，会把结果写入到一个临时文件中，然后可以在这个临时文件内容的基础上执行其它任务，执行完成后又把结果写入到临时文件中，然后又以这个为基础继续执行其它任务…就这样反复下去。</p>
-<p>而在<code>Gulp</code>中，使用的是Nodejs中的stream(流)，首先获取到需要的stream，然后可以通过stream的 <code>pipe()</code> 方法把流导入到你想要的地方，比如Gulp的插件中，经过插件处理后的流又可以继续导入到其他插件中，当然也可以把流写入到文件中。所以Gulp是以stream为媒介的，它不需要频繁的生成临时文件，这也是Gulp的速度比Grunt快的一个原因。</p>
-<h2 id="API介绍"><a href="#API介绍" class="headerlink" title="API介绍"></a>API介绍</h2><p>掌握四个API即可</p>
-<ul>
-<li><code>gulp.task()</code> //定义一个使用 Orchestrator 实现的任务（task）。</li>
-<li><code>gulp.src()</code> //输出（Emits）符合所提供的匹配模式（glob）或者匹配模式的数组（array of globs）的文件。</li>
-<li><code>gulp.dest()</code> //能被 pipe 进来，并且将会写文件。并且重新输出（emits）所有数据，因此你可以将它 pipe 到多个文件夹。如果某文件夹不存在，将会自动创建它。</li>
-<li><code>gulp.watch()</code> //监视文件，并且可以在文件发生改动时候做一些事情。它总会返回一个 EventEmitter 来发射（emit） change 事件。</li>
-</ul>
-<h1 id="grunt"><a href="#grunt" class="headerlink" title="grunt"></a>grunt</h1><p><code>Grunt</code>是 <strong>JavaScript</strong> 世界的构建工具。</p>
-<h2 id="为什么要用grunt？"><a href="#为什么要用grunt？" class="headerlink" title="为什么要用grunt？"></a>为什么要用<code>grunt</code>？</h2><p><code>Grunt</code> 生态系统非常庞大，并且一直在增长。由于拥有数量庞大的插件可供选择，因此，你可以利用 Grunt 自动完成任何事，并且花费最少的代价，只要配置好 <code>Gruntfile</code> 文件, 就可以实现自动执行。</p>
-<p>每次运行 <code>grunt</code> 时，他就利用 <code>node</code> 提供的 <code>require()</code> 系统查找本地安装的 <code>Grunt</code>。正是由于这一机制，你可以在项目的任意子目录中运行<code>grunt</code> 。如果找到一份本地安装的 <code>Grunt</code> ，<code>CLI</code> 就将其加载，并传递<code>Gruntfile</code> 中的配置信息，然后执行你所指定的任务。</p>
-<h2 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g grunt-cli   <span class="comment">//全局安装</span></span><br><span class="line"><span class="comment">//Grunt CLI的任务很简单：调用与Gruntfile在同一目录中的Grunt，</span></span><br><span class="line"><span class="comment">//这样带来的好处是，允许你在同一个系统上同时安装多个版本的 Grunt。</span></span><br></pre></td></tr></table></figure>
-<h2 id="Gruntfile"><a href="#Gruntfile" class="headerlink" title="Gruntfile"></a>Gruntfile</h2><p><code>Gruntfile</code>主要有以下几个模块组成。</p>
-<ul>
-<li>“wrapper” 函数</li>
-<li>项目与任务配置</li>
-<li>加载grunt插件和任务</li>
-<li>自定义任务</li>
-</ul>
-<h2 id="wrapper函数"><a href="#wrapper函数" class="headerlink" title="wrapper函数"></a>wrapper函数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">grunt</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Do grunt-related things in here</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="项目和任务配置"><a href="#项目和任务配置" class="headerlink" title="项目和任务配置"></a>项目和任务配置</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h2 id="加载插件和任务"><a href="#加载插件和任务" class="headerlink" title="加载插件和任务"></a>加载插件和任务</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 加载能够提供"uglify"任务的插件。</span></span><br><span class="line">grunt.loadNpmTasks(<span class="string">'grunt-contrib-uglify'</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="自定义任务"><a href="#自定义任务" class="headerlink" title="自定义任务"></a>自定义任务</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Default task(s)，可添加执行多个任务</span></span><br><span class="line">grunt.registerTask(<span class="string">'default'</span>, [<span class="string">'uglify'</span>]);</span><br></pre></td></tr></table></figure>
-<h2 id="Grunt配置"><a href="#Grunt配置" class="headerlink" title="Grunt配置"></a>Grunt配置</h2><p><code>Grunt</code> 的 <code>task</code> 配置都是在 <code>Gruntfile</code> 中的 <code>grunt.initConfig</code> 方法中指定的。</p>
-<p>此配置主要是以任务名称命名的属性，也可以包含其他任意数据。一旦这些代表任意数据的属性与任务所需要的属性相冲突，就将被忽略。</p>
-    </div>
-  </div>
+  </span>
   
   
-  
-    <div class="social-share" style="margin-top: 3rem" data-image="https://zzugbb.github.io/favicon.ico" data-wechat-qrcode-title="<p>微信扫一扫</p>" data-wechat-qrcode-helper="<p>微信右上角, 扫一扫分享</p>" data-sites="qzone, qq, weibo, wechat, douban, google, facebook, twitter">
-  <span style="color: #6b7487; font-size: 1.4rem;">分享到: </span>
-</div>
-<script src="https://cdn.bootcss.com/social-share.js/1.0.16/js/social-share.min.js" async></script>
-  
-
-  
-    <div id="reward">
-  
-    <p id="reward-meta">知识 & 情怀 | 二者兼得</p>
-  
-  <button id="reward-btn">
-    
-    <span>投食</span>
-  </button>
-  <div id="reward-qrcode">
-    
-      <div class="reward-qrcode--container">
-        <img class="qrcode-img" src="/images/wechat.png" alt="微信扫一扫, 向我投食">
-        <p class="qrcode-meta">微信扫一扫, 向我投食</p>
-      </div>
-    
-      <div class="reward-qrcode--container">
-        <img class="qrcode-img" src="/images/alipay.png" alt="支付宝扫一扫, 向我投食">
-        <p class="qrcode-meta">支付宝扫一扫, 向我投食</p>
-      </div>
-    
-  </div>
-
-</div>
-
-<script>
-  (() => {
-    let button = document.querySelector('#reward-btn'),
-      qrcode = document.querySelector('#reward-qrcode'),
-      display = false;
-    
-    button.addEventListener('click', () => {
-      qrcode.style.display = display ? 'none' : 'block'
-      display = !display
-    }, false)
-  })()
-</script>
-  
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-      <span>
+    <div class="collection-title">
+      <h2>
         
-          <i class="iconfont icon-06tags"></i>标签: 
-          
-          <span class="span--tag">
-            <a href="/tags/gulp/">
-              <i class="fa fa-tag"></i>gulp
-            </a>
-          </span>
-          
-          <span class="span--tag">
-            <a href="/tags/grunt/">
-              <i class="fa fa-tag"></i>grunt
-            </a>
-          </span>
-          
+          <span>分类 : 打包工具</span>
+          <span class="article-timer" data-identity="分类:打包工具" style="display: none"></span>
         
-      </span>
-    </div>
-    <div class="article-meta pull-right">
-    </div>
-  </div>
-</div>
-
-
-  <aside id="sidebar">
-    <p id="sidebar-header"></p>
-    <ol id="sidebar-toc"></ol>
-  </aside>
-  <script async>setTimeout(generateToc, 10);</script>
-
-
-  <nav class="post-navigation">
-    
-      <div class="nav-pre">
-        <i class="iconfont icon-prev"></i>
-        上一篇:
-        <a href="/passages/log4js/" target="_self">log4js</a>
-      </div>
-    
-    
-      <div class="nav-next">
-        下一篇:
-        <a href="/passages/es6-async/" target="_self">axios请求之异步处理</a>
-        <i class="iconfont icon-next"></i>
-      </div>
-    
-  </nav>
-
-  
-    <div class="comment-title"></div><i class="iconfont icon-footprint"></i> 留下足迹 <i class="iconfont icon-footprint"></i>
-<div id="gitalk-container"></div>
-<script type="text/javascript">
-  var gitalk = new Gitalk({
-    clientID: "3bea67f4c16a20a5d9a2",
-    clientSecret: "d38faaf81761abcbc9f09e26fe7ee51dbb56eb70",
-    repo: "zzugbb.github.io",
-    owner: "zzugbb",
-    admin: "zzugbb",
-    id: md5(window.location.pathname),
-  });
-  gitalk.render('gitalk-container');
-</script> 
-
-
-   
-  
-   
-
-  
-    <script defer>
+        
+          <script defer>
 const valineAPI = (() => {
   try {
     AV.init("5gmxTwVFMDWYxzhkUr6kJqCu-gzGzoHsz", "UYfK9MIPOKVB0ChdRQQ8Ddcn");
@@ -493,11 +278,11 @@ const valineAPI = (() => {
 })()
 
 const calcAndWriteTimes = () => {
-  let isPost = true;
+  let isPost = false;
   let isTags = false;
   let isTag = false;
   let isCategories = false;
-  let isCategorie = false;
+  let isCategorie = true;
   let isArchives = false;
 
   let timerAllDOM = document.querySelectorAll(".article-timer");
@@ -570,10 +355,45 @@ if(true){
   calcAndWriteTimes();
 }
 </script>
-   
-
+         
+      </h2>
+    </div>
+  
+  
+  
+  <article class="posts-collapse">
+    <header>
+      <h2>
+        <a href="/passages/gulp&grunt/">
+          <span>Gulp && Grunt</span>
+        </a>
+      </h2>
+      <div class="post-meta">
+        08-04
+      </div>
+    </header>
+  </article>
+  
+  
+  <article class="posts-collapse">
+    <header>
+      <h2>
+        <a href="/passages/FIS3&&webpack/">
+          <span>Fis3 && webpack</span>
+        </a>
+      </h2>
+      <div class="post-meta">
+        05-13
+      </div>
+    </header>
+  </article>
+  
 </div>
-
+  <nav class="page-navigation">
+    
+    
+  </nav>
+</div>
 
       <footer style="margin-top:20px">
   <p class="site-info">
