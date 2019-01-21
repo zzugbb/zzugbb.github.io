@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[【置顶】hexo博客配置各种小功能]]></title>
+    <url>%2Fpassages%2Fhexo%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE%E5%90%84%E7%A7%8D%E5%B0%8F%E5%8A%9F%E8%83%BD%2F</url>
+    <content type="text"><![CDATA[使用 hexo 搭建博客且主题配置后，是否想让自己的博客更加精致那？例如：评论功能，文章字数统计和阅读时长，图片预览，鼠标点击效果，添加可爱的二次元，音乐播放，RSS, 分享， 浏览量统计，搜索，等等，本文主要记录此模块内容。 添加字数统计与阅读时长npm install hexo-wordcount –save 新建 word.ejs 1234567&lt;span&gt; &lt;i class=&quot;fa fa-keyboard-o&quot;&gt;&lt;/i&gt; &amp;nbsp;字数统计 : &lt;%= wordcount(page.content) %&gt; 字&lt;/span&gt;&lt;span&gt; &lt;i class=&quot;fa fa-hourglass-half&quot;&gt;&lt;/i&gt; &amp;nbsp;阅读时长 : &lt;%= min2read(page.content) %&gt; 分&lt;/span&gt; 对应页面内容处添加判断, word_count 标志是否开启字数与阅读时长显示。 123&lt;% if(theme.word_count) &#123; %&gt; &lt;%- partial(&quot;_partial/word.ejs&quot;) %&gt;&lt;% &#125; %&gt; 具体效果： 其中字体图标采用 fontawesome, 引用css即可使用 添加评论gitalk 和 github issues 挂钩的插件, 简单易配置 具体效果： 照片预览fancybox , 使用简单，点击图片即可大图预览。 鼠标点击效果创建 clicklove.js 文件 1!function(e,t,a)&#123;function n()&#123;c(".heart&#123;width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);&#125;.heart:after,.heart:before&#123;content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;&#125;.heart:after&#123;top: -5px;&#125;.heart:before&#123;left: -5px;&#125;"),o(),r()&#125;function r()&#123;for(var e=0;e&lt;d.length;e++)d[e].alpha&lt;=0?(t.body.removeChild(d[e].el),d.splice(e,1)):(d[e].y--,d[e].scale+=.004,d[e].alpha-=.013,d[e].el.style.cssText="left:"+d[e].x+"px;top:"+d[e].y+"px;opacity:"+d[e].alpha+";transform:scale("+d[e].scale+","+d[e].scale+") rotate(45deg);background:"+d[e].color+";z-index:99999");requestAnimationFrame(r)&#125;function o()&#123;var t="function"==typeof e.onclick&amp;&amp;e.onclick;e.onclick=function(e)&#123;t&amp;&amp;t(),i(e)&#125;&#125;function i(e)&#123;var a=t.createElement("div");a.className="heart",d.push(&#123;el:a,x:e.clientX-5,y:e.clientY-5,scale:1,alpha:1,color:s()&#125;),t.body.appendChild(a)&#125;function c(e)&#123;var a=t.createElement("style");a.type="text/css";try&#123;a.appendChild(t.createTextNode(e))&#125;catch(t)&#123;a.styleSheet.cssText=e&#125;t.getElementsByTagName("head")[0].appendChild(a)&#125;function s()&#123;return"rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random())+")"&#125;var d=[];e.requestAnimationFrame=function()&#123;return e.requestAnimationFrame||e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame||function(e)&#123;setTimeout(e,1e3/60)&#125;&#125;(),n()&#125;(window,document); 引入对应 js 即可, 页面点击即可看到 ♥ 效果。 1&lt;%- js([&apos;js/clicklove.js&apos;])%&gt; 添加网站二次元模型npm install –save hexo-helper-live2d 根目录下 _config.yaml 添加配置。 1234567891011live2d: enable: true scriptFrom: local model: use: live2d-widget-model-wanko display: position: right width: 150 height: 250 mobile: show: true 更多模型，安装对应模块即可。live2d-widget-models 音乐播放器 网易云外链播放器 效果如下： aplayer，中文文档 效果如下： RSS订阅npm install hexo-generator-feed –save 根目录下 _config.yaml 添加配置。 12345678# RSS订阅plugin: hexo-generator-feed#Feed Atomfeed: type: atom path: atom.xml limit: 20 主题目录下的 _config.yml 文件，设置 RSS 地址： 12# RSS文件位置rss: /atom.xml 页面添加图标展示 123&lt;a href=&quot;&lt;%- url_for(theme.rss) %&gt;&quot; title=&quot;&lt;%= __(&apos;rss_feed&apos;) %&gt;&quot;&gt; &lt;i class=&quot;fa fa-rss-square&quot;&gt;&lt;/i&gt;&lt;/a&gt; 网站运行时间 &amp;&amp; 总字数写个 js 脚本运行即可，计算时间 网站总字数在 添加字数统计与阅读时长 介绍时对应插件提供此功能。 一键分享一键分享 , 简单易用，直接引用配置即可。 返回顶部Hexo 博客功能扩展 - 添加回滚到顶部按钮 浏览量此处不做说明，需要注册提供统计功能的服务, 注册后直接使用即可。网上很多服务提供者有对应功能。百度统计，谷歌统计，不蒜子统计，cnzz, leancloud 等等。 本站采用的为 Valine一款基于Leancloud的快速、简洁且高效的无后端评论系统, 只用了其中的文章阅读量统计模块，评论系统采用的 gitalk, 原因是当时配置完评论系统后发现无法及时的接受通知，博主和评论者无法及时互联，发邮件有限制。所以切换了评论插件。不过后续发现 Valine-Admin-Valine评论系统的扩展和增强 实现评论邮件通知、评论管理、垃圾评论过滤等功能。可以对其进行修改增强即可。 具体 Valine 如何配置，详情参考的为 Theme-BMW 中文文档, 本站博客主题，前人栽树后人乘凉，O(∩_∩)O哈哈~, 如果为其它主题，参考 Valine 官网即可。 补充说明：主题提供的 文章统计 暂时只有文章的浏览量，本站对代码就行了修改添加，支持总的 浏览量展示。原理为将所有浏览量相加，且对分类，标签，归档，首页，等模块纳入了统计范围，综合即为 网站浏览量。 SEO可以向各个搜索引擎提交自己的网站 百度入口 谷歌入口 360入口 搜狗入口 必应入口 文章置顶npm install hexo-generator-topindex –save 设置 top 参数, 值越大，优先级越高 12345---title: Hello Worlddate: 2017-03-12 19:45:02top: 5--- 标签云页面添加元素代码如下: 12345678910&lt;div class=&quot;tags&quot;&gt; &lt;%- tagcloud(&#123; min_font: 16, max_font: 35, amount: 999, color: true, start_color: &apos;gray&apos;, end_color: &apos;black&apos;, &#125;) %&gt;&lt;/div&gt; 对应可添加样式代码如下: 123456789101112131415161718&lt;style&gt; .tags &#123; max-width: 60em; margin: 2em auto; margin-top: 0em; &#125; .tags a &#123; margin-right: 1em; line-height: 65px; border-bottom: 1px solid gray; white-space: nowrap; transition: border-bottom .5s; &#125; .tags a:hover &#123; border-bottom: 3px dotted gray; text-decoration: none; &#125;&lt;/style&gt; 站内搜素待补充，个人社交链接图标，留言板， 动态背景， forkmegithub， 文章加密，搜索]]></content>
+      <categories>
+        <category>博客搭建</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>hexo-功能配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[k8s 命令备忘]]></title>
+    <url>%2Fpassages%2Fk8s%E5%91%BD%E4%BB%A4%E5%A4%87%E5%BF%98%2F</url>
+    <content type="text"><![CDATA[k8s 命令备忘 kubectl kubectl 用于运行 Kubernetes 集群命令的管理工具 语法 kubectl [command] [TYPE] [NAME] [flags] command：指定要在一个或多个资源执行的操作，例如操作 create，get，describe，delete。 TYPE：指定资源类型 Resource types。Resource types会区分大小写，也可以指定单数，复数或缩写的形式。 NAME：指定 Resource 的 Name。Name区分大小写，如果省略Name，则显示所有资源的详细信息 flags：指定可选flags。例如，你可以使用-s 或 –server flag来指定 Kubernetes API Server 的地址和端口。提示：命令行指定的flags将覆盖默认值和任何相应的环境变量。 常用命令表123456789101112131415161718192021222324252627282930313233343536# 通过配置文件名创建一个集群资源对象, 支持JSON和YAML格式的文件kubectl create -f FILENAME# 对文件或stdin的资源进行配置更改。kubectl apply -f FILENAME# 根据配置文件、目录或指定的literal-value创建configmapkubectl create configmap NAME [--from-file=[key=]source] [--from-literal=key1=value1] [--dry-run]kubectl create configmap my-config --from-file=path/to/bar# 创建一个具有指定名称的namespacekubectl create namespace NAME [--dry-run]kubectl create namespace my-namespace# 通过配置文件名、stdin、资源名称或label选择器来删除资源。kubectl delete ([-f FILENAME] | TYPE [(NAME | -l label | --all)])kubectl delete -f ./pod.jsonkubectl delete pod,service baz fookubectl delete po &lt;podname&gt; -n namespace# 获取列出一个或多个资源的信息。kubectl get pokubectl get rc,services# 显示一个或多个resources的详细状态kubectl describe (-f FILENAME | TYPE [NAME_PREFIX | /NAME | -l label]) [flags]kubectl describe &lt;podname&gt; bash -n namespace# 对pod中的容器执行命令# Get a shell to the running Containerkubectl exec POD [-c CONTAINER] [-i] [-t] [flags] [-- COMMAND [args...]]kubectl exec -it &lt;podname&gt; bash -n namespace# 输出pod中一个容器的日志kubectl logs [-f] [-p] POD [-c CONTAINER]kubectl logs &lt;podname&gt; bash -n namespace 参考 Kubernetes中文社区 | 中文文档 Kubernetes中文手册]]></content>
+      <categories>
+        <category>工程部署</category>
+      </categories>
+      <tags>
+        <tag>k8s</tag>
+        <tag>kubectl</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[k8s 各模块关系]]></title>
+    <url>%2Fpassages%2Fk8s%E5%90%84%E6%A8%A1%E5%9D%97%E5%85%B3%E7%B3%BB%2F</url>
+    <content type="text"><![CDATA[简单介绍 k8s 各模块关系 关与 Kubernetes Kubernetes 是容器集群管理系统，是一个开源的平台，可以实现容器集群的自动化部署、自动扩缩容、维护等功能。Kubernetes 的名字来自希腊语，意思是“舵手” 或 “领航员”。K8s是将8个字母“ubernete”替换为“8”的缩写。 各模块关系图 Kubernetes Pod 概述 Pod 是 Kubernetes 创建或部署的最小/最简单的基本单位，一个 Pod 代表集群上正在运行的一个进程。 创建 Deployment 时，Kubernetes 会创建了一个 Pod 来托管应用。Pod 是 Kubernetes 中一个抽象化概念，由一个或多个容器组合在一起得共享资源Pod 代表部署的一个单位：Kubernetes 中单个应用的实例，它可能由单个容器或多个容器共享组成的资源。 Kubernetes Replica Sets 概述 ReplicaSet（RS） 是 Replication Controller（RC） 的升级版本。 主要被 Deployments 用作 pod 机制的创建、删除和更新。当使用 Deployment 时，你不必担心创建 pod 的 ReplicaSets，因为可以通过 Deployment 实现管理 ReplicaSets Kubernetes Deployment 概述 Deployment 为 Pod 和 Replica Set（升级版的 Replication Controller）提供声明式更新。 负责创建和更新应用，应用实例创建完成后，Kubernetes Deployment Controller 会持续监视这些实例。如果管理实例的节点被关闭或删除，那么 Deployment Controller 将会替换它们，实现自我修复能力。 Kubernetes Service 概述 Kubernetes Service 定义了这样一种抽象：一个 Pod 的逻辑分组，一种可以访问它们的策略 —— 通常称为微服务。这一组 Pod 能够被 Service 访问到， 参考 Kubernetes中文社区|中文文档 Kubernetes kubectl 命令表 k8s(Kubernetes)中Pod,Deployment,ReplicaSet,Service之间关系分析]]></content>
+      <categories>
+        <category>工程部署</category>
+      </categories>
+      <tags>
+        <tag>k8s</tag>
+        <tag>Deployment/ReplicaSet/Service/pod</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[linux常用命令]]></title>
+    <url>%2Fpassages%2Flinux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%2F</url>
+    <content type="text"><![CDATA[linux 常用命令备忘 新手常用的linux命令 命令名称 [命令参数] [命令对象] 注意，命令名称、命令参数、命令对象之间请用空格键分隔。 命令对象一般是指要处理的文件、目录、用户等资源，而命令参数可以用长格式（完整的选项名称），也可以用短格式（单个字母的缩写），两者分别用–与-作为前缀。 命令参数的长格式与短格式示例长格式 man --help短格式 man -h 常用系统工作命令1234567891011121314151617181920212223242526272829# echo命令用于在shell中打印shell变量的值，或者直接输出指定的字符串echo 命令: echo(选项)(参数)# date命令是显示或设置系统时间与日期。date 命令: date(选项)(参数)# reboot命令用来重新启动正在运行的Linux操作系统。reboot 命令: reboot(选项)# poweroff命令用来关闭计算机操作系统并且切断系统电源。poweroff 命令: poweroff(选项)# wget命令用来从指定的URL下载文件wget 命令: wget(选项)(参数)# ps命令用于报告当前系统的进程状态。ps 命令: ps(选项) ps -ef | grep ""# top命令可以实时动态地查看系统的整体运行情况，top 命令: top(选项)# pidof命令用于查找指定名称的进程的进程号id号。pidof 命令: pidof(选项)(参数)# kill命令用来删除执行中的程序或工作 kill -9 进程 强制删除kill 命令: kill(选项)(参数)# killall命令使用进程的名称来杀死进程，使用此指令可以杀死一组同名进程killall 命令 如果我们在系统终端中执行一个命令后想立即停止它，可以同时按下Ctrl + C组合键（生产环境中比较常用的一个快捷键），这样将立即终止该命令的进程。或者，如果有些命令在执行时不断地在屏幕上输出信息，影响到后续命令的输入，则可以在执行命令时在末尾添加上一个&amp;符号，这样命令将进入系统后台来执行。 系统状态检测命令1234567891011121314151617181920# ifconfig命令被用于配置和显示Linux内核中网络接口的网络参数ifconfig 命令: ifconfig(参数)# uname命令用于打印当前系统相关信息uname 命令: uname(选项)# uptime命令能够打印系统总共运行了多长时间和系统的平均负载。uptime 命令: uptime(选项)# free命令可以显示当前系统未使用的和已使用的内存数目，显示被内核使用的内存缓冲区。free 命令: free(选项)# who命令是显示目前登录系统的用户信息who 命令: who(选项)(参数)# last命令用于显示用户最近登录信息last 命令: last(选项)(参数)# history命令用于显示指定数目的指令命令history 命令: history(选项)(参数) 工作目录切换命令12345678# 以绝对路径的方式显示用户当前工作目录pwd 命令: pwd（选项）# cd命令用来切换工作目录至dirnamecd 命令: cd (选项) (参数) # ls命令用来显示目标列表ls 命令: ls（选项）（参数） 文本文件编辑命令1234567891011121314151617181920212223242526272829# cat命令连接文件并打印到标准输出设备上，cat经常用来显示文件的内容，cat 命令: cat(选项)(参数)# more命令是一个基于vi编辑器文本过滤器，它以全屏幕的方式按页显示文本文件的内容# more名单中内置快捷键，H-获得帮助信息，Enter-向下翻滚一行，空格-向下滚动一屏，Q-退出命令。more 命令: more(语法)(参数)# head命令用于显示文件的开头的内容# 默认情况下，head命令显示文件的头10行内容。head 命令: head(选项)(参数)# tail命令用于输入文件中的尾部内容。# tail命令默认在屏幕上显示指定文件的末尾10行tail 命令: tail(选项)(参数)# tr命令可以对来自标准输入的字符进行替换、压缩和删除tr 命令: tr(选项)(参数)# wc命令用来计算数字。wc 命令: wc(选项)(参数)# stat命令用于显示文件的状态信息。stat 命令: stat(选项)(参数)# cut命令用来显示行中的指定部分，删除文件中指定字段。cut 命令: cut(选项)(参数)# diff命令在最简单的情况下，比较给定的两个文件的不同diff 命令: diff(选项)(参数) 文件目录管理命令12345678910111213141516171819202122# 一是用于把已存在文件的时间标签更新为系统当前的时间（默认方式）# 二是用来创建新的空文件touch 命令: touch(选项)(参数)# mkdir命令用来创建目录mkdir 命令: mkdir (选项)(参数)# cp命令用来将一个或多个源文件或者目录复制到指定的目的文件或目录。cp 命令: cp(选项)(参数)# mv命令用来对文件或目录重新命名，或者将文件从一个目录移到另一个目录中。mv 命令: mv(选项)(参数)# rm命令可以删除一个目录中的一个或多个文件或目录，也可以将某个目录及其下属的所有文件及其子目录均删除掉。rm 命令: rm (选项)(参数) rm -rf (参数)# dd命令用于复制文件并对原文件的内容进行转换和格式化处理dd 命令: dd(选项)# file命令用来探测给定文件的类型。# file命令对文件的检查分为文件系统、魔法幻数检查和语言检查3个过程。file 命令: file(选项)(参数) 打包压缩与搜索命令123456789# tar命令可以为linux的文件和目录创建档案。tar 命令: tar(选项)(参数)# grep是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹配的行打印出来。# grep match_pattern file_name cat file_name | grep "text"grep 命令# find命令用来在指定目录下查找文件。find 命令: find(选项)(参数) 参考 Linux命令大全(手册)_Linux常用命令行实例详解_Linux命令学习手册 Linux常用命令大全]]></content>
+      <categories>
+        <category>工程部署</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[pm2学习]]></title>
+    <url>%2Fpassages%2Fpm2%E5%AD%A6%E4%B9%A0%2F</url>
+    <content type="text"><![CDATA[pm2 基础学习 说明PM2 是 nodejs进程 管理工具，内置负载均衡。它可以帮助您保持Node应用程序永久活动，重起这些node应用程序也不需要停机，并简化常见的系统管理任务。 主要特性 内建负载均衡（使用Node cluster 集群模块） 后台运行 0秒停机重载–pm2 reload 具有Ubuntu和CentOS 的启动脚本, windows 则可用 pm2-windows-startup 控制台检测–pm2 monit 上面特性已体验，下面暂未体验到 停止不稳定的进程（避免无限循环） 提供 HTTP API 远程控制和实时的接口API ( Nodejs 模块,允许和PM2进程管理器交互 ) 安装12# 全局安装npm install pm2 -g 常用命令12345678910111213141516171819202122232425262728293031323334353637383940414243444546# start and add a process to your listpm2 start app.js# show your listpm2 ls# stop and delete a process from the list# Default process name is the filename without .js (eg: app for app.js).# Use --name or -n to change.pm2 delete app# stop the process (kill the process but keep it in the process list)pm2 stop app# start the processpm2 start app# both stop and startpm2 restart app# Use reload instead of restart for 0-seconds downtime reloads:pm2 reload app# Managing apps is straightforward:pm2 stop &lt;app_name|id|'all'|json_conf&gt;pm2 restart &lt;app_name|id|'all'|json_conf&gt;pm2 delete &lt;app_name|id|'all'|json_conf&gt;# To have more details on a specific application:pm2 describe &lt;id|app_name&gt;# To monitor logs, custom metrics, application information:pm2 monit# logspm2 logs# PM2 can generates and configure a Startup Script to keep PM2 and your processes alive at every server restart.# PM2可以生成和配置启动脚本，以在每次服务器重新启动时保持PM2和您的进程活动。$ pm2 startup # Generate Startup Script$ pm2 save # Freeze your process list across server restart$ pm2 unstartup # Remove Startup Script# Updating PM2$ npm install pm2@latest -g # Install latest PM2 version$ pm2 update # Save process list, exit old PM2 &amp; restore all processes 命令补全123456789101112131415161718192021222324252627282930# 后台运行pm2，启动4个app.js# 也可以把'max' 参数传递给 start# 正确的进程数目依赖于Cpu的核心数目$ pm2 start app.js -i 4# 命名进程$ pm2 start app.js --name my-api# 显示所有进程状态$ pm2 list# 监视所有进程$ pm2 monit# 显示所有进程日志$ pm2 logs# 停止所有进程$ pm2 stop all# 重启所有进程$ pm2 restart all# 0秒停机重载进程$ pm2 reload all# 停止指定的进程$ pm2 stop 0# 重启指定的进程$ pm2 restart 0# 产生init脚本保持进程活着$ pm2 startup# 运行健壮的 computer API endpoint (http:#localhost:9615)$ pm2 web# 杀死指定的进程$ pm2 delete 0# 杀死全部进程$ pm2 delete all 123456789101112131415161718192021222324252627#运行进程的不同方式：# 根据有效CPU数目启动最大进程数目$ pm2 start app.js -i max# 启动3个进程$ pm2 start app.js -i 3# 用fork模式启动app.js而不是使用 cluster$ pm2 start app.js -x# 用fork模式启动 app.js 并且传递参数 (-a 23)$ pm2 start app.js -x -- -a 23# 启动一个进程并把它命名为 serverone$ pm2 start app.js --name serverone# 停止 serverone 进程$ pm2 stop serverone# 启动进程, 在 app.json里设置选项$ pm2 start app.json# 在--之后给 app.js 传递参数$ pm2 start app.js -i max -- -a 23# 启动 并 生成一个配置文件$ pm2 start app.js -i max -e err.log -o out.log#你也可以执行用其他语言编写的app(fork模式):$ pm2 start my-bash-script.sh -x --interpreter bash$ pm2 start my-python-script.py -x --interpreter python#集群模式：Node.js负载平衡和零停机重新加载$ pm2 start api.js -i &lt;processes&gt; # 以集群模式启动Node.js应用程序，该应用程序将利用所有可用的CPU：$ pm2 reload all # Zero Downtime Reload 补充说明pm2 reload all # 常用于在集群模式(cluster mode)下，保持应用不停(Zero Downtime Reload) pm2 startup # 开机启动，windows使用不行，推荐 pm2-windows-startup 配合实现对应效果 参考 npm-pm2 pm2-官网 npm-pm2-windows-startup PM2 介绍 pm2常用命令]]></content>
+      <categories>
+        <category>工程部署</category>
+      </categories>
+      <tags>
+        <tag>pm2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[web 页面加载、解析、渲染过程]]></title>
+    <url>%2Fpassages%2Fweb%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E3%80%81%E8%A7%A3%E6%9E%90%E3%80%81%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B%2F</url>
+    <content type="text"><![CDATA[web 页面加载、解析、渲染过程 浏览器输入url到页面渲染 用户输入URL地址 浏览器查询缓存，若有缓存，直接展示 浏览器解析URL解析出主机名 浏览器将主机名转换为服务器ip地址 先查找本地DNS缓存，若没有，向浏览器默认DNS服务器发送查询请求，同时缓存 浏览器将端口号从URL解析出 浏览器向服务器发送TCP连接，三次握手 浏览器向服务器发送HTTP请求，请求数据包 服务器向浏览器返回HTTP响应，响应报文 关闭连接，浏览器解析文档，解析成DOM树，解析CSS样式，渲染页面 DOM和JavaScript的关系 文档对象模型(DOM) 是一个独立于语言，用于操作 XML 和 HTML 文档的 API. DOM是一个与语言无关的API，别的语言也可以实现操作DOM的具体api，但是它在浏览器中是用JavaScript来实现的，因此，DOM是现在JavaScript编码中很重要的一部分，因为JavaScript很多时候都在操作底层文档。 操作DOM会很慢DOM 和 JavaScript 是独立实现的，通过 js 操作 dom, 需要先连接，然后进行操作。次数多，则操作会很慢 网页生成过程 将HTML构建成一个DOM树(Document Object Model 文档对象模型) 将CSS构造CSSOM树(CSS Object Model CSS对象模型) 根据DOM树和CSSOM来构造 Rendering Tree(渲染树） 注意：Rendering Tree 渲染树并不等同于 DOM 树，因为一些像 Header 或 display:none 的东西就没必要放在渲染树中了。 生成布局(layout)，计算出每个节点在屏幕中的位置 将布局绘制（paint）在屏幕上 “生成布局”（flow）和”绘制”（paint）这两步，合称为”渲染”(render）,耗时较多 重排和重绘 Reflow（回流/重排）：当它发现了某个部分发生了变化影响了布局，渲染树需要重新计算。 Repaint（重绘）: 根据元素的新属性重新绘制，使元素呈现新的外观。重绘不会带来重新布局，并不一定伴随重排 重排一定会引起重绘，而重绘不一定会引起重排 reflow原因 页面初始渲染 浏览器窗口大小发生改变 添加/删除可见DOM元素 改变元素位置 改变元素尺寸（宽、高、内外边距、边框等） 改变元素内容（文本或图片等） 元素字体大小变化 添加或者删除可见的DOM元素 激活CSS伪类（例如：:hover） 设置style属性(例如：width/height 等) 查询某些属性或调用某些方法(例如：scrollIntoViewIfNeeded()) 避免reflow DOM 的多个读操作（或多个写操作），应该放在一起。不要两个读操作之间，加入一个写操作 如果某个样式是通过重排得到的，那么最好缓存结果。避免下一次用到的时候，浏览器又要重排 不要一条条地改变样式，而要通过改变class，或者csstext属性，一次性地改变样式 尽量使用离线DOM，而不是真实的网面DOM，来改变元素样式。 比如，操作Document Fragment对象，完成后再把这个对象加入DOM。再比如，使用 cloneNode() 方法，在克隆的节点上进行操作，然后再用克隆的节点替换原始节点。 先将元素设为display: none（需要1次重排和重绘），然后对这个节点进行100次操作，最后再恢复显示（需要1次重排和重绘）。这样一来，你就用两次重新渲染，取代了可能高达100次的重新渲染 position属性为absolute或fixed的元素，重排的开销会比较小，因为不用考虑它对其他元素的影响。 只在必要的时候，才将元素的display属性为可见，因为不可见的元素不影响重排和重绘。另外，visibility:hidden的元素只对重绘有影响，不影响重排 使用虚拟DOM的脚本库，比如React等 使用 window.requestAnimationFrame()、window.requestIdleCallback() 这两个方法调节重新渲染 少用table, table元素的重排和重绘成本，要高于div元素]]></content>
+      <categories>
+        <category>页面加载</category>
+      </categories>
+      <tags>
+        <tag>页面加载/页面解析/页面渲染</tag>
+        <tag>重排</tag>
+        <tag>重绘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[HTTP 状态码]]></title>
+    <url>%2Fpassages%2FHTTP%E7%8A%B6%E6%80%81%E7%A0%81%2F</url>
+    <content type="text"><![CDATA[HTTP Status Code 简单知识 HTTP状态码当浏览者访问一个网页时，浏览者的浏览器会向网页所在服务器发出请求。当浏览器接收并显示网页前，此网页所在的服务器会返回一个包含HTTP状态码的信息头（server header）用以响应浏览器的请求。 常见状态码1**信息，服务器收到请求，需要请求者继续执行操作 100: Continue, 继续. 客户端应继续其请求 2**成功，操作被成功接收并处理 200: OK, 请求成功. 一般用于GET与POST请求 204: No Content, 无内容. 服务器成功处理，但未返回内容。 205: Reset Content, 重置内容. 服务器处理成功，用户终端（例如：浏览器）应重置文档视图 3**重定向，需要进一步的操作以完成请求 301: Moved Permanently, 永久移动. 请求的资源已被永久的移动到新URI 302: Found, 临时移动。与301类似。但资源只是临时被移动 304: Not Modified, 未修改。所请求的资源未修改，服务器不会返回任何资源,使用缓存 307: Temporary Redirect, 临时重定向。与302类似。使用GET请求重定向 4**客户端错误，请求包含语法错误或无法完成请求 400: Bad Request, 客户端请求的语法错误，服务器无法理解 401: Unauthorized 请求要求用户的身份认证 403: Forbidden, 服务器理解请求客户端的请求，但是拒绝执行此请求 404: Not Found, 服务器无法根据客户端的请求找到资源（网页） 405: Method Not Allowed, 客户端请求中的方法被禁止 408: Request Time-out, 服务器等待客户端发送的请求时间过长，超时 414: Request-URI Too Large, 请求的URI过长（URI通常为网址），服务器无法处理 5**服务器错误，服务器在处理请求的过程中发生了错误 500: Internal Server Error, 服务器内部错误，无法完成请求 501: Not Implemented, 服务器不支持请求的功能，无法完成请求 502: Bad Gateway, 作为网关或者代理工作的服务器尝试执行请求时，从远程服务器接收到了一个无效的响应 503: Service Unavailable, 由于超载或系统维护，服务器暂时的无法处理客户端的请求 504: Gateway Time-out, 充当网关或代理的服务器，未及时从远端服务器获取请求 505: HTTP Version not supported, 服务器不支持请求的HTTP协议的版本，无法完成处理]]></content>
+      <categories>
+        <category>请求</category>
+      </categories>
+      <tags>
+        <tag>HTTP Status Code</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Get 与 Post 区别]]></title>
+    <url>%2Fpassages%2Fget%E4%B8%8Epost%E5%8C%BA%E5%88%AB%2F</url>
+    <content type="text"><![CDATA[Get 与 POST 的区别 什么是 HTTP ? 超文本传输协议（HTTP）的设计目的是保证客户机与服务器之间的通信。HTTP 的工作方式是客户机与服务器之间的请求-应答协议。web 浏览器可能是客户端，而计算机上的网络应用程序也可能作为服务器端。举例：客户端（浏览器）向服务器提交 HTTP 请求；服务器向客户端返回响应。响应包含关于请求的状态信息以及可能被请求的内容。 HTTP请求方法：GET 和 POST GET - 从指定的资源请求数据。 POST - 向指定的资源提交要被处理的数据 区别 GET 参数通过 url 传递，POST 放在 request body中 GET 请求在URL中传送的参数是有长度限制的(2048 个字符)，而 POST 没有 GET 比 post 更不安全，因为参数直接暴露在url中，所以不能用来传递敏感信息 GET 请求只能进行url编码，而 POST 支持多种编码方式 GET 请求会被浏览器主动cache，而 POST 不会，除非手动设置 GET 请求参数会被完整保留在浏览器历史记录里，而 POST 中的参数不会被保留 GET 在浏览器回退时是无害的，而 POST 会再次提交请求 GET 只接受ASCII字符的参数的数据类型，，而 POST 没有限制 GET 产生的URL地址可以被Bookmark-书签，而 POST 不可以。 本质 GET 和 POST 本质上就是TCP链接，并无差别。但是由于HTTP的规定和浏览器/服务器的限制，导致他们在应用过程中体现出一些不同。 GET 产生一个TCP数据包, POST 产生两个TCP数据包。 对于 GET 方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）； 对于 POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据）。 据研究，在网络环境好的情况下，发一次包的时间和发两次包的时间差别基本可以无视。而在网络环境差的情况下，两次包的TCP在验证数据包完整性上，有非常大的优点。 并不是所有浏览器都会在 POST 中发送两次包，Firefox就只发送一次。]]></content>
+      <categories>
+        <category>请求</category>
+      </categories>
+      <tags>
+        <tag>Get</tag>
+        <tag>Post</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[create脚手架使用antd(开启less,css module,定制主题)]]></title>
+    <url>%2Fpassages%2Fcreate%E8%84%9A%E6%89%8B%E6%9E%B6%E4%BD%BF%E7%94%A8antd(less%2C%20css-module%2C%E4%B8%BB%E9%A2%98)%2F</url>
+    <content type="text"><![CDATA[使用 create-react-app 脚手架开发时, 如何配置 antd, 同时开启 less, css module, 及主题定制 create-react-app使用 create-react-app 脚手架开发时, 命令 yarn run eject 暴露配置。 webpack 配置在暴露出的 webpack.config.dev.js 和 webpack.config.prod.js 中进行配置修改即可。 antd 按需加载12345678910111213141516171819//安装依赖npm install babel-plugin-import --save-dev//修改配置// Process JS with Babel.&#123; test: /\.(js|jsx|mjs)$/, include: paths.appSrc, loader: require.resolve('babel-loader'), options: &#123; plugins: [ //增加此配置，注意style:true 动态加载；style:css加载生成后的css文件 ['import', &#123; libraryName: 'antd', style: true &#125;] ], // This is a feature of `babel-loader` for webpack (not Babel itself). // It enables caching results in ./node_modules/.cache/babel-loader/ // directory for faster rebuilds. cacheDirectory: true, &#125;,&#125;, 开启 css modules &amp;&amp; less12345//安装依赖npm install less-loader --save//此处指定版本是因为less高版本与antd冲突npm install less@2.7.3 --save 123456789101112131415161718192021222324252627282930313233343536373839//处理规则从下向上&#123; test: /\.(css|less)$/, //匹配css或less exclude: [/node_modules/], //排除node_modules文件夹，避免开启css-module时 antd 冲突 use: [ require.resolve('style-loader'), &#123; loader: require.resolve('css-loader'), options: &#123; //开启，且指定localIdentName,类名形式 importLoaders: 1, modules: true, localIdentName: '[name]__[local]__[hash:base64:5]', &#125;, &#125;, &#123; loader: require.resolve('postcss-loader'), options: &#123; // Necessary for external CSS imports to work // https://github.com/facebookincubator/create-react-app/issues/2677 ident: 'postcss', plugins: () =&gt; [ require('postcss-flexbugs-fixes'), autoprefixer(&#123; browsers: [ '&gt;1%', 'last 4 versions', 'Firefox ESR', 'not ie &lt; 9', // React doesn't support IE8 anyway ], flexbox: 'no-2009', &#125;), ], &#125;, &#125;, &#123; //开启less-loader loader: require.resolve('less-loader'), &#125; ],&#125;, 123456789101112131415161718192021222324252627282930313233343536373839404142//处理规则从下向上&#123; test: /\.(css|less)$/, include: [/node_modules/], //针对node_modules, antd use: [ require.resolve('style-loader'), &#123; loader: require.resolve('css-loader'), options: &#123; importLoaders: 1 &#125;, &#125;, &#123; loader: require.resolve('postcss-loader'), options: &#123; // Necessary for external CSS imports to work // https://github.com/facebookincubator/create-react-app/issues/2677 ident: 'postcss', plugins: () =&gt; [ require('postcss-flexbugs-fixes'), autoprefixer(&#123; browsers: [ '&gt;1%', 'last 4 versions', 'Firefox ESR', 'not ie &lt; 9', // React doesn't support IE8 anyway ], flexbox: 'no-2009', &#125;), ], &#125;, &#125;, &#123; //less处理 loader: require.resolve('less-loader'), options: &#123; modifyVars: &#123; //修改主题 '@primary-color': '#1DA57A' &#125;, &#125;, &#125; ],&#125;, 补充~Javascript Decorators1npm install babel-plugin-transform-decorators-legacy --save-dev 方式一package.json 中配置 12345678"babel": &#123; "presets": [ "react-app" ], "plugins": [ "transform-decorators-legacy" ]&#125;, 方式二webpack 中配置 123456789101112131415161718//修改webpack.config.dev.js配置文件//babel-loader plugins中加入”transform-decorators-legacy”&#123; test: /\.(js|jsx|mjs)$/, include: paths.appSrc, loader: require.resolve('babel-loader'), options: &#123; plugins: [ "transform-decorators-legacy", ['import', &#123; libraryName: 'antd', style: 'css' &#125;] ], // This is a feature of `babel-loader` for webpack (not Babel itself). // It enables caching results in ./node_modules/.cache/babel-loader/ // directory for faster rebuilds. cacheDirectory: true, &#125;,&#125;,]]></content>
+      <categories>
+        <category>react</category>
+      </categories>
+      <tags>
+        <tag>create-react-app</tag>
+        <tag>antd</tag>
+        <tag>less</tag>
+        <tag>css-module</tag>
+        <tag>主题配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[rap2部署说明]]></title>
+    <url>%2Fpassages%2Frap2%E9%83%A8%E7%BD%B2%E8%AF%B4%E6%98%8E%2F</url>
+    <content type="text"><![CDATA[rap2，阿里前端团队开源接口管理工具RAP第二代，部署说明 介绍rap2-阿里前端团队开源接口管理工具RAP第二代 相关链接 官网 RAP-github RAP2-github Api 文档管理系统 RAP2环境搭建 非官方rap2-delos部署文档 部署前言RAP2 包含两个组件 客户端：rap2-dolores 和 服务端：rap2-delos 部署RAP2需要亲具有Node+Linux+MySQL的运维知识，如果亲对此不是很了解，建议用http://rap2.taobao.org 线上版本就可以了。 部署准备 git Node 8.9.4+ MySQL 5.7+ Redis 4.0+ VS code(非必需) 服务端部署下面先讲述 rap2-delos 服务端部署 环境安装 node 版本升级 mysql 下载安装 redis 下载安装 工程克隆 git clone https://github.com/thx/rap2-delos.git 导入 VS Code //这里的开发编辑工具推荐，当然你也可以用自己熟悉的开发工具 mysql 下载安装的时候，新手上路可以直接下载 msi 格式的安装包，而不是下载压缩包，不然还需要配置。 参考-MySQL基础知识-安装MySQL Redis 安装说明 Linux 常用应用安装 Windows 下的 Redis 的启动 windows下安装和启动redis服务 说明：按照windows下相关操作即可。 常用命令 12345678910111213/*启动*/redis-server.exe redis.windows.conf/*新窗口连接*/redis-cli.exe 如果没有改默认配置的端口号redis-cli.exe -h 127.0.0.1 -p 6379 改了端口号/*[13164] 27 Dec 20:57:07.820 # Creating Server TCP listening socket 127.0.0.1:6379*///错误解决1. redis-cli.exe2. shutdown3. exit4. redis-server.exe redis.windows.conf 创建数据库12进入mysql命令后执行CREATE DATABASE IF NOT EXISTS RAP2_DELOS_APP DEFAULT CHARSET utf8 COLLATE utf8_general_ci; 配置文件 目录：rap2-delos/src/config 文件：config.dev.ts;其中dev，表示开发环境，其他同理 修改：config.dev.ts文件中db对象中username，password参数与本地或者开发环境的数据库信息匹配 项目启动 npm install npm run create-db –初始化数据库 npm run check –执行mocha测试用例和js代码规范检查 npm run dev –启动开发模式的服务器 监视并在发生代码变更时自动重启 npm start –启动生产模式服务器 http://localhost:8080/ 看到浏览器中如下提示，表示服务端delos已经部署成功 RAP2后端服务已启动，请从前端服务(rap2-dolores)访问。 RAP2 back-end server is started, please visit via front-end service (rap2-dolores). 常见错误 执行 npm run create-d , 提示没有 /dist 原因：运行 npm run build 就可以启动 ts 编译，把源文件编译到 dist 文件夹里面，就有 dist/ 目录了。 执行 npm run create-db 命令, Unable to connect to the database: { SequelizeConnectionError: Client does not support authentication protocol requested by server; consider upgrading MySQL client 解决：建议使用旧密码哈希算法, 执行如下sql 1alter user 'USER'@'localhost' identified with mysql_native_password by 'PASSWORD' 参考 执行 npm run create-db 命令，提示Unable to connect to the database:{ SequelizeAccessDeniedError: Access denied for user ‘root‘@’localhost’ (using password:NO)} 原因：未修改rap2-delos/src/config目录下数据库配置文件，或者是与文件中的数据库信息与之连接的数据库信息不匹配 客户端部署 git clone https://github.com/thx/rap2-dolores –克隆工程 npm install npm run dev –开发模式, 自动监视改变后重新编译 npm run test –备注：测试用例 npm run build –生产模式, 编译React生产包 serve -s ./build -p 80 –用serve命令或nginx服务器路由到编译产出的build文件夹作为静态服务器即可 效果访问: http://localhost:3000, 即可看到对应功能 使用总结 rap2-delos 服务端启动 npm run dev {:&amp;.moveIn} rap2-dolores 客户端启动 npm run dev redis 缓存启动 redis-server.exe redis.windows.conf mysql 数据库 数据库连接 http://localhost:3000 页面登录访问]]></content>
+      <categories>
+        <category>工程部署</category>
+      </categories>
+      <tags>
+        <tag>rap2</tag>
+        <tag>可视化接口管理工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[react-router 之 HashRouter & BrowserRouter]]></title>
+    <url>%2Fpassages%2Freact-router%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[react-router，react 路由， HashRouter , BrowserRouter 区分。 React-Router关于 React-Router v4 版本的两种路由方式 HashRouter , BrowserRouter 12BrowserRouter : http://localhost:3000/abc/defHashRouter: http://localhost:3000/#/abc/def //hash地址就是指#号后面的url BrowserRouter 基于 url 的 pathName 字段, HashRouter 则基于 hash 段。 问题采用 BrowserRouter 写法 1234&lt;BrowserRouter&gt; &lt;Route exact path="/" component=&#123;Index&#125;/&gt; &lt;Route path="/Search" component=&#123;Search&#125;/&gt;&lt;/BrowserRouter&gt; 开发时正常，打包后的静态页面空白, 访问时无法访问。 查看发现静态资源引用异常，修改静态资源引用，改为相对路径，本身是 /static/js -&gt; ./static/js。 在package.json文件中添加homepage字段并设置为”.” || 直接修改生成后的静态页面引用。 发现静态资源正常，但是页面还是加载不到。 改为 HashRouter 可以访问。 原因 HashRouter hashHistory 使用URL中的hash（#）部分去创建路由. 举例来说，用户访问 /search, 实际会看到的是 http://localhost:3000/#/search 加载对应组件。 访问 /（http://localhost:3000/#/）时 加载对应组件。 BrowserRouter browserHistory 是使用 React-Router 的应用推荐的 history方案。它使用浏览器中的 History API 用于处理 URL.创建一个真实的URL. 在 browserHistory 模式下，URL 是指向真实 URL 的资源路径。 当通过真实 URL 访问网站的时候，由于路径是指向服务器的真实路径，但并没有对应物理路径/文件 ，实际所有内容是通过React-Router去渲染React组件， 所以用户访问的资源不存在，则空白。 解决 采用 HashRouter–开发时可以，打包后的页面访问也可用。 采用 BrowserRouter—开发时可以，打包后的页面不可直接访问。 本地开发时可以通过配置 webpack-devServer 的 historyApiFallback，create-react-app 已配置。 devServer.historyApiFallback webpack-dev-server使用react-router browserHistory的配置 采用 BrowserRouter–服务端支持 nginx 方式。指定目的文件夹，指定 index.html。全部导到index。 nodejs处理（express或koa）. React-Router browserHistory浏览器刷新出现页面404解决方案 12345678910server &#123; server_name react.com; listen 80; root /user/src/React-Demo/dist; index index.html; location / &#123; try_files $uri /index.html; &#125;&#125; 12345678910111213141516171819var express = require('express');var path = require('path');var app = express();//设置静态资源目录app.use(express.static(path.join(__dirname, './build')));//所有访问，都指定返回 index.html//而index.html会根据React-Router规则去匹配任何一个routeapp.get('/*', function (req, res) &#123; res.sendFile(path.join(__dirname, './build', 'index.html'));&#125;);//设置服务器var server = app.listen(3001, function () &#123; var host = server.address().address; var port = server.address().port; console.log('众享后台 listening at http://%s:%s', host, port);&#125;); 补充 create-react-app 本地开发时使用 BrowserRouter 可以支持（webpack服务器-已配置）。 设置代理到 node 服务器时，注意是以 /api/ 开头。 若路径中含有 /api/, 上步没有设置开头，则页面被转发到 node 服务器。 返回的虽然设置了 index.html, 但是加载对应 index.html 中的静态资源的时候，返回的也是页面，不是静态资源。 如果资源返回正常，页面是可以正常加载的，因为只要都返回静态页面，具体路由是有对应js处理的。 123456"proxy": &#123; "^/api/": &#123; "target": "http://localhost:3001", "changeOrigin": true &#125;&#125;,]]></content>
+      <categories>
+        <category>react</category>
+      </categories>
+      <tags>
+        <tag>react-router</tag>
+        <tag>HashRouter</tag>
+        <tag>BrowserRouter</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[react-router 页面跳转]]></title>
+    <url>%2Fpassages%2Freact-router%E9%A1%B5%E9%9D%A2%E8%B7%B3%E8%BD%AC%2F</url>
+    <content type="text"><![CDATA[react-router，页面跳转。 props.match.params此种方式，参数会显示在 url地址栏 上。 地址形式为 / 连接的形式。 路由写法 多个参数，以 / 分割， ? 代表非必填, * 代表所有. 12345&lt;Route path="/a/:data1/:data2?" component=&#123;a&#125;/&gt;//或者所有参数拼接成一个参数，可以用特殊字段隔开，目的页面解析参数即可。//避免出现 / 的转义问题&lt;Route path="/a/:data*" component=&#123;a&#125;/&gt; 跳转写法 注意需要对参数编码，若参数中含有 / ，不编码导致多个参数截取错误 12345//link组件&lt;Link to=&#123;"/a/" + encodeURIComponent(data1) + "/" + encodeURIComponent(data2)&#125;&gt;&lt;/Link&gt;//historythis.props.history.push(path) 取值 12console.log(this.props.match.params);//为对象，可以获取参数，注意转义 search此种写法页面跳转参数在url上，且为 ?data1=1&amp;data2=2 的形式。 路由写法 1&lt;Route path="/a" component=&#123;a&#125;/&gt; 跳转写法 123456789//link组件&lt;Link to=&#123;&#123; pathname: "/courses", search: "?sort=name&amp;hha=aa", &#125;&#125;/&gt;//historythis.props.history.push(path) 取值 12console.log(this.props.location.search);//输出的值为一个字符串，不能区分出参数，需要自己解析处理参数 state此种写法页面跳转参数不在url上, 类似 post 提交。 路由写法 1&lt;Route path="/a" component=&#123;a&#125;/&gt; 跳转写法 123456789101112//link组件&lt;Link to=&#123;&#123; pathname: "/courses", state: &#123; data1: 1, data2: 2 &#125;, &#125;&#125;/&gt;//historythis.props.history.push(path) 取值 12console.log(this.props.location.state);//为对象，可以获取参数 注意页面重定向，直接传 location 对象，而不是 location.pathName, 否则造成参数丢失 this.props.history.push(this.props.history.location)]]></content>
+      <categories>
+        <category>react</category>
+      </categories>
+      <tags>
+        <tag>react-router</tag>
+        <tag>页面跳转</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[react-css-loader]]></title>
+    <url>%2Fpassages%2Freact-css%2F</url>
+    <content type="text"><![CDATA[css-loader，react 开发过程中解决全局污染问题。 问题在 create-react-app 开发过程中， 出现 css全局污染。 解决webpack 处理过程中 的 css-loader 可以解决全局污染问题。 原理是最终页面渲染的类名变为自定义字符串 的形式。 开启css-loader以 webpack.config.dev.js 说明 , webpack.config.prod.js 也需要改。 123456loader: require.resolve('css-loader'),options: &#123; importLoaders: 1, modules: true, //新增，开启css-loader localIdentName: '[name]__[local]__[hash:base64:5]', //新增规则&#125;, 页面所有样式失去效果，不要着急 注意事项： 将 import 进来的 ./SomeComponent.css 分配给一个本地常量. 在 JSX 中将 className 替换成的形式 {styles.myClass}. 需要修改 CSS 文件和 JSX 中的 class 名。因为 CSS Modules 不允许”-“出现在类名中。 关于ant-design冲突解决按照上述改完之后，发现 ant-design 样式全部失效. antd 和 css modules 不能混用，针对 antd 的 css 单独写一条 loader 的规则, 不开启 css modules 123456789101112131415161718192021222324252627282930&#123; test: /\.css$/, exclude: /node_modules|antd\.css/, use: [ require.resolve('style-loader'), &#123; loader: require.resolve('css-loader'), options: &#123; importLoaders: 1, modules: true, localIdentName: '[name]__[local]__[hash:base64:5]', &#125;, &#125;, ],&#125;,&#123; test: /\.css$/, include: /node_modules|antd\.css/, use: [ require.resolve('style-loader'), &#123; loader: require.resolve('css-loader'), options: &#123; importLoaders: 1 &#125;, &#125;, ],&#125;, CSS作用域相关 CSS Modules 允许使用 :global(.className) 的语法，声明一个全局规则。凡是这样声明的class，都不会被编译成哈希字符串。 CSS Modules 还提供一种显式的局部作用域语法 :local(.className)，等同于 .className. 适用于解决对标签定义样式的问题，标签写样式，不经过 localIdentName 造成全局污染。修改为： 12345:local(.a)&#123; tbody tr td &#123; text-align: center; &#125;&#125; ant-design实现按需加载123456789101112131415&#123; test: /\.(js|jsx|mjs)$/, include: paths.appSrc, loader: require.resolve('babel-loader'), options: &#123; plugins: [ //按需加载 ['import', &#123; libraryName: 'antd', style: 'css' &#125;] ], // This is a feature of `babel-loader` for webpack (not Babel itself). // It enables caching results in ./node_modules/.cache/babel-loader/ // directory for faster rebuilds. cacheDirectory: true, &#125;,&#125;,]]></content>
+      <categories>
+        <category>react</category>
+      </categories>
+      <tags>
+        <tag>webpack</tag>
+        <tag>create-react-app</tag>
+        <tag>css-loader/antd</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[axios请求之异步处理]]></title>
+    <url>%2Fpassages%2Fes6-async%2F</url>
+    <content type="text"><![CDATA[使用 axios 关于异步请求的处理。 axios官网 异步处理12345678910111213141516171819//返回了一个promise对象function request(url, params) &#123; return new Promise((resolve, reject) =&gt; &#123; axios.get(url, &#123; params: params &#125;) .then((res) =&gt; &#123; resolve(res); &#125;) &#125;)&#125;//async 异步函数//await后面是一个Promise对象，用来等待Promise对象状态被resolved//如果await的是Promise对象会造成异步函数停止执行并且等待Promise的解决async getData() &#123; let res = await request('url', 'data'); consoel.log(res); &#125; 123456789101112131415//axios返回的就是一个Promise对象，此函数返回。function request(url, params) &#123; return axios.get(url, &#123; params: params &#125;) .then(function (response) &#123; return response &#125;)&#125;//需要在then方法里回调request('url', &#123;&#125;) .then(function (response) &#123; console.log(response); &#125;)]]></content>
+      <categories>
+        <category>请求</category>
+      </categories>
+      <tags>
+        <tag>axios</tag>
+        <tag>es6 promise/async/await</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Gulp && Grunt]]></title>
+    <url>%2Fpassages%2Fgulp%26grunt%2F</url>
+    <content type="text"><![CDATA[Gulp 与 Grunt 简单介绍 gulp用自动化构建工具增强你的工作流程！ 易于使用，通过代码优于配置的策略，Gulp 让简单的任务简单，复杂的任务可管理。 构建快速，利用 Node.js 流的威力，你可以快速构建项目并减少频繁的 IO 操作。 插件高质，Gulp 严格的插件指南确保插件如你期望的那样简洁高质得工作。 易于学习，通过最少的 API，掌握 Gulp 毫不费力，构建工作尽在掌握：如同一系列流管道。 安装12npm install gulp -g //全局安装npm install --save-dev gulp //作为项目开发依赖安装 gulpfile.js1234var gulp = require('gulp');gulp.task('default', function() &#123; // 将你的默认的任务代码放在这&#125;); 运行123gulp //默认执行default任务//手动指定一个 gulpfile 的路径，这在你有很多个 gulpfile 的时候很有用gulp --gulpfile &lt;gulpfile path&gt; Task 可以通过 gulp &lt;task&gt; &lt;othertask&gt; 方式来执行。如果只运行 gulp 命令，则会执行所注册的名为 default 的 task，如果没有这个 task，那么 gulp 会报错。 gulp与grunt区别Grunt 主要是以文件为媒介来运行它的工作流的，比如在Grunt中执行完一项任务后，会把结果写入到一个临时文件中，然后可以在这个临时文件内容的基础上执行其它任务，执行完成后又把结果写入到临时文件中，然后又以这个为基础继续执行其它任务…就这样反复下去。 而在Gulp中，使用的是Nodejs中的stream(流)，首先获取到需要的stream，然后可以通过stream的 pipe() 方法把流导入到你想要的地方，比如Gulp的插件中，经过插件处理后的流又可以继续导入到其他插件中，当然也可以把流写入到文件中。所以Gulp是以stream为媒介的，它不需要频繁的生成临时文件，这也是Gulp的速度比Grunt快的一个原因。 API介绍掌握四个API即可 gulp.task() //定义一个使用 Orchestrator 实现的任务（task）。 gulp.src() //输出（Emits）符合所提供的匹配模式（glob）或者匹配模式的数组（array of globs）的文件。 gulp.dest() //能被 pipe 进来，并且将会写文件。并且重新输出（emits）所有数据，因此你可以将它 pipe 到多个文件夹。如果某文件夹不存在，将会自动创建它。 gulp.watch() //监视文件，并且可以在文件发生改动时候做一些事情。它总会返回一个 EventEmitter 来发射（emit） change 事件。 gruntGrunt是 JavaScript 世界的构建工具。 为什么要用grunt？Grunt 生态系统非常庞大，并且一直在增长。由于拥有数量庞大的插件可供选择，因此，你可以利用 Grunt 自动完成任何事，并且花费最少的代价，只要配置好 Gruntfile 文件, 就可以实现自动执行。 每次运行 grunt 时，他就利用 node 提供的 require() 系统查找本地安装的 Grunt。正是由于这一机制，你可以在项目的任意子目录中运行grunt 。如果找到一份本地安装的 Grunt ，CLI 就将其加载，并传递Gruntfile 中的配置信息，然后执行你所指定的任务。 安装123npm install -g grunt-cli //全局安装//Grunt CLI的任务很简单：调用与Gruntfile在同一目录中的Grunt，//这样带来的好处是，允许你在同一个系统上同时安装多个版本的 Grunt。 GruntfileGruntfile主要有以下几个模块组成。 “wrapper” 函数 项目与任务配置 加载grunt插件和任务 自定义任务 wrapper函数123module.exports = function(grunt) &#123; // Do grunt-related things in here&#125;; 项目和任务配置12grunt.initConfig(&#123;&#125;); 加载插件和任务12// 加载能够提供"uglify"任务的插件。grunt.loadNpmTasks('grunt-contrib-uglify'); 自定义任务12// Default task(s)，可添加执行多个任务grunt.registerTask('default', ['uglify']); Grunt配置Grunt 的 task 配置都是在 Gruntfile 中的 grunt.initConfig 方法中指定的。 此配置主要是以任务名称命名的属性，也可以包含其他任意数据。一旦这些代表任意数据的属性与任务所需要的属性相冲突，就将被忽略。]]></content>
+      <categories>
+        <category>打包工具</category>
+      </categories>
+      <tags>
+        <tag>gulp</tag>
+        <tag>grunt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[log4js]]></title>
+    <url>%2Fpassages%2Flog4js%2F</url>
+    <content type="text"><![CDATA[log4js 简单知识 说明日常开发中，对于日志模块，java开发 -&gt; log4j，而 nodejs开发，则对应工具为 log4js。 log4js 介绍安装1npm install log4js --save 日志级别 等级由低到高：trace &lt; debug &lt; info &lt; warn &lt; Error &lt; Fatal; 123456logger.trace('Entering cheese testing');logger.debug('Got cheese.');logger.info('Cheese is Gouda.');logger.warn('Cheese is quite smelly.');logger.error('Cheese is too ripe!');logger.fatal('Cheese was breeding ground for listeria.'); debug 可以随意的使用于任何觉得有利于在调试时更详细的了解系统运行状态的东东； info 重要，输出信息：用来反馈系统的当前状态给最终用户的； warn, 可修复，系统可继续运行下去； Error, 可修复性，但无法确定系统会正常的工作下去; Fatal, 相当严重，可以肯定这种错误已经无法修复，并且如果系统继续运行下去的话后果严重。 函数123getLogger("参数") //追踪产生此日志的文件.log4js.configure(log4jsConfig); //设置配置项 配置项12345678910111213141516171819"log4jsConfig": &#123; "appenders": [ &#123; "type": "console" &#125;, &#123; "type": "file", "absolute": true, //绝对路径 "filename": "a.log", //存放日志文件的目录和文件名 "maxLogSize": 10000000, //每个日志文件大小 "backups": 100, //备份文件的数量，超过会被删除 "category": "http" //日志策略,类别，与级别不同的一个维度 &#125;, ], "levels": &#123; "[all]": "INFO" //设置日志级别,只打印info级别及以上级别的 &#125;, "replaceConsole": true //替换掉原来自带的console, 自带的没有颜色区分 &#125;, 记录请求123456//app.jsapp.use(log4js.connectLogger(log4js.getLogger("http"), &#123; level: 'auto', format: ':remote-addr - -' + ' ":method :url HTTP/:http-version"' + ' :status :content-length :response-time ":referrer"' + ' ":user-agent"'&#125;)); 日志的一个重要功能不仅仅是在调试时使用，最重要的还是当前端发起请求时，能把该请求记录在日志中，该行代码的作用就是这个功能。 其中的level参数表示日志输出级别，设置为auto，日志级别对应规则为： http返回码为3**：level=WARN； http返回码为4，5时，level=ERROR； 其他的返回码，level=INFO 日志分片按文件大小12345678910111213141516171819"log4jsConfig": &#123; "appenders": [ &#123; "type": "console" &#125;, &#123; "type": "file", "absolute": true, "filename": "a.log", "maxLogSize": 10, //单位应该是字节，设置 10000000 ，基本是10兆左右 "backups": 5, "category": "http" &#125; ], "levels": &#123; "[all]": "DEBUG" &#125;, "replaceConsole": true &#125;, 对应效果只能备份 backups 指定的份数，最新的会更新删除替换， 且每个文件为 maxLogSize的值。 按日期分片12345678910111213141516171819"log4jsConfig": &#123; "appenders": [ &#123; "type": "console" &#125;, &#123; "type": "dateFile", "absolute": true, "filename": "a-accesslog", "pattern": "-yyyy-MM-dd.log", "alwaysIncludePattern" : true, "category": "http" &#125; ], "levels": &#123; "[all]": "DEBUG" &#125;, "replaceConsole": true &#125;, 对应效果日志按照日期进行分片，且不会限制大小。]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>log4js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Fis3 && webpack]]></title>
+    <url>%2Fpassages%2FFIS3%26%26webpack%2F</url>
+    <content type="text"><![CDATA[打包工具 Fis3 &amp; webpack 的介绍。 FIS3FIS3 是面向前端的工程构建工具。解决前端工程中性能优化、资源加载（异步、同步、按需、预加载、依赖管理、合并、内嵌）、模块化开发、自动化工具、开发规范、代码部署等问题。 常用功能 资源提取。–从一推资源中提取指定的，发布到指定目录。 资源压缩。 资源版本号防止缓存。 常用配置资源提取fis-conf.js 1234567fis.match('*.&#123;html,htm,tld,jsp,xml,inc,txt,md,java,properties,mar,list,aar,ftl,classes,doc,url,zip,php,db,json&#125;', &#123; release : false&#125;);fis.match('*.&#123;gif,jpg,jpeg,png,ico,swf,ttf,TTF,js,css&#125;',&#123; release : '/a/b/$0'&#125;); map.json FIS 识别 __RESOURCE_MAP__ 关键字替换为静态资源版本信息 1__RESOURCE_MAP__ 资源发布fis-conf.js 1234567891011121314151617181920212223fis.media('test').match('*.&#123;css,js&#125;',&#123; useHash: false&#125;);fis.media('test').match('*.&#123;gif,jpg,jpeg,png,ico,swf,ttf,js,css,json&#125;',&#123; useMap: true, release: '/a/b/$0'&#125;);fis.media('pro').match('*.css',&#123; useHash: true, optimizer: fis.plugin('clean-css')&#125;);fis.media('pro').match('*.js',&#123; useHash: true, optimizer: fis.plugin('uglify-js')&#125;);fis.media('pro').match('*.&#123;gif,jpg,jpeg,png,ico,swf,ttf,js,css,json&#125;',&#123; useMap: true, release: '/a/b/$0'&#125;); map.json, 可以改名字，后续生成的对应关系就在对应文件中 1__RESOURCE_MAP__ 常用命令1fis3 release test -d ../c/d webpackwebpack工程demo详见 对应资料详见]]></content>
+      <categories>
+        <category>打包工具</category>
+      </categories>
+      <tags>
+        <tag>Fis3</tag>
+        <tag>webpack</tag>
+      </tags>
+  </entry>
+</search>
