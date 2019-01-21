@@ -8,7 +8,7 @@
   
   
   
-  <title>hexo博客配置各种小功能 | gbb</title>
+  <title>【置顶】hexo博客配置各种小功能 | gbb</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -191,7 +191,7 @@
 
 <div class="post">
   <h1 class="article-title">
-    <span>hexo博客配置各种小功能</span>
+    <span>【置顶】hexo博客配置各种小功能</span>
   </h1>
   <div class="article-top-meta">
     <span>
@@ -202,11 +202,11 @@
       
 
 <span>
-  <i class="fa fa-keyboard-o"></i> &nbsp;字数统计 : 1k 字
+  <i class="fa fa-keyboard-o"></i> &nbsp;字数统计 : 1.3k 字
 </span>
 
 <span>
-  <i class="fa fa-hourglass-half"></i> &nbsp;阅读时长 : 4 分
+  <i class="fa fa-hourglass-half"></i> &nbsp;阅读时长 : 5 分
 </span>
 
     
@@ -287,6 +287,9 @@
 <h2 id="一键分享"><a href="#一键分享" class="headerlink" title="一键分享"></a>一键分享</h2><p><a href="https://github.com/overtrue/share.js" target="_blank" rel="noopener">一键分享</a> , 简单易用，直接引用配置即可。</p>
 <h2 id="返回顶部"><a href="#返回顶部" class="headerlink" title="返回顶部"></a>返回顶部</h2><p><a href="https://www.tuicool.com/articles/nArEni" target="_blank" rel="noopener">Hexo 博客功能扩展 - 添加回滚到顶部按钮</a></p>
 <h2 id="浏览量"><a href="#浏览量" class="headerlink" title="浏览量"></a>浏览量</h2><p>此处不做说明，需要注册提供统计功能的服务, 注册后直接使用即可。网上很多服务提供者有对应功能。<br>百度统计，谷歌统计，不蒜子统计，cnzz, leancloud 等等。</p>
+<p>本站采用的为 <a href="https://valine.js.org/" target="_blank" rel="noopener">Valine一款基于Leancloud的快速、简洁且高效的无后端评论系统</a>, 只用了其中的<code>文章阅读量统计</code>模块，评论系统采用的 <code>gitalk</code>, 原因是当时配置完评论系统后发现无法及时的接受通知，博主和评论者无法及时互联，发邮件有限制。所以切换了评论插件。不过后续发现 <a href="https://github.com/DesertsP/Valine-Admin" target="_blank" rel="noopener">Valine-Admin-Valine评论系统的扩展和增强</a> 实现评论邮件通知、评论管理、垃圾评论过滤等功能。可以对其进行修改增强即可。</p>
+<p>具体 <code>Valine</code> 如何配置，详情参考的为 <a href="https://godbmw.com/passages/2018-11-15-theme-bmw-docs-zh/#4.%20%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%20&amp;&amp;%20%E6%96%87%E7%AB%A0%E7%BB%9F%E8%AE%A1" target="_blank" rel="noopener">Theme-BMW 中文文档, 本站博客主题</a>，前人栽树后人乘凉，O(∩_∩)O哈哈~, 如果为其它主题，参考 Valine 官网即可。</p>
+<p>补充说明：主题提供的 <code>文章统计</code> 暂时只有文章的浏览量，本站对代码就行了修改添加，支持总的 <code>浏览量展示</code>。原理为将所有浏览量相加，且对分类，标签，归档，首页，等模块纳入了统计范围，综合即为 <code>网站浏览量</code>。</p>
 <h2 id="SEO"><a href="#SEO" class="headerlink" title="SEO"></a>SEO</h2><p>可以向各个搜索引擎提交自己的网站</p>
 <ul>
 <li><a href="https://ziyuan.baidu.com/linksubmit/url" target="_blank" rel="noopener">百度入口</a></li>
@@ -295,7 +298,9 @@
 <li><a href="http://fankui.help.sogou.com/index.php/web/web/index?type=4" target="_blank" rel="noopener">搜狗入口</a></li>
 <li><a href="https://blogs.bing.com/webmaster/september-2018/Anonymous-URL-Submission-Tool-Being-Retired" target="_blank" rel="noopener">必应入口</a></li>
 </ul>
-<h2 id="文章置顶"><a href="#文章置顶" class="headerlink" title="文章置顶"></a>文章置顶</h2><p>待补充，hexo-generator-topindex</p>
+<h2 id="文章置顶"><a href="#文章置顶" class="headerlink" title="文章置顶"></a>文章置顶</h2><p>npm install <a href="https://github.com/amlove2/hexo-generator-topindex" target="_blank" rel="noopener">hexo-generator-topindex</a> –save</p>
+<p>设置 <code>top</code> 参数, 值越大，优先级越高</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">Hello</span> <span class="string">World</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2017</span><span class="bullet">-03</span><span class="bullet">-12</span> <span class="number">19</span><span class="string">:45:02</span></span><br><span class="line"><span class="attr">top:</span> <span class="number">5</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
 <h2 id="站内搜素"><a href="#站内搜素" class="headerlink" title="站内搜素"></a>站内搜素</h2><p>待补充，标签图标，更多按钮，背景图 forkmegithub</p>
     </div>
   </div>
@@ -451,6 +456,18 @@ const valineAPI = (() => {
     })
   }
 
+  const _getAllTimes = (identity) => {
+    let query = null;
+    query = new AV.Query("Timer");
+    query.greaterThan("times", identity);
+    
+    return new Promise((resolve, reject) => {
+      query.find()
+      .then(results => resolve(results))
+      .catch(error => reject(error))
+    })
+  }
+
   const create = (identity) => {
     identity = identity || getRealPath();
     return new Promise((resolve, reject) => {
@@ -479,6 +496,7 @@ const valineAPI = (() => {
   return {
     isExist,
     _get,
+    _getAllTimes,
     update,
     create
   }
@@ -486,10 +504,23 @@ const valineAPI = (() => {
 
 const calcAndWriteTimes = () => {
   let isPost = true;
+  let isTags = false;
+  let isCategories = false;
+  let isArchives = false;
 
   let timerAllDOM = document.querySelectorAll(".article-timer");
 
-  if(isPost) {
+  //页面总浏览数
+  valineAPI._getAllTimes(0).then( results => { //获取所有浏览量大于0的评论记录
+    var allTimes = 0;
+    for(let result of results) {
+      let times = result.attributes.times;
+      allTimes += times;
+    }
+    document.getElementById('allTimer').innerHTML = allTimes;
+  }).catch(error => console.log(error.message))
+
+  if(isPost || isTags || isCategories || isArchives) {
     let identity = timerAllDOM[0].getAttribute("data-identity");
     valineAPI.isExist(identity)
     .then(exist => {
@@ -508,6 +539,13 @@ const calcAndWriteTimes = () => {
 
   for(let timerDOM of timerAllDOM) {
     let identity = timerDOM.getAttribute("data-identity");
+    if(identity === "index") { //首页
+      valineAPI.isExist(identity).then(exist => {
+        if(exist) {
+          return valineAPI.update(identity);
+        }
+      })
+    }
     if(timerDOMCache.hasOwnProperty(identity)){
       timerDOMCache[identity].dom.push(timerDOM);
     }else{
@@ -533,6 +571,7 @@ const calcAndWriteTimes = () => {
       valineAPI.create(identity);
     }
   }).catch(error => console.log(error.message))
+
 }
 
 if(true){
@@ -547,7 +586,10 @@ if(true){
       <footer>
   <p class="site-info">
     博客已萌萌哒运行<span id="time-to-now"></span><span class="my-face">(●'◡'●)ﾉ♥</span>,
-    <span> &nbsp;共计 <i style="color: #1abc9c;font-style: normal;">12.3k</i> 个字啦</span>
+    <span> &nbsp;共计 <i style="color: #1abc9c;font-style: normal;">12.6k</i> 个字啦 ,</span>
+    
+      <span> &nbsp;文章浏览量总计为 <i id="allTimer" style="color: #1abc9c;font-style: normal;"></i> 次啦</span>
+    
     <br>
     Theme - <a href="https://github.com/dongyuanxin/theme-bmw">BMW</a> | Made With 💗 | Powered by <a href="https://godbmw.com/">GodBMW</a>
     <br>

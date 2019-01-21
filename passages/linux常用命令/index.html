@@ -420,6 +420,18 @@ const valineAPI = (() => {
     })
   }
 
+  const _getAllTimes = (identity) => {
+    let query = null;
+    query = new AV.Query("Timer");
+    query.greaterThan("times", identity);
+    
+    return new Promise((resolve, reject) => {
+      query.find()
+      .then(results => resolve(results))
+      .catch(error => reject(error))
+    })
+  }
+
   const create = (identity) => {
     identity = identity || getRealPath();
     return new Promise((resolve, reject) => {
@@ -448,6 +460,7 @@ const valineAPI = (() => {
   return {
     isExist,
     _get,
+    _getAllTimes,
     update,
     create
   }
@@ -455,10 +468,23 @@ const valineAPI = (() => {
 
 const calcAndWriteTimes = () => {
   let isPost = true;
+  let isTags = false;
+  let isCategories = false;
+  let isArchives = false;
 
   let timerAllDOM = document.querySelectorAll(".article-timer");
 
-  if(isPost) {
+  //页面总浏览数
+  valineAPI._getAllTimes(0).then( results => { //获取所有浏览量大于0的评论记录
+    var allTimes = 0;
+    for(let result of results) {
+      let times = result.attributes.times;
+      allTimes += times;
+    }
+    document.getElementById('allTimer').innerHTML = allTimes;
+  }).catch(error => console.log(error.message))
+
+  if(isPost || isTags || isCategories || isArchives) {
     let identity = timerAllDOM[0].getAttribute("data-identity");
     valineAPI.isExist(identity)
     .then(exist => {
@@ -477,6 +503,13 @@ const calcAndWriteTimes = () => {
 
   for(let timerDOM of timerAllDOM) {
     let identity = timerDOM.getAttribute("data-identity");
+    if(identity === "index") { //首页
+      valineAPI.isExist(identity).then(exist => {
+        if(exist) {
+          return valineAPI.update(identity);
+        }
+      })
+    }
     if(timerDOMCache.hasOwnProperty(identity)){
       timerDOMCache[identity].dom.push(timerDOM);
     }else{
@@ -502,6 +535,7 @@ const calcAndWriteTimes = () => {
       valineAPI.create(identity);
     }
   }).catch(error => console.log(error.message))
+
 }
 
 if(true){
@@ -516,7 +550,10 @@ if(true){
       <footer>
   <p class="site-info">
     博客已萌萌哒运行<span id="time-to-now"></span><span class="my-face">(●'◡'●)ﾉ♥</span>,
-    <span> &nbsp;共计 <i style="color: #1abc9c;font-style: normal;">12.3k</i> 个字啦</span>
+    <span> &nbsp;共计 <i style="color: #1abc9c;font-style: normal;">12.6k</i> 个字啦 ,</span>
+    
+      <span> &nbsp;文章浏览量总计为 <i id="allTimer" style="color: #1abc9c;font-style: normal;"></i> 次啦</span>
+    
     <br>
     Theme - <a href="https://github.com/dongyuanxin/theme-bmw">BMW</a> | Made With 💗 | Powered by <a href="https://godbmw.com/">GodBMW</a>
     <br>
