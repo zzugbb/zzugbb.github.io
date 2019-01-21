@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="打包工具,Fis3,webpack,">
+    <meta name="keywords" content="工程部署,Fis3,webpack,">
   
 
   
@@ -213,8 +213,8 @@
     
       <span>
           <i class="iconfont icon-tag" style="font-size:12px;"></i> &nbsp;分类 : 
-          <a href="/categories/打包工具/">
-            打包工具
+          <a href="/categories/工程部署/">
+            工程部署
           </a>
       </span>
     
@@ -470,7 +470,9 @@ const valineAPI = (() => {
 const calcAndWriteTimes = () => {
   let isPost = true;
   let isTags = false;
+  let isTag = false;
   let isCategories = false;
+  let isCategorie = false;
   let isArchives = false;
 
   let timerAllDOM = document.querySelectorAll(".article-timer");
@@ -485,7 +487,7 @@ const calcAndWriteTimes = () => {
     document.getElementById('allTimer').innerHTML = allTimes;
   }).catch(error => console.log(error.message))
 
-  if(isPost || isTags || isCategories || isArchives) {
+  if(isPost || isTags || isTag || isCategories || isCategorie || isArchives) {
     let identity = timerAllDOM[0].getAttribute("data-identity");
     valineAPI.isExist(identity)
     .then(exist => {

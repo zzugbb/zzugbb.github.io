@@ -190,7 +190,7 @@
       <h2>
         
           <span>标签 : Get</span>
-          <span class="article-timer" data-identity="标签:" style="display: none"></span>
+          <span class="article-timer" data-identity="标签:Get" style="display: none"></span>
         
         
           <script defer>
@@ -280,7 +280,9 @@ const valineAPI = (() => {
 const calcAndWriteTimes = () => {
   let isPost = false;
   let isTags = false;
+  let isTag = true;
   let isCategories = false;
+  let isCategorie = false;
   let isArchives = false;
 
   let timerAllDOM = document.querySelectorAll(".article-timer");
@@ -295,7 +297,7 @@ const calcAndWriteTimes = () => {
     document.getElementById('allTimer').innerHTML = allTimes;
   }).catch(error => console.log(error.message))
 
-  if(isPost || isTags || isCategories || isArchives) {
+  if(isPost || isTags || isTag || isCategories || isCategorie || isArchives) {
     let identity = timerAllDOM[0].getAttribute("data-identity");
     valineAPI.isExist(identity)
     .then(exist => {

@@ -280,7 +280,9 @@ const valineAPI = (() => {
 const calcAndWriteTimes = () => {
   let isPost = false;
   let isTags = false;
+  let isTag = false;
   let isCategories = false;
+  let isCategorie = true;
   let isArchives = false;
 
   let timerAllDOM = document.querySelectorAll(".article-timer");
@@ -295,7 +297,7 @@ const calcAndWriteTimes = () => {
     document.getElementById('allTimer').innerHTML = allTimes;
   }).catch(error => console.log(error.message))
 
-  if(isPost || isTags || isCategories || isArchives) {
+  if(isPost || isTags || isTag || isCategories || isCategorie || isArchives) {
     let identity = timerAllDOM[0].getAttribute("data-identity");
     valineAPI.isExist(identity)
     .then(exist => {
@@ -362,40 +364,12 @@ if(true){
   <article class="posts-collapse">
     <header>
       <h2>
-        <a href="/passages/HTTP状态码/">
-          <span>HTTP 状态码</span>
-        </a>
-      </h2>
-      <div class="post-meta">
-        11-21
-      </div>
-    </header>
-  </article>
-  
-  
-  <article class="posts-collapse">
-    <header>
-      <h2>
         <a href="/passages/get与post区别/">
           <span>Get 与 Post 区别</span>
         </a>
       </h2>
       <div class="post-meta">
         11-20
-      </div>
-    </header>
-  </article>
-  
-  
-  <article class="posts-collapse">
-    <header>
-      <h2>
-        <a href="/passages/es6-async/">
-          <span>axios请求之异步处理</span>
-        </a>
-      </h2>
-      <div class="post-meta">
-        09-20
       </div>
     </header>
   </article>

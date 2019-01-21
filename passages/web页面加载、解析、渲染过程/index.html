@@ -528,7 +528,9 @@ const valineAPI = (() => {
 const calcAndWriteTimes = () => {
   let isPost = true;
   let isTags = false;
+  let isTag = false;
   let isCategories = false;
+  let isCategorie = false;
   let isArchives = false;
 
   let timerAllDOM = document.querySelectorAll(".article-timer");
@@ -543,7 +545,7 @@ const calcAndWriteTimes = () => {
     document.getElementById('allTimer').innerHTML = allTimes;
   }).catch(error => console.log(error.message))
 
-  if(isPost || isTags || isCategories || isArchives) {
+  if(isPost || isTags || isTag || isCategories || isCategorie || isArchives) {
     let identity = timerAllDOM[0].getAttribute("data-identity");
     valineAPI.isExist(identity)
     .then(exist => {

@@ -280,7 +280,9 @@ const valineAPI = (() => {
 const calcAndWriteTimes = () => {
   let isPost = false;
   let isTags = false;
+  let isTag = false;
   let isCategories = false;
+  let isCategorie = true;
   let isArchives = false;
 
   let timerAllDOM = document.querySelectorAll(".article-timer");
@@ -295,7 +297,7 @@ const calcAndWriteTimes = () => {
     document.getElementById('allTimer').innerHTML = allTimes;
   }).catch(error => console.log(error.message))
 
-  if(isPost || isTags || isCategories || isArchives) {
+  if(isPost || isTags || isTag || isCategories || isCategorie || isArchives) {
     let identity = timerAllDOM[0].getAttribute("data-identity");
     valineAPI.isExist(identity)
     .then(exist => {
@@ -357,20 +359,6 @@ if(true){
       </h2>
     </div>
   
-  
-  
-  <article class="posts-collapse">
-    <header>
-      <h2>
-        <a href="/passages/create脚手架使用antd(less, css-module,主题)/">
-          <span>create脚手架使用antd(开启less,css module,定制主题)</span>
-        </a>
-      </h2>
-      <div class="post-meta">
-        11-14
-      </div>
-    </header>
-  </article>
   
   
   <article class="posts-collapse">

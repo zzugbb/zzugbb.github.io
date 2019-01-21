@@ -8,7 +8,7 @@
   
   
   
-  <title>分类: 日志 | gbb</title>
+  <title>分类: 工程部署 | gbb</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -181,7 +181,7 @@
   <span class="archive-move-on"></span>
   <span class="archive-page-counter">
     
-      <span>当前位于 1/1 页</span>
+      <span>当前位于 2/2 页</span>
     
   </span>
   
@@ -189,8 +189,8 @@
     <div class="collection-title">
       <h2>
         
-          <span>分类 : 日志</span>
-          <span class="article-timer" data-identity="分类:日志" style="display: none"></span>
+          <span>分类 : 工程部署</span>
+          <span class="article-timer" data-identity="分类:工程部署" style="display: none"></span>
         
         
           <script defer>
@@ -280,7 +280,9 @@ const valineAPI = (() => {
 const calcAndWriteTimes = () => {
   let isPost = false;
   let isTags = false;
+  let isTag = false;
   let isCategories = false;
+  let isCategorie = true;
   let isArchives = false;
 
   let timerAllDOM = document.querySelectorAll(".article-timer");
@@ -295,7 +297,7 @@ const calcAndWriteTimes = () => {
     document.getElementById('allTimer').innerHTML = allTimes;
   }).catch(error => console.log(error.message))
 
-  if(isPost || isTags || isCategories || isArchives) {
+  if(isPost || isTags || isTag || isCategories || isCategorie || isArchives) {
     let identity = timerAllDOM[0].getAttribute("data-identity");
     valineAPI.isExist(identity)
     .then(exist => {
@@ -372,8 +374,24 @@ if(true){
     </header>
   </article>
   
+  
+  <article class="posts-collapse">
+    <header>
+      <h2>
+        <a href="/passages/FIS3&&webpack/">
+          <span>Fis3 && webpack</span>
+        </a>
+      </h2>
+      <div class="post-meta">
+        05-13
+      </div>
+    </header>
+  </article>
+  
 </div>
   <nav class="page-navigation">
+    
+      <a href="/categories/工程部署/">上一页</a>
     
     
   </nav>
