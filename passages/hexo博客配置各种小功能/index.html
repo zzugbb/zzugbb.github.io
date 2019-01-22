@@ -71,7 +71,7 @@
 
     
 
-    <div id="app" style="z-index:5;width:1000px;">
+    <div id="app" style="z-index:5;">
 
       <div class="header-wrap">
   <header>
@@ -368,11 +368,11 @@
       
 
 <span>
-  <i class="fa fa-keyboard-o"></i> &nbsp;字数统计 : 1.7k 字
+  <i class="fa fa-keyboard-o"></i> &nbsp;字数统计 : 1.9k 字
 </span>
 
 <span>
-  <i class="fa fa-hourglass-half"></i> &nbsp;阅读时长 : 7 分
+  <i class="fa fa-hourglass-half"></i> &nbsp;阅读时长 : 8 分
 </span>
 
     
@@ -492,8 +492,13 @@
 <h2 id="Fork-me-on-Github"><a href="#Fork-me-on-Github" class="headerlink" title="Fork me on Github"></a>Fork me on Github</h2><p><a href="https://github.blog/2008-12-19-github-ribbons/" target="_blank" rel="noopener">GitHub Ribbons</a> 按照 <code>Github</code> 官方提供的代码粘贴到页面上即可，记得把 <code>a链接</code> 改为自己的Github地址.</p>
 <p>如果展示位置不对，可添加样式修正</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">position</span>: <span class="selector-tag">fixed</span>;</span><br><span class="line"><span class="selector-tag">right</span>: 0;</span><br><span class="line"><span class="selector-tag">top</span>: 0;</span><br><span class="line"><span class="selector-tag">z-index</span>: 1000</span><br></pre></td></tr></table></figure>
-<p>## </p>
-<p>待补充，个人社交链接图标，留言板， 动态背景</p>
+<h2 id="动态背景"><a href="#动态背景" class="headerlink" title="动态背景"></a>动态背景</h2><p>根目录 <code>_config.yml</code>  配置</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># background settings</span></span><br><span class="line"><span class="comment"># add canvas-nest effect</span></span><br><span class="line"><span class="comment"># see detail from https://github.com/hustcc/canvas-nest.js</span></span><br><span class="line"><span class="attr">canvas_nest:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p><code>&lt;/body&gt;</code> 标签前加入下面代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (config.canvas_nest) &#123; %&gt;</span><br><span class="line">  &lt;script type=&quot;text/javascript&quot;</span><br><span class="line">    color=&quot;0,0,255&quot; opacity=&apos;0.7&apos; zIndex=&quot;1&quot; count=&quot;99&quot; src=&quot;//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+<p>注意：需要处理好动态背景和页面模块的 <code>z-index</code> 的值，不然有时不显示动态背景，有时页面内容无法点击。</p>
+<p>页面内容 <code>z-index</code> 值偏大，但是需要设置页面内容宽度。</p>
+<h2 id="待补充"><a href="#待补充" class="headerlink" title="待补充"></a>待补充</h2><p>个人社交链接图标，留言板</p>
     </div>
   </div>
   
@@ -782,7 +787,7 @@ if(true){
       <footer style="margin-top:20px">
   <p class="site-info">
     博客已萌萌哒运行<span id="time-to-now"></span><span class="my-face">(●'◡'●)ﾉ♥</span>,
-    <span> &nbsp;共计 <i style="color: #1abc9c;font-style: normal;">13k</i> 个字啦 ,</span>
+    <span> &nbsp;共计 <i style="color: #1abc9c;font-style: normal;">13.2k</i> 个字啦 ,</span>
     
       <span> &nbsp;文章浏览量总计为 <i id="allTimer" style="color: #1abc9c;font-style: normal;"></i> 次啦</span>
     

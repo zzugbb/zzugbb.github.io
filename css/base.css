@@ -330,6 +330,11 @@ header {
 @media (max-width: 768px) {
   #app {
     padding: 2.5rem 1.5rem 0; } }
+
+@media (min-width: 1300px) {
+  #app {
+    width:1000px } }
+
 .back-to-top {
   display: block;
   position: fixed;
