@@ -392,6 +392,10 @@ header {
     display: block !important;
     font-style: italic !important; } }
 
+@media (max-width: 768px) {
+  .pc-view {
+    display: none !important; } 
+
 .post-index .post {
   padding-bottom: 0; }
 
