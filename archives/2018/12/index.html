@@ -44,6 +44,11 @@
   <script src="/js/clicklove.js"></script>
 
   
+    <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/search.js"></script>
+  
+  
+  
 
   
     <link href="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.css" rel="stylesheet">
@@ -131,7 +136,147 @@
           
         </li>
       
-      <li class="nav-item" style="margin-left: 0;">
+      
+        <li class="nav-item search-nav pc-view" style="margin-left:0; cursor:pointer;">
+          <i class="fa fa-search"></i>
+        </li>
+        
+
+  <script type="text/javascript">
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+  </script>
+
+
+<div class="black_overlay"></div>
+<div id="site_search">
+  <div class="form-group">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <input type="text" id="local-search-input" name="q" results="0" placeholder="search" class="st-search-input st-default-search-input form-control">
+    <span class="close-icon">
+      <i class="fa fa fa-times-circle"></i>
+    </span>
+  </div>  
+  <div id="local-search-result"></div>
+</div>
+
+<style>
+.black_overlay {
+  display: none;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 1000;
+  -moz-opacity: 0.5;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+
+#site_search {
+  display: none;
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 750px;
+  height: 60%;
+  margin: auto;
+  background: #fff;
+  z-index: 9999;
+  border-radius: 5px
+}
+
+.form-group {
+  padding: 5px 0;
+  line-height: 36px;
+  background: #f5f5f5;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  text-align: left;
+}
+
+.search-icon {
+  display: inline-block;
+  font-size: 18px;
+  color: #999;
+  width: 18px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.close-icon {
+  border-left: 1px solid #eee;
+  float: right;
+  margin-right: 20px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#local-search-input {
+  padding: 5px 0;
+  height: 26px;
+  width: 87%;
+  outline: none;
+  border: none;
+  background: transparent;
+  text-indent: 15px;
+}
+
+#local-search-result {
+  text-align: left;
+  overflow: auto;
+  position: relative;
+  padding: 5px 25px;
+  height: calc(100% - 55px);
+}
+
+#local-search-result ul {
+  margin: 0 5px;
+}
+
+#local-search-result li {
+  list-style-type: disc;
+}
+
+#local-search-result li a {
+  color: #1abc9c;
+  border-bottom: 1px solid #1abc9c;
+}
+
+.search-result {
+  border-bottom: 1px dashed #ccc;
+  padding-bottom: 10px;
+  line-height: 20px;
+}
+
+.search-keyword {
+  color: red;
+}
+</style>
+
+<script>
+  $('.close-icon').click(function() {
+    $('.black_overlay').hide();
+    $('#site_search').hide();
+  })
+
+  $('.black_overlay').click(function() {
+    $('.black_overlay').hide();
+    $('#site_search').hide();
+  })
+</script>
+      
+      <li class="nav-item pc-view" style="margin-left: 0;">
         <a href="/atom.xml" title="rss_feed">
           <i class="fa fa-rss-square"></i>
         </a>
@@ -140,6 +285,11 @@
     </nav>
     <i class="iconfont icon-menu"></i>
   </header>
+</div>
+<div style="position:fixed;right:0;top:0;z-index:1000" class="pc-view">
+  <a href="https://github.com/zzugbb" target="_blank">
+    <img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_white_ffffff.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1">
+  </a>
 </div>
 
 <script>
@@ -173,6 +323,11 @@
       ? navDOM.className = "site-navigation active"
       : navDOM.className = "site-navigation";
     iconMenuClicked = !iconMenuClicked;
+  })
+
+  $('.search-nav').click(function(){
+    $('.black_overlay').show();
+    $('#site_search').show();
   })
 </script>
 
@@ -294,6 +449,8 @@ const calcAndWriteTimes = () => {
     .then(exist => {
       if(exist) {
         return valineAPI.update(identity);
+      } else {
+        return valineAPI.create(identity);
       }
       return new Promise(resolve => resolve(true));
     })
@@ -424,7 +581,7 @@ if(true){
       <footer style="margin-top:20px">
   <p class="site-info">
     博客已萌萌哒运行<span id="time-to-now"></span><span class="my-face">(●'◡'●)ﾉ♥</span>,
-    <span> &nbsp;共计 <i style="color: #1abc9c;font-style: normal;">12.7k</i> 个字啦 ,</span>
+    <span> &nbsp;共计 <i style="color: #1abc9c;font-style: normal;">13k</i> 个字啦 ,</span>
     
       <span> &nbsp;文章浏览量总计为 <i id="allTimer" style="color: #1abc9c;font-style: normal;"></i> 次啦</span>
     
@@ -598,6 +755,6 @@ document.querySelector(".back-to-top").addEventListener("click", backToTop, fals
 </script>
 
     
-  <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":180},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+  <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":180,"hOffset":-60,"vOffset":-60},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.4,"opacityOnHover":0.2},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 
 </html>

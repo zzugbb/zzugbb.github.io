@@ -44,6 +44,11 @@
   <script src="/js/clicklove.js"></script>
 
   
+    <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/search.js"></script>
+  
+  
+  
 
   
     <link href="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.css" rel="stylesheet">
@@ -131,7 +136,147 @@
           
         </li>
       
-      <li class="nav-item" style="margin-left: 0;">
+      
+        <li class="nav-item search-nav pc-view" style="margin-left:0; cursor:pointer;">
+          <i class="fa fa-search"></i>
+        </li>
+        
+
+  <script type="text/javascript">
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+  </script>
+
+
+<div class="black_overlay"></div>
+<div id="site_search">
+  <div class="form-group">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <input type="text" id="local-search-input" name="q" results="0" placeholder="search" class="st-search-input st-default-search-input form-control">
+    <span class="close-icon">
+      <i class="fa fa fa-times-circle"></i>
+    </span>
+  </div>  
+  <div id="local-search-result"></div>
+</div>
+
+<style>
+.black_overlay {
+  display: none;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 1000;
+  -moz-opacity: 0.5;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+
+#site_search {
+  display: none;
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 750px;
+  height: 60%;
+  margin: auto;
+  background: #fff;
+  z-index: 9999;
+  border-radius: 5px
+}
+
+.form-group {
+  padding: 5px 0;
+  line-height: 36px;
+  background: #f5f5f5;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  text-align: left;
+}
+
+.search-icon {
+  display: inline-block;
+  font-size: 18px;
+  color: #999;
+  width: 18px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.close-icon {
+  border-left: 1px solid #eee;
+  float: right;
+  margin-right: 20px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#local-search-input {
+  padding: 5px 0;
+  height: 26px;
+  width: 87%;
+  outline: none;
+  border: none;
+  background: transparent;
+  text-indent: 15px;
+}
+
+#local-search-result {
+  text-align: left;
+  overflow: auto;
+  position: relative;
+  padding: 5px 25px;
+  height: calc(100% - 55px);
+}
+
+#local-search-result ul {
+  margin: 0 5px;
+}
+
+#local-search-result li {
+  list-style-type: disc;
+}
+
+#local-search-result li a {
+  color: #1abc9c;
+  border-bottom: 1px solid #1abc9c;
+}
+
+.search-result {
+  border-bottom: 1px dashed #ccc;
+  padding-bottom: 10px;
+  line-height: 20px;
+}
+
+.search-keyword {
+  color: red;
+}
+</style>
+
+<script>
+  $('.close-icon').click(function() {
+    $('.black_overlay').hide();
+    $('#site_search').hide();
+  })
+
+  $('.black_overlay').click(function() {
+    $('.black_overlay').hide();
+    $('#site_search').hide();
+  })
+</script>
+      
+      <li class="nav-item pc-view" style="margin-left: 0;">
         <a href="/atom.xml" title="rss_feed">
           <i class="fa fa-rss-square"></i>
         </a>
@@ -140,6 +285,11 @@
     </nav>
     <i class="iconfont icon-menu"></i>
   </header>
+</div>
+<div style="position:fixed;right:0;top:0;z-index:1000" class="pc-view">
+  <a href="https://github.com/zzugbb" target="_blank">
+    <img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_white_ffffff.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1">
+  </a>
 </div>
 
 <script>
@@ -174,6 +324,11 @@
       : navDOM.className = "site-navigation";
     iconMenuClicked = !iconMenuClicked;
   })
+
+  $('.search-nav').click(function(){
+    $('.black_overlay').show();
+    $('#site_search').show();
+  })
 </script>
 
       
@@ -183,7 +338,7 @@
     <h3>
       共计 32 个标签
     </h3>
-    <!-- <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/create-react-app/">create-react-app</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/">k8s</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react-router/">react-router</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubectl/">kubectl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css-module/">css-module</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/主题配置/">主题配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP-Status-Code/">HTTP Status Code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axios/">axios</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6-promise-async-await/">es6 promise/async/await</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Get/">Get</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Post/">Post</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp/">gulp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grunt/">grunt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Fis3/">Fis3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deployment-ReplicaSet-Service-pod/">Deployment/ReplicaSet/Service/pod</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/antd/">antd</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/log4js/">log4js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pm2/">pm2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rap2/">rap2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可视化接口管理工具/">可视化接口管理工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css-loader-antd/">css-loader/antd</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/less/">less</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashRouter/">HashRouter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BrowserRouter/">BrowserRouter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/页面跳转/">页面跳转</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/页面加载-页面解析-页面渲染/">页面加载/页面解析/页面渲染</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/重排/">重排</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/重绘/">重绘</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo-功能配置/">hexo-功能配置</a><span class="tag-list-count">1</span></li></ul> -->
+    <!-- <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/create-react-app/">create-react-app</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/">k8s</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react-router/">react-router</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubectl/">kubectl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css-module/">css-module</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/主题配置/">主题配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP-Status-Code/">HTTP Status Code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axios/">axios</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6-promise-async-await/">es6 promise/async/await</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Get/">Get</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Post/">Post</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp/">gulp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grunt/">grunt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Fis3/">Fis3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deployment-ReplicaSet-Service-pod/">Deployment/ReplicaSet/Service/pod</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/antd/">antd</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/log4js/">log4js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pm2/">pm2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rap2/">rap2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可视化接口管理工具/">可视化接口管理工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css-loader-antd/">css-loader/antd</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/less/">less</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashRouter/">HashRouter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BrowserRouter/">BrowserRouter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/页面跳转/">页面跳转</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/页面加载-页面解析-页面渲染/">页面加载/页面解析/页面渲染</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/重排/">重排</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/重绘/">重绘</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo-功能配置/">hexo-功能配置</a><span class="tag-list-count">1</span></li></ul> -->
     <div class="tags">
       <a href="/tags/BrowserRouter/" style="font-size: 16px; color: #808080">BrowserRouter</a> <a href="/tags/Deployment-ReplicaSet-Service-pod/" style="font-size: 16px; color: #808080">Deployment/ReplicaSet/Service/pod</a> <a href="/tags/Fis3/" style="font-size: 16px; color: #808080">Fis3</a> <a href="/tags/Get/" style="font-size: 16px; color: #808080">Get</a> <a href="/tags/HTTP-Status-Code/" style="font-size: 16px; color: #808080">HTTP Status Code</a> <a href="/tags/HashRouter/" style="font-size: 16px; color: #808080">HashRouter</a> <a href="/tags/Post/" style="font-size: 16px; color: #808080">Post</a> <a href="/tags/antd/" style="font-size: 16px; color: #808080">antd</a> <a href="/tags/axios/" style="font-size: 16px; color: #808080">axios</a> <a href="/tags/create-react-app/" style="font-size: 35px; color: #000">create-react-app</a> <a href="/tags/css-loader-antd/" style="font-size: 16px; color: #808080">css-loader/antd</a> <a href="/tags/css-module/" style="font-size: 16px; color: #808080">css-module</a> <a href="/tags/es6-promise-async-await/" style="font-size: 16px; color: #808080">es6 promise/async/await</a> <a href="/tags/grunt/" style="font-size: 16px; color: #808080">grunt</a> <a href="/tags/gulp/" style="font-size: 16px; color: #808080">gulp</a> <a href="/tags/hexo/" style="font-size: 16px; color: #808080">hexo</a> <a href="/tags/hexo-功能配置/" style="font-size: 16px; color: #808080">hexo-功能配置</a> <a href="/tags/k8s/" style="font-size: 35px; color: #000">k8s</a> <a href="/tags/kubectl/" style="font-size: 16px; color: #808080">kubectl</a> <a href="/tags/less/" style="font-size: 16px; color: #808080">less</a> <a href="/tags/linux/" style="font-size: 16px; color: #808080">linux</a> <a href="/tags/log4js/" style="font-size: 16px; color: #808080">log4js</a> <a href="/tags/pm2/" style="font-size: 16px; color: #808080">pm2</a> <a href="/tags/rap2/" style="font-size: 16px; color: #808080">rap2</a> <a href="/tags/react-router/" style="font-size: 35px; color: #000">react-router</a> <a href="/tags/webpack/" style="font-size: 35px; color: #000">webpack</a> <a href="/tags/主题配置/" style="font-size: 16px; color: #808080">主题配置</a> <a href="/tags/可视化接口管理工具/" style="font-size: 16px; color: #808080">可视化接口管理工具</a> <a href="/tags/重排/" style="font-size: 16px; color: #808080">重排</a> <a href="/tags/重绘/" style="font-size: 16px; color: #808080">重绘</a> <a href="/tags/页面加载-页面解析-页面渲染/" style="font-size: 16px; color: #808080">页面加载/页面解析/页面渲染</a> <a href="/tags/页面跳转/" style="font-size: 16px; color: #808080">页面跳转</a>
     </div>
@@ -300,6 +455,8 @@ const calcAndWriteTimes = () => {
     .then(exist => {
       if(exist) {
         return valineAPI.update(identity);
+      } else {
+        return valineAPI.create(identity);
       }
       return new Promise(resolve => resolve(true));
     })
@@ -386,7 +543,7 @@ if(true){
       <footer style="margin-top:20px">
   <p class="site-info">
     博客已萌萌哒运行<span id="time-to-now"></span><span class="my-face">(●'◡'●)ﾉ♥</span>,
-    <span> &nbsp;共计 <i style="color: #1abc9c;font-style: normal;">12.7k</i> 个字啦 ,</span>
+    <span> &nbsp;共计 <i style="color: #1abc9c;font-style: normal;">13k</i> 个字啦 ,</span>
     
       <span> &nbsp;文章浏览量总计为 <i id="allTimer" style="color: #1abc9c;font-style: normal;"></i> 次啦</span>
     
@@ -560,6 +717,6 @@ document.querySelector(".back-to-top").addEventListener("click", backToTop, fals
 </script>
 
     
-  <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":180},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+  <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":180,"hOffset":-60,"vOffset":-60},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.4,"opacityOnHover":0.2},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 
 </html>
