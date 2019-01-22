@@ -450,6 +450,7 @@ const calcAndWriteTimes = () => {
   let isCategories = false;
   let isCategorie = false;
   let isArchives = true;
+  let isMessageBoard = false;
 
   let timerAllDOM = document.querySelectorAll(".article-timer");
 
@@ -463,7 +464,7 @@ const calcAndWriteTimes = () => {
     document.getElementById('allTimer').innerHTML = allTimes;
   }).catch(error => console.log(error.message))
 
-  if(isPost || isTags || isTag || isCategories || isCategorie || isArchives) {
+  if(isPost || isTags || isTag || isCategories || isCategorie || isArchives || isMessageBoard) {
     let identity = timerAllDOM[0].getAttribute("data-identity");
     valineAPI.isExist(identity)
     .then(exist => {
@@ -650,7 +651,7 @@ document.querySelector(".back-to-top").addEventListener("click", backToTop, fals
 </script>
 
     </div>
-    <footer style="margin-top:20px">
+    <footer style="margin-top:20px;z-index: 5;">
   <p class="site-info">
     博客已萌萌哒运行<span id="time-to-now"></span><span class="my-face">(●'◡'●)ﾉ♥</span>,
     <span> &nbsp;共计 <i style="color: #1abc9c;font-style: normal;">13.3k</i> 个字啦 ,</span>

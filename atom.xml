@@ -326,9 +326,9 @@
       <category term="react" scheme="http://yoursite.com/categories/react/"/>
     
     
-      <category term="create-react-app" scheme="http://yoursite.com/tags/create-react-app/"/>
-    
       <category term="webpack" scheme="http://yoursite.com/tags/webpack/"/>
+    
+      <category term="create-react-app" scheme="http://yoursite.com/tags/create-react-app/"/>
     
       <category term="css-loader/antd" scheme="http://yoursite.com/tags/css-loader-antd/"/>
     
