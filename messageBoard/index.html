@@ -8,7 +8,7 @@
   
   
   
-  <title>标签: 页面加载/页面解析/页面渲染 | gbb</title>
+  <title>留言板 | gbb</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -351,212 +351,40 @@
   })
 </script>
 
-      <div class="container">
-  <div class="timeline">
-  <span class="archive-move-on"></span>
-  <span class="archive-page-counter">
-    
-      <span>当前位于 1/1 页</span>
-    
-  </span>
-  
-  
-    <div class="collection-title">
-      <h2>
-        
-          <span>标签 : 页面加载/页面解析/页面渲染</span>
-          <span class="article-timer" data-identity="标签:页面加载/页面解析/页面渲染" style="display: none"></span>
-        
-        
-          <script defer>
-const valineAPI = (() => {
-  try {
-    AV.init("5gmxTwVFMDWYxzhkUr6kJqCu-gzGzoHsz", "UYfK9MIPOKVB0ChdRQQ8Ddcn");
-  } catch(error) {}
-  const isExist = (identity) => {
-    identity = identity || getRealPath();
-    let query = new AV.Query('Timer');
-    return new Promise((resolve, reject) => {
-      query.equalTo("identity", identity);
-      query.find().then(results => {
-        resolve(results.length > 0);
-      }, error => reject(error));
-    })
-  }
+      
 
-  const _get = (identity) => {
-    let query = null;
-    if(identity && identity instanceof Array){
-      let querys = [];
-      for(let i = 0; i < identity.length; ++i) {
-        querys[i] = new AV.Query('Timer');
-        querys[i].equalTo('identity', identity[i]);
-      }
-      query = AV.Query.or.apply(null ,querys);
-    } else {
-      identity = identity || getRealPath();
-      query = new AV.Query("Timer");
-      query.equalTo("identity", identity);
-    }
 
-    return new Promise((resolve, reject) => {
-      query.find()
-      .then(results => resolve(results))
-      .catch(error => reject(error))
-    })
-  }
 
-  const _getAllTimes = (identity) => {
-    let query = null;
-    query = new AV.Query("Timer");
-    query.greaterThan("times", identity);
-    
-    return new Promise((resolve, reject) => {
-      query.find()
-      .then(results => resolve(results))
-      .catch(error => reject(error))
-    })
-  }
 
-  const create = (identity) => {
-    identity = identity || getRealPath();
-    return new Promise((resolve, reject) => {
-      let Todo = AV.Object.extend('Timer');
-      let todo = new Todo();
-      todo.set("times", 1);
-      todo.set("identity", identity);
-      todo.save().then(res => resolve(true), error => reject(error));
-    })
-  }
 
-  const update = (identity) => {
-    identity = identity || getRealPath();
-    return new Promise((resolve, reject) => {
-      let query = new AV.Query('Timer');
-      query.equalTo("identity", identity);
-      query.find().then(todos => {
-        todos.forEach(todo => {
-          todo.set("times", todo.attributes.times + 1);
-        });
-        return AV.Object.saveAll(todos);
-      }).then(todos => resolve(true), error => reject(error));
-    })
-  }
 
-  return {
-    isExist,
-    _get,
-    _getAllTimes,
-    update,
-    create
-  }
-})()
 
-const calcAndWriteTimes = () => {
-  let isPost = false;
-  let isTags = false;
-  let isTag = true;
-  let isCategories = false;
-  let isCategorie = false;
-  let isArchives = false;
 
-  let timerAllDOM = document.querySelectorAll(".article-timer");
-
-  //页面总浏览数
-  valineAPI._getAllTimes(0).then( results => { //获取所有浏览量大于0的评论记录
-    var allTimes = 0;
-    for(let result of results) {
-      let times = result.attributes.times;
-      allTimes += times;
-    }
-    document.getElementById('allTimer').innerHTML = allTimes;
-  }).catch(error => console.log(error.message))
-
-  if(isPost || isTags || isTag || isCategories || isCategorie || isArchives) {
-    let identity = timerAllDOM[0].getAttribute("data-identity");
-    valineAPI.isExist(identity)
-    .then(exist => {
-      if(exist) {
-        return valineAPI.update(identity);
-      } else {
-        return valineAPI.create(identity);
-      }
-      return new Promise(resolve => resolve(true));
-    })
-    .then( succuess => valineAPI._get(identity))
-    .then( result => timerAllDOM[0].innerText = result[0].attributes.times)
-    .catch(error => console.log(error.message))
-    return ;
-  }
-
-  let timerDOMCache = {};
-
-  for(let timerDOM of timerAllDOM) {
-    let identity = timerDOM.getAttribute("data-identity");
-    if(identity === "index") { //首页
-      valineAPI.isExist(identity).then(exist => {
-        if(exist) {
-          return valineAPI.update(identity);
-        }
-      })
-    }
-    if(timerDOMCache.hasOwnProperty(identity)){
-      timerDOMCache[identity].dom.push(timerDOM);
-    }else{
-      timerDOMCache[identity] = {
-        dom: [timerDOM],
-        times: undefined
-      };
-    }
-  }
-
-  let identities = Object.keys(timerDOMCache);
-  valineAPI._get(identities).then(results => {
-    for(let result of results) {
-      let {identity, times} = result.attributes;
-      timerDOMCache[identity].times = times;
-      timerDOMCache[identity].dom.map(item => item.innerText = times);
-    }
-    for(let identity of identities) {
-      if(timerDOMCache[identity].times){
-        continue;
-      }
-      timerDOMCache[identity].dom.map(item => item.innerText = 1);
-      valineAPI.create(identity);
-    }
-  }).catch(error => console.log(error.message))
-
-}
-
-if(true){
-  calcAndWriteTimes();
-}
-</script>
-         
-      </h2>
+  <div class="container messageBoard-index">
+    <div class="markdown-body">
+      <h2 id="留言板"><a href="#留言板" class="headerlink" title="留言板"></a>留言板</h2>
     </div>
-  
-  
-  
-  <article class="posts-collapse">
-    <header>
-      <h2>
-        <a href="/passages/web页面加载、解析、渲染过程/">
-          <span>web 页面加载、解析、渲染过程</span>
-        </a>
-      </h2>
-      <div class="post-meta">
-        11-26
-      </div>
-    </header>
-  </article>
-  
-</div>
-  <nav class="page-navigation">
     
-    
-  </nav>
-</div>
+      <div class="comment-title"></div><i class="iconfont icon-footprint"></i> 留下足迹 <i class="iconfont icon-footprint"></i>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: "3bea67f4c16a20a5d9a2",
+    clientSecret: "d38faaf81761abcbc9f09e26fe7ee51dbb56eb70",
+    repo: "zzugbb.github.io",
+    owner: "zzugbb",
+    admin: "zzugbb",
+    id: md5(window.location.pathname),
+  });
+  gitalk.render('gitalk-container');
+</script> 
+
+
+     
+  </div>
+
+
+
 
       <div class="back-to-top hidden">
   <span>

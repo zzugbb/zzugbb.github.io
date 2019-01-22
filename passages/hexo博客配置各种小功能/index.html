@@ -115,6 +115,14 @@
           
         </li>
       
+        <li class="nav-item" data-path="/messageBoard/">
+          
+            <a href="/messageBoard/" target="_self">
+              留言板
+            </a>
+          
+        </li>
+      
         <li class="nav-item" data-path="">
           
             <a href="javascript:void(0);" v-else="">抓到我</a>
@@ -352,6 +360,8 @@
 
 
 
+
+
 <div class="container post-index">
 
   <script>
@@ -380,11 +390,11 @@
       
 
 <span>
-  <i class="fa fa-keyboard-o"></i> &nbsp;字数统计 : 1.9k 字
+  <i class="fa fa-keyboard-o"></i> &nbsp;字数统计 : 2k 字
 </span>
 
 <span>
-  <i class="fa fa-hourglass-half"></i> &nbsp;阅读时长 : 8 分
+  <i class="fa fa-hourglass-half"></i> &nbsp;阅读时长 : 9 分
 </span>
 
     
@@ -510,7 +520,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (config.canvas_nest) &#123; %&gt;</span><br><span class="line">  &lt;script type=&quot;text/javascript&quot;</span><br><span class="line">    color=&quot;0,0,255&quot; opacity=&apos;0.7&apos; zIndex=&quot;1&quot; count=&quot;99&quot; src=&quot;//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
 <p>注意：需要处理好动态背景和页面模块的 <code>z-index</code> 的值，不然有时不显示动态背景，有时页面内容无法点击。</p>
 <p>页面内容 <code>z-index</code> 值偏大，但是需要设置页面内容宽度。</p>
-<h2 id="待补充"><a href="#待补充" class="headerlink" title="待补充"></a>待补充</h2><p>留言板</p>
+<h2 id="留言板"><a href="#留言板" class="headerlink" title="留言板"></a>留言板</h2><p>生成留言板页面：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new page messageBoard</span><br></pre></td></tr></table></figure>
+<p>修改留言板页面的 <code>markdown</code> 文件(文件路径：your-blog/source/messageBoard/index.md)的内容：</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: messageBoard</span><br><span class="line">date: &lt;!-- 自动生成，无需修改 --&gt;</span><br><span class="line">type: "messageBoard"</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="section">## 留言板</span></span><br></pre></td></tr></table></figure>
+<p>查看留言板页面：浏览器中打开 <a href="http://localhost:4000/messageBoard/" target="_blank" rel="noopener">http://localhost:4000/messageBoard/</a></p>
+<p>注：type字段的值是 <code>messageBoard</code></p>
+<p>增加对此页面的解析处理：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if(page.type === &quot;messageBoard&quot;)&#123; %&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;%- page.content %&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;% if(theme.gitalk.comment)&#123; %&gt;</span><br><span class="line">    &lt;%- partial(&quot;_partial/gitalk&quot;) %&gt;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
     </div>
   </div>
   
@@ -796,46 +813,6 @@ if(true){
 </div>
 
 
-      <footer style="margin-top:20px">
-  <p class="site-info">
-    博客已萌萌哒运行<span id="time-to-now"></span><span class="my-face">(●'◡'●)ﾉ♥</span>,
-    <span> &nbsp;共计 <i style="color: #1abc9c;font-style: normal;">13.1k</i> 个字啦 ,</span>
-    
-      <span> &nbsp;文章浏览量总计为 <i id="allTimer" style="color: #1abc9c;font-style: normal;"></i> 次啦</span>
-    
-    <br>
-    Theme - <a href="https://github.com/dongyuanxin/theme-bmw">BMW</a> | Made With 💗 | Powered by <a href="https://godbmw.com/">GodBMW</a>
-    <br>
-    
-      本站所有音乐均引用自<a href="https://music.163.com/#" target="_blank"> 网易云 </a>的资源，详情可到网易云查看了解，无商业行为，若涉及版权问题请联系删除
-    
-  </p>
-</footer>
-
-
-
-<script>
-const timeToNowDOM = document.querySelector("#time-to-now");
-const startTimestamp = new Date(2018, 8, 10).getTime();
-
-const updateTimeStr = () => {
-  let offset = parseInt(
-      (new Date().getTime() - startTimestamp) / 1000,
-      10
-    ),
-    day = Math.floor(offset / 86400),
-    hour = Math.floor((offset % 86400) / 3600),
-    minute = Math.floor(((offset % 86400) % 3600) / 60),
-    second = Math.floor(((offset % 86400) % 3600) % 60);
-  timeToNowDOM.innerHTML =
-    day + "天" + hour + "小时" + minute + "分钟" + second + "秒";
-  setTimeout(updateTimeStr, 500);
-}
-
-setTimeout(updateTimeStr, 500);
-</script>
-
-
       <div class="back-to-top hidden">
   <span>
     <i class="iconfont icon-60"></i><span></span>%
@@ -916,6 +893,45 @@ document.querySelector(".back-to-top").addEventListener("click", backToTop, fals
 </script>
 
     </div>
+    <footer style="margin-top:20px">
+  <p class="site-info">
+    博客已萌萌哒运行<span id="time-to-now"></span><span class="my-face">(●'◡'●)ﾉ♥</span>,
+    <span> &nbsp;共计 <i style="color: #1abc9c;font-style: normal;">13.3k</i> 个字啦 ,</span>
+    
+      <span> &nbsp;文章浏览量总计为 <i id="allTimer" style="color: #1abc9c;font-style: normal;"></i> 次啦</span>
+    
+    <br>
+    Theme - <a href="https://github.com/dongyuanxin/theme-bmw">BMW</a> | Made With 💗 | Powered by <a href="https://godbmw.com/">GodBMW</a>
+    <br>
+    
+      本站所有音乐均引用自<a href="https://music.163.com/#" target="_blank"> 网易云 </a>的资源，详情可到网易云查看了解，无商业行为，若涉及版权问题请联系删除
+    
+  </p>
+</footer>
+
+
+
+<script>
+const timeToNowDOM = document.querySelector("#time-to-now");
+const startTimestamp = new Date(2018, 8, 10).getTime();
+
+const updateTimeStr = () => {
+  let offset = parseInt(
+      (new Date().getTime() - startTimestamp) / 1000,
+      10
+    ),
+    day = Math.floor(offset / 86400),
+    hour = Math.floor((offset % 86400) / 3600),
+    minute = Math.floor(((offset % 86400) % 3600) / 60),
+    second = Math.floor(((offset % 86400) % 3600) % 60);
+  timeToNowDOM.innerHTML =
+    day + "天" + hour + "小时" + minute + "分钟" + second + "秒";
+  setTimeout(updateTimeStr, 500);
+}
+
+setTimeout(updateTimeStr, 500);
+</script>
+
 
     
       <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>

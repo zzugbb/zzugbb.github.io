@@ -115,6 +115,14 @@
           
         </li>
       
+        <li class="nav-item" data-path="/messageBoard/">
+          
+            <a href="/messageBoard/" target="_self">
+              留言板
+            </a>
+          
+        </li>
+      
         <li class="nav-item" data-path="">
           
             <a href="javascript:void(0);" v-else="">抓到我</a>
@@ -344,6 +352,8 @@
 </script>
 
       
+
+
 
 
 
@@ -788,46 +798,6 @@ if(true){
 </div>
 
 
-      <footer style="margin-top:20px">
-  <p class="site-info">
-    博客已萌萌哒运行<span id="time-to-now"></span><span class="my-face">(●'◡'●)ﾉ♥</span>,
-    <span> &nbsp;共计 <i style="color: #1abc9c;font-style: normal;">13.1k</i> 个字啦 ,</span>
-    
-      <span> &nbsp;文章浏览量总计为 <i id="allTimer" style="color: #1abc9c;font-style: normal;"></i> 次啦</span>
-    
-    <br>
-    Theme - <a href="https://github.com/dongyuanxin/theme-bmw">BMW</a> | Made With 💗 | Powered by <a href="https://godbmw.com/">GodBMW</a>
-    <br>
-    
-      本站所有音乐均引用自<a href="https://music.163.com/#" target="_blank"> 网易云 </a>的资源，详情可到网易云查看了解，无商业行为，若涉及版权问题请联系删除
-    
-  </p>
-</footer>
-
-
-
-<script>
-const timeToNowDOM = document.querySelector("#time-to-now");
-const startTimestamp = new Date(2018, 8, 10).getTime();
-
-const updateTimeStr = () => {
-  let offset = parseInt(
-      (new Date().getTime() - startTimestamp) / 1000,
-      10
-    ),
-    day = Math.floor(offset / 86400),
-    hour = Math.floor((offset % 86400) / 3600),
-    minute = Math.floor(((offset % 86400) % 3600) / 60),
-    second = Math.floor(((offset % 86400) % 3600) % 60);
-  timeToNowDOM.innerHTML =
-    day + "天" + hour + "小时" + minute + "分钟" + second + "秒";
-  setTimeout(updateTimeStr, 500);
-}
-
-setTimeout(updateTimeStr, 500);
-</script>
-
-
       <div class="back-to-top hidden">
   <span>
     <i class="iconfont icon-60"></i><span></span>%
@@ -908,6 +878,45 @@ document.querySelector(".back-to-top").addEventListener("click", backToTop, fals
 </script>
 
     </div>
+    <footer style="margin-top:20px">
+  <p class="site-info">
+    博客已萌萌哒运行<span id="time-to-now"></span><span class="my-face">(●'◡'●)ﾉ♥</span>,
+    <span> &nbsp;共计 <i style="color: #1abc9c;font-style: normal;">13.3k</i> 个字啦 ,</span>
+    
+      <span> &nbsp;文章浏览量总计为 <i id="allTimer" style="color: #1abc9c;font-style: normal;"></i> 次啦</span>
+    
+    <br>
+    Theme - <a href="https://github.com/dongyuanxin/theme-bmw">BMW</a> | Made With 💗 | Powered by <a href="https://godbmw.com/">GodBMW</a>
+    <br>
+    
+      本站所有音乐均引用自<a href="https://music.163.com/#" target="_blank"> 网易云 </a>的资源，详情可到网易云查看了解，无商业行为，若涉及版权问题请联系删除
+    
+  </p>
+</footer>
+
+
+
+<script>
+const timeToNowDOM = document.querySelector("#time-to-now");
+const startTimestamp = new Date(2018, 8, 10).getTime();
+
+const updateTimeStr = () => {
+  let offset = parseInt(
+      (new Date().getTime() - startTimestamp) / 1000,
+      10
+    ),
+    day = Math.floor(offset / 86400),
+    hour = Math.floor((offset % 86400) / 3600),
+    minute = Math.floor(((offset % 86400) % 3600) / 60),
+    second = Math.floor(((offset % 86400) % 3600) % 60);
+  timeToNowDOM.innerHTML =
+    day + "天" + hour + "小时" + minute + "分钟" + second + "秒";
+  setTimeout(updateTimeStr, 500);
+}
+
+setTimeout(updateTimeStr, 500);
+</script>
+
 
     
       <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
