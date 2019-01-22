@@ -394,7 +394,8 @@ header {
 
 @media (max-width: 768px) {
   .pc-view {
-    display: none !important; } 
+    display: none !important; }
+} 
 
 .post-index .post {
   padding-bottom: 0; }
