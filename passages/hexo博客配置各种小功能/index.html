@@ -31,15 +31,21 @@
 
   <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <style>
+    .gt-container .gt-avatar {
+      width: 2em;
+      height: 2em;
+    }
+  </style>
+
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/base.css">
 <link rel="stylesheet" href="/icon/iconfont.css">
 <link rel="stylesheet" href="/css/github-markdown.css">
 <link rel="stylesheet" href="/css/highlight.css">
 
-  <script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+  <script src="/js/gitalk.min.js"></script>
   <script src="/js/util.js"></script>
-<script src="/js/valine.min.js"></script>
 <script src="/js/md5.min.js"></script>
   <script src="/js/clicklove.js"></script>
 
@@ -61,8 +67,9 @@
   
   <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js" async></script>
   
+
   
-    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.0/dist/av-min.js"></script>
+    <script src="/js/copy.js"></script>
   
 
 </head>
@@ -137,18 +144,6 @@
                 <li>
                   <a href="mailto:gbbaltitude@sina.com" target="_blank">
                     <i class="fa fa-envelope"> e-mail </i>
-                  </a>
-                </li>
-              
-                <li>
-                  <a href="https://weibo.com/u/3592607442" target="_blank">
-                    <i class="fa fa-weibo"> 微博 </i>
-                  </a>
-                </li>
-              
-                <li>
-                  <a href="/whoami/" target="_blank">
-                    关于我
                   </a>
                 </li>
               
@@ -366,7 +361,7 @@
 
   <script>
   (function(){
-    if(){
+    if('' !== ""){
       if (prompt('请输入文章密码') !== '') {
         alert('密码错误！');
         history.back();
@@ -376,6 +371,19 @@
 </script> 
 
 
+
+<style>
+  #app {
+    width: auto !important;
+  }
+  .post {
+    padding-top: 0px;
+  }
+
+  .post:not(:first-child)::before {
+    display: none;
+  }
+</style>
 
 <div class="post">
   <h1 class="article-title">
@@ -390,11 +398,11 @@
       
 
 <span>
-  <i class="fa fa-keyboard-o"></i> &nbsp;字数统计 : 2k 字
+  <i class="fa fa-keyboard-o"></i> &nbsp;字数统计 : 1.9k 字
 </span>
 
 <span>
-  <i class="fa fa-hourglass-half"></i> &nbsp;阅读时长 : 9 分
+  <i class="fa fa-hourglass-half"></i> &nbsp;阅读时长 : 8 分
 </span>
 
     
@@ -407,8 +415,8 @@
       </span>
     
     
-      <span>
-        <i class="iconfont icon-view"></i> &nbsp;浏览 : <span class="article-timer" data-identity="hexo博客配置各种小功能"></span>
+      <span id="busuanzi_container_page_pv">
+        <i class="iconfont icon-view"></i> &nbsp;浏览 : <span id="busuanzi_value_page_pv"></span>
       </span>
     
   </div>
@@ -475,9 +483,9 @@
 <h2 id="一键分享"><a href="#一键分享" class="headerlink" title="一键分享"></a>一键分享</h2><p><a href="https://github.com/overtrue/share.js" target="_blank" rel="noopener">一键分享</a> , 简单易用，直接引用配置即可。</p>
 <h2 id="返回顶部"><a href="#返回顶部" class="headerlink" title="返回顶部"></a>返回顶部</h2><p><a href="https://www.tuicool.com/articles/nArEni" target="_blank" rel="noopener">Hexo 博客功能扩展 - 添加回滚到顶部按钮</a></p>
 <h2 id="浏览量"><a href="#浏览量" class="headerlink" title="浏览量"></a>浏览量</h2><p>此处不做说明，需要注册提供统计功能的服务, 注册后直接使用即可。网上很多服务提供者有对应功能。<br>百度统计，谷歌统计，不蒜子统计，cnzz, leancloud 等等。</p>
-<p>本站采用的为 <a href="https://valine.js.org/" target="_blank" rel="noopener">Valine一款基于Leancloud的快速、简洁且高效的无后端评论系统</a>, 只用了其中的<code>文章阅读量统计</code>模块，评论系统采用的 <code>gitalk</code>, 原因是当时配置完评论系统后发现无法及时的接受通知，博主和评论者无法及时互联，发邮件有限制。所以切换了评论插件。不过后续发现 <a href="https://github.com/DesertsP/Valine-Admin" target="_blank" rel="noopener">Valine-Admin-Valine评论系统的扩展和增强</a> 实现评论邮件通知、评论管理、垃圾评论过滤等功能。可以对其进行修改增强即可。</p>
-<p>具体 <code>Valine</code> 如何配置，详情参考的为 <a href="https://godbmw.com/passages/2018-11-15-theme-bmw-docs-zh/#4.%20%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%20&amp;&amp;%20%E6%96%87%E7%AB%A0%E7%BB%9F%E8%AE%A1" target="_blank" rel="noopener">Theme-BMW 中文文档, 本站博客主题</a>，前人栽树后人乘凉，O(∩_∩)O哈哈~, 如果为其它主题，参考 Valine 官网即可。</p>
-<p>补充说明：主题提供的 <code>文章统计</code> 暂时只有文章的浏览量，本站对代码就行了修改添加，支持总的 <code>浏览量展示</code>。原理为将所有浏览量相加，且对分类，标签，归档，首页，等模块纳入了统计范围，综合即为 <code>网站浏览量</code>。</p>
+<p><del>本站采用的为 <a href="https://valine.js.org/" target="_blank" rel="noopener">Valine一款基于Leancloud的快速、简洁且高效的无后端评论系统</a>, 只用了其中的<code>文章阅读量统计</code>模块，评论系统采用的 <code>gitalk</code>, 原因是当时配置完评论系统后发现无法及时的接受通知，博主和评论者无法及时互联，发邮件有限制。所以切换了评论插件。不过后续发现 <a href="https://github.com/DesertsP/Valine-Admin" target="_blank" rel="noopener">Valine-Admin-Valine评论系统的扩展和增强</a> 实现评论邮件通知、评论管理、垃圾评论过滤等功能。可以对其进行修改增强即可。</del></p>
+<p><del>具体 <code>Valine</code> 如何配置，详情参考的为 <a href="https://godbmw.com/passages/2018-11-15-theme-bmw-docs-zh/#4.%20%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%20&amp;&amp;%20%E6%96%87%E7%AB%A0%E7%BB%9F%E8%AE%A1" target="_blank" rel="noopener">Theme-BMW 中文文档, 本站博客主题</a>，前人栽树后人乘凉，O(∩_∩)O哈哈~, 如果为其它主题，参考 Valine 官网即可。</del></p>
+<p>本站统计 20190312 已修改为不蒜子统计，统计数量已重置。</p>
 <h2 id="SEO"><a href="#SEO" class="headerlink" title="SEO"></a>SEO</h2><p>可以向各个搜索引擎提交自己的网站</p>
 <ul>
 <li><a href="https://ziyuan.baidu.com/linksubmit/url" target="_blank" rel="noopener">百度入口</a></li>
@@ -507,7 +515,7 @@
 <li>对应弹层逻辑编写即可</li>
 </ol>
 <h2 id="文章加密"><a href="#文章加密" class="headerlink" title="文章加密"></a>文章加密</h2><p><code>展示文章</code> 对应的 <code>ejs</code> 文件头部加入:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(&lt;%- page.password %&gt;)&#123;</span><br><span class="line">      if (prompt('请输入文章密码') !== '&lt;%- page.password %&gt;') &#123;</span><br><span class="line">        alert('密码错误！');</span><br><span class="line">        history.back();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)();</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="string">'&lt;%- page.password %&gt;'</span> !== <span class="string">""</span>)&#123;</span><br><span class="line">      <span class="keyword">if</span> (prompt(<span class="string">'请输入文章密码'</span>) !== <span class="string">'&lt;%- page.password %&gt;'</span>) &#123;</span><br><span class="line">        alert(<span class="string">'密码错误！'</span>);</span><br><span class="line">        history.back();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)();</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
 <p>文章的 <code>md</code> 源文件，头部增加配置 <code>password</code>, 即可实现</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">【置顶】hexo博客配置各种小功能</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2019</span><span class="bullet">-01</span><span class="bullet">-20</span> <span class="number">16</span><span class="string">:40:00</span></span><br><span class="line"><span class="attr">password:</span> <span class="number">12345</span></span><br></pre></td></tr></table></figure>
 <p>对应效果: <img src="/images/post/密码.png" alt=""></p>
@@ -523,7 +531,7 @@
 <h2 id="留言板"><a href="#留言板" class="headerlink" title="留言板"></a>留言板</h2><p>生成留言板页面：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new page messageBoard</span><br></pre></td></tr></table></figure>
 <p>修改留言板页面的 <code>markdown</code> 文件(文件路径：your-blog/source/messageBoard/index.md)的内容：</p>
-<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: messageBoard</span><br><span class="line">date: &lt;!-- 自动生成，无需修改 --&gt;</span><br><span class="line">type: "messageBoard"</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="section">## 留言板</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: messageBoard</span><br><span class="line">date: <span class="xml"><span class="comment">&lt;!-- 自动生成，无需修改 --&gt;</span></span></span><br><span class="line">type: "messageBoard"</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="section">## 留言板</span></span><br></pre></td></tr></table></figure>
 <p>查看留言板页面：浏览器中打开 <a href="http://localhost:4000/messageBoard/" target="_blank" rel="noopener">http://localhost:4000/messageBoard/</a></p>
 <p>注：type字段的值是 <code>messageBoard</code></p>
 <p>增加对此页面的解析处理：</p>
@@ -621,6 +629,12 @@
       </div>
     
     
+      <div class="nav-next">
+        下一篇:
+        <a href="/passages/页面可视化工具Pipeline搭建/" target="_self">页面可视化工具 Pipeline 本地搭建</a>
+        <i class="iconfont icon-next"></i>
+      </div>
+    
   </nav>
 
   
@@ -630,6 +644,7 @@
   var gitalk = new Gitalk({
     clientID: "3bea67f4c16a20a5d9a2",
     clientSecret: "d38faaf81761abcbc9f09e26fe7ee51dbb56eb70",
+    accessToken: "66eeb781baa9eb65a895f9dc4c8926e8742126a5",
     repo: "zzugbb.github.io",
     owner: "zzugbb",
     admin: "zzugbb",
@@ -640,176 +655,7 @@
 
 
    
-  
-   
 
-  
-    <script defer>
-const valineAPI = (() => {
-  try {
-    AV.init("5gmxTwVFMDWYxzhkUr6kJqCu-gzGzoHsz", "UYfK9MIPOKVB0ChdRQQ8Ddcn");
-  } catch(error) {}
-  const isExist = (identity) => {
-    identity = identity || getRealPath();
-    let query = new AV.Query('Timer');
-    return new Promise((resolve, reject) => {
-      query.equalTo("identity", identity);
-      query.find().then(results => {
-        resolve(results.length > 0);
-      }, error => reject(error));
-    })
-  }
-
-  const _get = (identity) => {
-    let query = null;
-    if(identity && identity instanceof Array){
-      let querys = [];
-      for(let i = 0; i < identity.length; ++i) {
-        querys[i] = new AV.Query('Timer');
-        querys[i].equalTo('identity', identity[i]);
-      }
-      query = AV.Query.or.apply(null ,querys);
-    } else {
-      identity = identity || getRealPath();
-      query = new AV.Query("Timer");
-      query.equalTo("identity", identity);
-    }
-
-    return new Promise((resolve, reject) => {
-      query.find()
-      .then(results => resolve(results))
-      .catch(error => reject(error))
-    })
-  }
-
-  const _getAllTimes = (identity) => {
-    let query = null;
-    query = new AV.Query("Timer");
-    query.greaterThan("times", identity);
-    
-    return new Promise((resolve, reject) => {
-      query.find()
-      .then(results => resolve(results))
-      .catch(error => reject(error))
-    })
-  }
-
-  const create = (identity) => {
-    identity = identity || getRealPath();
-    return new Promise((resolve, reject) => {
-      let Todo = AV.Object.extend('Timer');
-      let todo = new Todo();
-      todo.set("times", 1);
-      todo.set("identity", identity);
-      todo.save().then(res => resolve(true), error => reject(error));
-    })
-  }
-
-  const update = (identity) => {
-    identity = identity || getRealPath();
-    return new Promise((resolve, reject) => {
-      let query = new AV.Query('Timer');
-      query.equalTo("identity", identity);
-      query.find().then(todos => {
-        todos.forEach(todo => {
-          todo.set("times", todo.attributes.times + 1);
-        });
-        return AV.Object.saveAll(todos);
-      }).then(todos => resolve(true), error => reject(error));
-    })
-  }
-
-  return {
-    isExist,
-    _get,
-    _getAllTimes,
-    update,
-    create
-  }
-})()
-
-const calcAndWriteTimes = () => {
-  let isPost = true;
-  let isTags = false;
-  let isTag = false;
-  let isCategories = false;
-  let isCategorie = false;
-  let isArchives = false;
-  let isMessageBoard = false;
-
-  let timerAllDOM = document.querySelectorAll(".article-timer");
-
-  //页面总浏览数
-  valineAPI._getAllTimes(0).then( results => { //获取所有浏览量大于0的评论记录
-    var allTimes = 0;
-    for(let result of results) {
-      let times = result.attributes.times;
-      allTimes += times;
-    }
-    document.getElementById('allTimer').innerHTML = allTimes;
-  }).catch(error => console.log(error.message))
-
-  if(isPost || isTags || isTag || isCategories || isCategorie || isArchives || isMessageBoard) {
-    let identity = timerAllDOM[0].getAttribute("data-identity");
-    valineAPI.isExist(identity)
-    .then(exist => {
-      if(exist) {
-        return valineAPI.update(identity);
-      } else {
-        return valineAPI.create(identity);
-      }
-      return new Promise(resolve => resolve(true));
-    })
-    .then( succuess => valineAPI._get(identity))
-    .then( result => timerAllDOM[0].innerText = result[0].attributes.times)
-    .catch(error => console.log(error.message))
-    return ;
-  }
-
-  let timerDOMCache = {};
-
-  for(let timerDOM of timerAllDOM) {
-    let identity = timerDOM.getAttribute("data-identity");
-    if(identity === "index") { //首页
-      valineAPI.isExist(identity).then(exist => {
-        if(exist) {
-          return valineAPI.update(identity);
-        }
-      })
-    }
-    if(timerDOMCache.hasOwnProperty(identity)){
-      timerDOMCache[identity].dom.push(timerDOM);
-    }else{
-      timerDOMCache[identity] = {
-        dom: [timerDOM],
-        times: undefined
-      };
-    }
-  }
-
-  let identities = Object.keys(timerDOMCache);
-  valineAPI._get(identities).then(results => {
-    for(let result of results) {
-      let {identity, times} = result.attributes;
-      timerDOMCache[identity].times = times;
-      timerDOMCache[identity].dom.map(item => item.innerText = times);
-    }
-    for(let identity of identities) {
-      if(timerDOMCache[identity].times){
-        continue;
-      }
-      timerDOMCache[identity].dom.map(item => item.innerText = 1);
-      valineAPI.create(identity);
-    }
-  }).catch(error => console.log(error.message))
-
-}
-
-if(true){
-  calcAndWriteTimes();
-}
-</script>
-   
 
 </div>
 
@@ -897,9 +743,14 @@ document.querySelector(".back-to-top").addEventListener("click", backToTop, fals
     <footer style="margin-top:20px;z-index: 5;">
   <p class="site-info">
     博客已萌萌哒运行<span id="time-to-now"></span><span class="my-face">(●'◡'●)ﾉ♥</span>,
-    <span> &nbsp;共计 <i style="color: #1abc9c;font-style: normal;">13.3k</i> 个字啦 ,</span>
+    <span> &nbsp;共计 <i style="color: #1abc9c;font-style: normal;">24k</i> 个字啦</span>
+    <br>
     
-      <span> &nbsp;文章浏览量总计为 <i id="allTimer" style="color: #1abc9c;font-style: normal;"></i> 次啦</span>
+      <span id="busuanzi_container_site_pv"> 
+        <i class="fa fa-eye"></i> 文章浏览量总计为&nbsp; <i id="busuanzi_value_site_pv" style="color: #1abc9c;font-style: normal;"></i> &nbsp;次啦&nbsp; </span>
+      <span id="busuanzi_container_site_uv">
+        <i class="fa fa-paw"></i> 您是本站第&nbsp; <i id="busuanzi_value_site_uv" style="color: #1abc9c;font-style: normal;"></i> &nbsp;位访客
+      </span>
     
     <br>
     Theme - <a href="https://github.com/dongyuanxin/theme-bmw">BMW</a> | Made With 💗 | Powered by <a href="https://godbmw.com/">GodBMW</a>
@@ -932,6 +783,8 @@ const updateTimeStr = () => {
 
 setTimeout(updateTimeStr, 500);
 </script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
     

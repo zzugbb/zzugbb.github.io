@@ -31,15 +31,21 @@
 
   <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <style>
+    .gt-container .gt-avatar {
+      width: 2em;
+      height: 2em;
+    }
+  </style>
+
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/base.css">
 <link rel="stylesheet" href="/icon/iconfont.css">
 <link rel="stylesheet" href="/css/github-markdown.css">
 <link rel="stylesheet" href="/css/highlight.css">
 
-  <script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+  <script src="/js/gitalk.min.js"></script>
   <script src="/js/util.js"></script>
-<script src="/js/valine.min.js"></script>
 <script src="/js/md5.min.js"></script>
   <script src="/js/clicklove.js"></script>
 
@@ -61,8 +67,9 @@
   
   <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js" async></script>
   
+
   
-    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.0/dist/av-min.js"></script>
+    <script src="/js/copy.js"></script>
   
 
 </head>
@@ -137,18 +144,6 @@
                 <li>
                   <a href="mailto:gbbaltitude@sina.com" target="_blank">
                     <i class="fa fa-envelope"> e-mail </i>
-                  </a>
-                </li>
-              
-                <li>
-                  <a href="https://weibo.com/u/3592607442" target="_blank">
-                    <i class="fa fa-weibo"> 微博 </i>
-                  </a>
-                </li>
-              
-                <li>
-                  <a href="/whoami/" target="_blank">
-                    关于我
                   </a>
                 </li>
               
@@ -366,7 +361,7 @@
 
   <script>
   (function(){
-    if(){
+    if('' !== ""){
       if (prompt('请输入文章密码') !== '') {
         alert('密码错误！');
         history.back();
@@ -376,6 +371,19 @@
 </script> 
 
 
+
+<style>
+  #app {
+    width: auto !important;
+  }
+  .post {
+    padding-top: 0px;
+  }
+
+  .post:not(:first-child)::before {
+    display: none;
+  }
+</style>
 
 <div class="post">
   <h1 class="article-title">
@@ -407,8 +415,8 @@
       </span>
     
     
-      <span>
-        <i class="iconfont icon-view"></i> &nbsp;浏览 : <span class="article-timer" data-identity="pm2学习"></span>
+      <span id="busuanzi_container_page_pv">
+        <i class="iconfont icon-view"></i> &nbsp;浏览 : <span id="busuanzi_value_page_pv"></span>
       </span>
     
   </div>
@@ -454,9 +462,9 @@
 <li>远程控制和实时的接口API ( Nodejs 模块,允许和PM2进程管理器交互 )</li>
 </ul>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># 全局安装</span></span><br><span class="line">npm install pm2 -g</span><br></pre></td></tr></table></figure>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># start and add a process to your list</span></span><br><span class="line">pm2 start app.js</span><br><span class="line"></span><br><span class="line"><span class="section"># show your list</span></span><br><span class="line">pm2 ls</span><br><span class="line"></span><br><span class="line"><span class="section"># stop and delete a process from the list</span></span><br><span class="line"><span class="section"># Default process name is the filename without .js (eg: app for app.js).</span></span><br><span class="line"><span class="section"># Use --name or -n to change.</span></span><br><span class="line">pm2 delete app</span><br><span class="line"></span><br><span class="line"><span class="section"># stop the process (kill the process but keep it in the process list)</span></span><br><span class="line">pm2 stop app</span><br><span class="line"></span><br><span class="line"><span class="section"># start the process</span></span><br><span class="line">pm2 start app</span><br><span class="line"></span><br><span class="line"><span class="section"># both stop and start</span></span><br><span class="line">pm2 restart app</span><br><span class="line"></span><br><span class="line"><span class="section"># Use reload instead of restart for 0-seconds downtime reloads:</span></span><br><span class="line">pm2 reload app</span><br><span class="line"></span><br><span class="line"><span class="section"># Managing apps is straightforward:</span></span><br><span class="line">pm2 stop     &lt;app_name|id|'all'|json_conf&gt;</span><br><span class="line">pm2 restart  &lt;app_name|id|'all'|json_conf&gt;</span><br><span class="line">pm2 delete   &lt;app_name|id|'all'|json_conf&gt;</span><br><span class="line"></span><br><span class="line"><span class="section"># To have more details on a specific application:</span></span><br><span class="line">pm2 describe &lt;id|app_name&gt;</span><br><span class="line"></span><br><span class="line"><span class="section"># To monitor logs, custom metrics, application information:</span></span><br><span class="line">pm2 monit</span><br><span class="line"></span><br><span class="line"><span class="section"># logs</span></span><br><span class="line">pm2 logs</span><br><span class="line"></span><br><span class="line"><span class="section"># PM2 can generates and configure a Startup Script to keep PM2 and your processes alive at every server restart.</span></span><br><span class="line"><span class="section"># PM2可以生成和配置启动脚本，以在每次服务器重新启动时保持PM2和您的进程活动。</span></span><br><span class="line">$ pm2 startup   # Generate Startup Script</span><br><span class="line">$ pm2 save      # Freeze your process list across server restart</span><br><span class="line">$ pm2 unstartup # Remove Startup Script</span><br><span class="line"></span><br><span class="line"><span class="section"># Updating PM2</span></span><br><span class="line">$ npm install pm2@latest -g  # Install latest PM2 version</span><br><span class="line">$ pm2 update                 # Save process list, exit old PM2 &amp; restore all processes</span><br></pre></td></tr></table></figure>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># start and add a process to your list</span></span><br><span class="line">pm2 start app.js</span><br><span class="line"></span><br><span class="line"><span class="section"># show your list</span></span><br><span class="line">pm2 ls</span><br><span class="line"></span><br><span class="line"><span class="section"># stop and delete a process from the list</span></span><br><span class="line"><span class="section"># Default process name is the filename without .js (eg: app for app.js).</span></span><br><span class="line"><span class="section"># Use --name or -n to change.</span></span><br><span class="line">pm2 delete app</span><br><span class="line"></span><br><span class="line"><span class="section"># stop the process (kill the process but keep it in the process list)</span></span><br><span class="line">pm2 stop app</span><br><span class="line"></span><br><span class="line"><span class="section"># start the process</span></span><br><span class="line">pm2 start app</span><br><span class="line"></span><br><span class="line"><span class="section"># both stop and start</span></span><br><span class="line">pm2 restart app</span><br><span class="line"></span><br><span class="line"><span class="section"># Use reload instead of restart for 0-seconds downtime reloads:</span></span><br><span class="line">pm2 reload app</span><br><span class="line"></span><br><span class="line"><span class="section"># Managing apps is straightforward:</span></span><br><span class="line">pm2 stop     <span class="xml"><span class="tag">&lt;<span class="name">app_name|id|'all'|json_conf</span>&gt;</span></span></span><br><span class="line">pm2 restart  <span class="xml"><span class="tag">&lt;<span class="name">app_name|id|'all'|json_conf</span>&gt;</span></span></span><br><span class="line">pm2 delete   <span class="xml"><span class="tag">&lt;<span class="name">app_name|id|'all'|json_conf</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="section"># To have more details on a specific application:</span></span><br><span class="line">pm2 describe <span class="xml"><span class="tag">&lt;<span class="name">id|app_name</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="section"># To monitor logs, custom metrics, application information:</span></span><br><span class="line">pm2 monit</span><br><span class="line"></span><br><span class="line"><span class="section"># logs</span></span><br><span class="line">pm2 logs</span><br><span class="line"></span><br><span class="line"><span class="section"># PM2 can generates and configure a Startup Script to keep PM2 and your processes alive at every server restart.</span></span><br><span class="line"><span class="section"># PM2可以生成和配置启动脚本，以在每次服务器重新启动时保持PM2和您的进程活动。</span></span><br><span class="line">$ pm2 startup   # Generate Startup Script</span><br><span class="line">$ pm2 save      # Freeze your process list across server restart</span><br><span class="line">$ pm2 unstartup # Remove Startup Script</span><br><span class="line"></span><br><span class="line"><span class="section"># Updating PM2</span></span><br><span class="line">$ npm install pm2@latest -g  # Install latest PM2 version</span><br><span class="line">$ pm2 update                 # Save process list, exit old PM2 &amp; restore all processes</span><br></pre></td></tr></table></figure>
 <h2 id="命令补全"><a href="#命令补全" class="headerlink" title="命令补全"></a>命令补全</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># 后台运行pm2，启动4个app.js</span></span><br><span class="line"><span class="section"># 也可以把'max' 参数传递给 start</span></span><br><span class="line"><span class="section"># 正确的进程数目依赖于Cpu的核心数目</span></span><br><span class="line">$ pm2 start app.js -i 4</span><br><span class="line"><span class="section"># 命名进程</span></span><br><span class="line">$ pm2 start app.js --name my-api</span><br><span class="line"><span class="section"># 显示所有进程状态</span></span><br><span class="line">$ pm2 list</span><br><span class="line"><span class="section"># 监视所有进程</span></span><br><span class="line">$ pm2 monit</span><br><span class="line"><span class="section"># 显示所有进程日志</span></span><br><span class="line">$ pm2 logs</span><br><span class="line"><span class="section"># 停止所有进程</span></span><br><span class="line">$ pm2 stop all</span><br><span class="line"><span class="section"># 重启所有进程</span></span><br><span class="line">$ pm2 restart all</span><br><span class="line"><span class="section"># 0秒停机重载进程</span></span><br><span class="line">$ pm2 reload all</span><br><span class="line"><span class="section"># 停止指定的进程</span></span><br><span class="line">$ pm2 stop 0</span><br><span class="line"><span class="section"># 重启指定的进程</span></span><br><span class="line">$ pm2 restart 0</span><br><span class="line"><span class="section"># 产生init脚本保持进程活着</span></span><br><span class="line">$ pm2 startup</span><br><span class="line"><span class="section"># 运行健壮的 computer API endpoint (http:#localhost:9615)</span></span><br><span class="line">$ pm2 web</span><br><span class="line"><span class="section"># 杀死指定的进程</span></span><br><span class="line">$ pm2 delete 0</span><br><span class="line"><span class="section"># 杀死全部进程</span></span><br><span class="line">$ pm2 delete all</span><br></pre></td></tr></table></figure>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">#运行进程的不同方式：</span></span><br><span class="line"></span><br><span class="line"><span class="section"># 根据有效CPU数目启动最大进程数目</span></span><br><span class="line">$ pm2 start app.js -i max</span><br><span class="line"><span class="section"># 启动3个进程</span></span><br><span class="line">$ pm2 start app.js -i 3</span><br><span class="line"><span class="section"># 用fork模式启动app.js而不是使用 cluster</span></span><br><span class="line">$ pm2 start app.js -x</span><br><span class="line"><span class="section"># 用fork模式启动 app.js 并且传递参数 (-a 23)</span></span><br><span class="line">$ pm2 start app.js -x -- -a 23</span><br><span class="line"><span class="section"># 启动一个进程并把它命名为 serverone</span></span><br><span class="line">$ pm2 start app.js --name serverone</span><br><span class="line"><span class="section"># 停止 serverone 进程</span></span><br><span class="line">$ pm2 stop  serverone</span><br><span class="line"><span class="section"># 启动进程, 在 app.json里设置选项</span></span><br><span class="line">$ pm2 start app.json</span><br><span class="line"><span class="section"># 在--之后给 app.js 传递参数</span></span><br><span class="line">$ pm2 start app.js -i max -- -a 23</span><br><span class="line"><span class="section"># 启动 并 生成一个配置文件</span></span><br><span class="line">$ pm2 start app.js -i max -e err.log -o out.log</span><br><span class="line"><span class="section">#你也可以执行用其他语言编写的app(fork模式):</span></span><br><span class="line">$ pm2 start my-bash-script.sh -x --interpreter bash</span><br><span class="line">$ pm2 start my-python-script.py -x --interpreter python</span><br><span class="line"></span><br><span class="line"><span class="section">#集群模式：Node.js负载平衡和零停机重新加载</span></span><br><span class="line">$ pm2 start api.js -i &lt;processes&gt; # 以集群模式启动Node.js应用程序，该应用程序将利用所有可用的CPU：</span><br><span class="line">$ pm2 reload all # Zero Downtime Reload</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">#运行进程的不同方式：</span></span><br><span class="line"></span><br><span class="line"><span class="section"># 根据有效CPU数目启动最大进程数目</span></span><br><span class="line">$ pm2 start app.js -i max</span><br><span class="line"><span class="section"># 启动3个进程</span></span><br><span class="line">$ pm2 start app.js -i 3</span><br><span class="line"><span class="section"># 用fork模式启动app.js而不是使用 cluster</span></span><br><span class="line">$ pm2 start app.js -x</span><br><span class="line"><span class="section"># 用fork模式启动 app.js 并且传递参数 (-a 23)</span></span><br><span class="line">$ pm2 start app.js -x -- -a 23</span><br><span class="line"><span class="section"># 启动一个进程并把它命名为 serverone</span></span><br><span class="line">$ pm2 start app.js --name serverone</span><br><span class="line"><span class="section"># 停止 serverone 进程</span></span><br><span class="line">$ pm2 stop  serverone</span><br><span class="line"><span class="section"># 启动进程, 在 app.json里设置选项</span></span><br><span class="line">$ pm2 start app.json</span><br><span class="line"><span class="section"># 在--之后给 app.js 传递参数</span></span><br><span class="line">$ pm2 start app.js -i max -- -a 23</span><br><span class="line"><span class="section"># 启动 并 生成一个配置文件</span></span><br><span class="line">$ pm2 start app.js -i max -e err.log -o out.log</span><br><span class="line"><span class="section">#你也可以执行用其他语言编写的app(fork模式):</span></span><br><span class="line">$ pm2 start my-bash-script.sh -x --interpreter bash</span><br><span class="line">$ pm2 start my-python-script.py -x --interpreter python</span><br><span class="line"></span><br><span class="line"><span class="section">#集群模式：Node.js负载平衡和零停机重新加载</span></span><br><span class="line">$ pm2 start api.js -i <span class="xml"><span class="tag">&lt;<span class="name">processes</span>&gt;</span></span> # 以集群模式启动Node.js应用程序，该应用程序将利用所有可用的CPU：</span><br><span class="line">$ pm2 reload all # Zero Downtime Reload</span><br></pre></td></tr></table></figure>
 <h2 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h2><p>pm2 reload all # 常用于在集群模式(cluster mode)下，保持应用不停(Zero Downtime Reload)</p>
 <p>pm2 startup # 开机启动，windows使用不行，推荐 <a href="https:#www.npmjs.com/package/pm2-windows-startup" target="_blank" rel="noopener">pm2-windows-startup</a> 配合实现对应效果</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
@@ -568,6 +576,7 @@
   var gitalk = new Gitalk({
     clientID: "3bea67f4c16a20a5d9a2",
     clientSecret: "d38faaf81761abcbc9f09e26fe7ee51dbb56eb70",
+    accessToken: "66eeb781baa9eb65a895f9dc4c8926e8742126a5",
     repo: "zzugbb.github.io",
     owner: "zzugbb",
     admin: "zzugbb",
@@ -578,176 +587,7 @@
 
 
    
-  
-   
 
-  
-    <script defer>
-const valineAPI = (() => {
-  try {
-    AV.init("5gmxTwVFMDWYxzhkUr6kJqCu-gzGzoHsz", "UYfK9MIPOKVB0ChdRQQ8Ddcn");
-  } catch(error) {}
-  const isExist = (identity) => {
-    identity = identity || getRealPath();
-    let query = new AV.Query('Timer');
-    return new Promise((resolve, reject) => {
-      query.equalTo("identity", identity);
-      query.find().then(results => {
-        resolve(results.length > 0);
-      }, error => reject(error));
-    })
-  }
-
-  const _get = (identity) => {
-    let query = null;
-    if(identity && identity instanceof Array){
-      let querys = [];
-      for(let i = 0; i < identity.length; ++i) {
-        querys[i] = new AV.Query('Timer');
-        querys[i].equalTo('identity', identity[i]);
-      }
-      query = AV.Query.or.apply(null ,querys);
-    } else {
-      identity = identity || getRealPath();
-      query = new AV.Query("Timer");
-      query.equalTo("identity", identity);
-    }
-
-    return new Promise((resolve, reject) => {
-      query.find()
-      .then(results => resolve(results))
-      .catch(error => reject(error))
-    })
-  }
-
-  const _getAllTimes = (identity) => {
-    let query = null;
-    query = new AV.Query("Timer");
-    query.greaterThan("times", identity);
-    
-    return new Promise((resolve, reject) => {
-      query.find()
-      .then(results => resolve(results))
-      .catch(error => reject(error))
-    })
-  }
-
-  const create = (identity) => {
-    identity = identity || getRealPath();
-    return new Promise((resolve, reject) => {
-      let Todo = AV.Object.extend('Timer');
-      let todo = new Todo();
-      todo.set("times", 1);
-      todo.set("identity", identity);
-      todo.save().then(res => resolve(true), error => reject(error));
-    })
-  }
-
-  const update = (identity) => {
-    identity = identity || getRealPath();
-    return new Promise((resolve, reject) => {
-      let query = new AV.Query('Timer');
-      query.equalTo("identity", identity);
-      query.find().then(todos => {
-        todos.forEach(todo => {
-          todo.set("times", todo.attributes.times + 1);
-        });
-        return AV.Object.saveAll(todos);
-      }).then(todos => resolve(true), error => reject(error));
-    })
-  }
-
-  return {
-    isExist,
-    _get,
-    _getAllTimes,
-    update,
-    create
-  }
-})()
-
-const calcAndWriteTimes = () => {
-  let isPost = true;
-  let isTags = false;
-  let isTag = false;
-  let isCategories = false;
-  let isCategorie = false;
-  let isArchives = false;
-  let isMessageBoard = false;
-
-  let timerAllDOM = document.querySelectorAll(".article-timer");
-
-  //页面总浏览数
-  valineAPI._getAllTimes(0).then( results => { //获取所有浏览量大于0的评论记录
-    var allTimes = 0;
-    for(let result of results) {
-      let times = result.attributes.times;
-      allTimes += times;
-    }
-    document.getElementById('allTimer').innerHTML = allTimes;
-  }).catch(error => console.log(error.message))
-
-  if(isPost || isTags || isTag || isCategories || isCategorie || isArchives || isMessageBoard) {
-    let identity = timerAllDOM[0].getAttribute("data-identity");
-    valineAPI.isExist(identity)
-    .then(exist => {
-      if(exist) {
-        return valineAPI.update(identity);
-      } else {
-        return valineAPI.create(identity);
-      }
-      return new Promise(resolve => resolve(true));
-    })
-    .then( succuess => valineAPI._get(identity))
-    .then( result => timerAllDOM[0].innerText = result[0].attributes.times)
-    .catch(error => console.log(error.message))
-    return ;
-  }
-
-  let timerDOMCache = {};
-
-  for(let timerDOM of timerAllDOM) {
-    let identity = timerDOM.getAttribute("data-identity");
-    if(identity === "index") { //首页
-      valineAPI.isExist(identity).then(exist => {
-        if(exist) {
-          return valineAPI.update(identity);
-        }
-      })
-    }
-    if(timerDOMCache.hasOwnProperty(identity)){
-      timerDOMCache[identity].dom.push(timerDOM);
-    }else{
-      timerDOMCache[identity] = {
-        dom: [timerDOM],
-        times: undefined
-      };
-    }
-  }
-
-  let identities = Object.keys(timerDOMCache);
-  valineAPI._get(identities).then(results => {
-    for(let result of results) {
-      let {identity, times} = result.attributes;
-      timerDOMCache[identity].times = times;
-      timerDOMCache[identity].dom.map(item => item.innerText = times);
-    }
-    for(let identity of identities) {
-      if(timerDOMCache[identity].times){
-        continue;
-      }
-      timerDOMCache[identity].dom.map(item => item.innerText = 1);
-      valineAPI.create(identity);
-    }
-  }).catch(error => console.log(error.message))
-
-}
-
-if(true){
-  calcAndWriteTimes();
-}
-</script>
-   
 
 </div>
 
@@ -835,9 +675,14 @@ document.querySelector(".back-to-top").addEventListener("click", backToTop, fals
     <footer style="margin-top:20px;z-index: 5;">
   <p class="site-info">
     博客已萌萌哒运行<span id="time-to-now"></span><span class="my-face">(●'◡'●)ﾉ♥</span>,
-    <span> &nbsp;共计 <i style="color: #1abc9c;font-style: normal;">13.3k</i> 个字啦 ,</span>
+    <span> &nbsp;共计 <i style="color: #1abc9c;font-style: normal;">24k</i> 个字啦</span>
+    <br>
     
-      <span> &nbsp;文章浏览量总计为 <i id="allTimer" style="color: #1abc9c;font-style: normal;"></i> 次啦</span>
+      <span id="busuanzi_container_site_pv"> 
+        <i class="fa fa-eye"></i> 文章浏览量总计为&nbsp; <i id="busuanzi_value_site_pv" style="color: #1abc9c;font-style: normal;"></i> &nbsp;次啦&nbsp; </span>
+      <span id="busuanzi_container_site_uv">
+        <i class="fa fa-paw"></i> 您是本站第&nbsp; <i id="busuanzi_value_site_uv" style="color: #1abc9c;font-style: normal;"></i> &nbsp;位访客
+      </span>
     
     <br>
     Theme - <a href="https://github.com/dongyuanxin/theme-bmw">BMW</a> | Made With 💗 | Powered by <a href="https://godbmw.com/">GodBMW</a>
@@ -870,6 +715,8 @@ const updateTimeStr = () => {
 
 setTimeout(updateTimeStr, 500);
 </script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
     

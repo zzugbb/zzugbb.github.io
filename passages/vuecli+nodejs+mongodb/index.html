@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="author" content="高炳炳">
+  
+  
+  
+  <title>vue-cli + nodejs + mongodb 基础 | gbb</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="工程搭建,vue-cli,nodejs,mongodb,">
+  
+
+  
+    <meta name="description" content="个人博客">
+  
+
+  
+    <link rel="alternate" href="/atom.xml" title="gbb" type="application/atom+xml">
+  
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <style>
+    .gt-container .gt-avatar {
+      width: 2em;
+      height: 2em;
+    }
+  </style>
+
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/icon/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+
+  <script src="/js/gitalk.min.js"></script>
+  <script src="/js/util.js"></script>
+<script src="/js/md5.min.js"></script>
+  <script src="/js/clicklove.js"></script>
+
+  
+    <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/search.js"></script>
+  
+  
+  
+
+  
+    <link href="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js" async></script>
+  
+
+  
+    <link href="https://cdn.bootcss.com/social-share.js/1.0.16/css/share.min.css" rel="stylesheet">
+  
+  
+  <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js" async></script>
+  
+
+  
+    <script src="/js/copy.js"></script>
+  
+
+</head>
+
+  <body>
+
+    
+
+    <div id="app" style="z-index:5;">
+
+      <div class="header-wrap">
+  <header>
+    <div class="site-brand">
+      <div class="site-title">
+        <a href="/">gbb.com</a>
+      </div>
+    </div>
+    <nav class="site-navigation">
+      <ul class="nav-menu">
+      
+        <li class="nav-item" data-path="/">
+          
+            <a href="/" target="_self">
+              主页
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          
+            <a href="/archives/" target="_self">
+              归档
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="/categories/">
+          
+            <a href="/categories/" target="_self">
+              分类
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          
+            <a href="/tags/" target="_self">
+              标签
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="/messageBoard/">
+          
+            <a href="/messageBoard/" target="_self">
+              留言板
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="">
+          
+            <a href="javascript:void(0);" v-else="">抓到我</a>
+            <ul class="nav-menu--dropdown">
+              
+                <li>
+                  <a href="https://github.com/zzugbb" target="_blank">
+                    <i class="fa fa-github"> github </i>
+                  </a>
+                </li>
+              
+                <li>
+                  <a href="mailto:gbbaltitude@sina.com" target="_blank">
+                    <i class="fa fa-envelope"> e-mail </i>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+      
+      
+        <li class="nav-item search-nav pc-view" style="margin-left:0; cursor:pointer;">
+          <i class="fa fa-search"></i>
+        </li>
+        
+
+  <script type="text/javascript">
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+  </script>
+
+
+<div class="black_overlay"></div>
+<div id="site_search">
+  <div class="form-group">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <input type="text" id="local-search-input" name="q" results="0" placeholder="search" class="st-search-input st-default-search-input form-control">
+    <span class="close-icon">
+      <i class="fa fa fa-times-circle"></i>
+    </span>
+  </div>  
+  <div id="local-search-result"></div>
+</div>
+
+<style>
+.black_overlay {
+  display: none;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 1000;
+  -moz-opacity: 0.5;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+
+#site_search {
+  display: none;
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 750px;
+  height: 60%;
+  margin: auto;
+  background: #fff;
+  z-index: 9999;
+  border-radius: 5px
+}
+
+.form-group {
+  padding: 5px 0;
+  line-height: 36px;
+  background: #f5f5f5;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  text-align: left;
+}
+
+.search-icon {
+  display: inline-block;
+  font-size: 18px;
+  color: #999;
+  width: 18px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.close-icon {
+  border-left: 1px solid #eee;
+  float: right;
+  margin-right: 20px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#local-search-input {
+  padding: 5px 0;
+  height: 26px;
+  width: 87%;
+  outline: none;
+  border: none;
+  background: transparent;
+  text-indent: 15px;
+}
+
+#local-search-result {
+  text-align: left;
+  overflow: auto;
+  position: relative;
+  padding: 5px 25px;
+  height: calc(100% - 55px);
+}
+
+#local-search-result ul {
+  margin: 0 5px;
+}
+
+#local-search-result li {
+  list-style-type: disc;
+}
+
+#local-search-result li a {
+  color: #1abc9c;
+  border-bottom: 1px solid #1abc9c;
+}
+
+.search-result {
+  border-bottom: 1px dashed #ccc;
+  padding-bottom: 10px;
+  line-height: 20px;
+}
+
+.search-keyword {
+  color: red;
+}
+</style>
+
+<script>
+  $('.close-icon').click(function() {
+    $('.black_overlay').hide();
+    $('#site_search').hide();
+  })
+
+  $('.black_overlay').click(function() {
+    $('.black_overlay').hide();
+    $('#site_search').hide();
+  })
+</script>
+      
+      <li class="nav-item pc-view" style="margin-left: 0;">
+        <a href="/atom.xml" title="rss_feed">
+          <i class="fa fa-rss-square"></i>
+        </a>
+      </li>
+      </ul>
+    </nav>
+    <i class="iconfont icon-menu"></i>
+  </header>
+</div>
+<div style="position:fixed;right:0;top:0;z-index:1000" class="pc-view">
+  <a href="https://github.com/zzugbb" target="_blank">
+    <img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_white_ffffff.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1">
+  </a>
+</div>
+
+<script>
+  let links = document.querySelectorAll('.nav-item');
+  for(let link of links){
+    let childrenLink = link.querySelector('ul');
+    link.addEventListener('mouseenter', () => {
+      if(childrenLink) {
+        childrenLink.className = "nav-menu--dropdown active";
+      }
+    })
+    link.addEventListener('mouseleave', () => {
+      if(childrenLink) {
+        childrenLink.className = "nav-menu--dropdown";
+      }
+    })
+  }
+  let rootRealPath = getRealPath(window.location.pathname, true);
+  for(let link of links) {
+    let linkPath = link.getAttribute("data-path");
+    if(linkPath && getRealPath(linkPath, true) === rootRealPath) {
+      link.className = "nav-item hover";
+    }
+  }
+
+  let iconMenu = document.querySelector("i.iconfont.icon-menu"),
+    iconMenuClicked = false;
+  let navDOM = document.querySelector("nav.site-navigation");
+  iconMenu.addEventListener("click", () => {
+    iconMenuClicked 
+      ? navDOM.className = "site-navigation active"
+      : navDOM.className = "site-navigation";
+    iconMenuClicked = !iconMenuClicked;
+  })
+
+  $('.search-nav').click(function(){
+    $('.black_overlay').show();
+    $('#site_search').show();
+  })
+</script>
+
+      
+
+
+
+
+
+
+
+
+
+
+<div class="container post-index">
+
+  <script>
+  (function(){
+    if('' !== ""){
+      if (prompt('请输入文章密码') !== '') {
+        alert('密码错误！');
+        history.back();
+      }
+    }
+  })();
+</script> 
+
+
+
+<style>
+  #app {
+    width: auto !important;
+  }
+  .post {
+    padding-top: 0px;
+  }
+
+  .post:not(:first-child)::before {
+    display: none;
+  }
+</style>
+
+<div class="post">
+  <h1 class="article-title">
+    <span>vue-cli + nodejs + mongodb 基础</span>
+  </h1>
+  <div class="article-top-meta">
+    <span>
+      <i class="fa fa-calendar"></i> &nbsp;发布 : 
+      2019-04-12
+    </span>
+    
+      
+
+<span>
+  <i class="fa fa-keyboard-o"></i> &nbsp;字数统计 : 1k 字
+</span>
+
+<span>
+  <i class="fa fa-hourglass-half"></i> &nbsp;阅读时长 : 4 分
+</span>
+
+    
+    
+      <span>
+          <i class="iconfont icon-tag" style="font-size:12px;"></i> &nbsp;分类 : 
+          <a href="/categories/工程搭建/">
+            工程搭建
+          </a>
+      </span>
+    
+    
+      <span id="busuanzi_container_page_pv">
+        <i class="iconfont icon-view"></i> &nbsp;浏览 : <span id="busuanzi_value_page_pv"></span>
+      </span>
+    
+  </div>
+
+  
+    <div id="vuecli+nodejs+mongodb" style="margin: 4rem 2px"></div>
+<script async>
+  (function(){
+    let playerTimer = setInterval(function(){
+      if(!window.APlayer){
+        return
+      }
+
+      new APlayer({
+        container: document.getElementById('vuecli+nodejs+mongodb'),
+        theme: '#e96900',
+        listFolded: false,
+        audio: [{"name":"Bring Home the Glory","artist":"Sara Skinner","url":"//music.163.com/song/media/outer/url?id=1359739972.mp3","cover":"http://p2.music.126.net/TEABmwBrbQqbQ_jDTHzKAA==/109951164009032170.jpg?param=130y130"}]
+      });
+      
+      clearInterval(playerTimer)
+    }, 10);
+  })()
+</script>
+  
+
+  <div class="article-content">
+    <div class="markdown-body">
+      <h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><ul>
+<li>vue</li>
+<li>nodejs</li>
+<li>mongodb</li>
+</ul>
+<ol>
+<li><p>下载安装 <code>mongodb</code> <a href="https://www.mongodb.com/download-center/community" target="_blank" rel="noopener">mongodb下载</a><br>根据系统选择下载即可，下载 <code>.msi</code> 文件，按照提示安装即可，可以点击 <code>Custom(自定义)</code> 修改安装目录等。注: 安装过层中由于没有去掉 <code>install mongoDB compass</code> 的勾选，则会很慢，因为在下载安装这个 <code>GUI</code>.</p>
+<p>启动：<code>cd E:\mongodb\bin&gt;</code>, 输入 <code>mongo.exe</code>,发现启动失败，输入 <code>mongod.exe</code>, 发现报错原因是缺少对应文件目录。原因是 <code>MongoDB 将数据目录存储在 db 目录下。但是这个数据目录不会主动创建，我们在安装完成后需要创建它。请注意，数据目录应该放在根目录下（(如： C:\ 或者 D:\ 等 )。</code>。 这里则创建 <code>E:\data\db</code> 目录。</p>
+<p>后续：命令行 <code>cd E:\mongodb\bin&gt;</code>, 输入 <code>mongod.exe</code>, 即发现启动正常，此时使用 <code>MongoDB Compass Community————GUI</code>, 可以正常连接。</p>
+</li>
+<li><p>集成 mongodb,  <code>npm install mongoose --save</code>, 连接示例如下：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//配置mongoose</span></span><br><span class="line"><span class="keyword">var</span> mongoose = <span class="built_in">require</span>(<span class="string">"mongoose"</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">connectMongoose</span>(<span class="params">dbName</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//连接数据库，createConnection支持多个数据库的连接</span></span><br><span class="line">  <span class="keyword">var</span> db = mongoose.createConnection(<span class="string">'mongodb://localhost:27017/'</span> + dbName);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// connect 只能连接一个数据库，这里需要连接多个，不合适。</span></span><br><span class="line">  <span class="comment">// mongoose.connect("mongodb://localhost:27017/" + dbName);</span></span><br><span class="line">  <span class="comment">// const db = mongoose.connection;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">//如果连接失败会执行error回调</span></span><br><span class="line">  db.once(<span class="string">"error"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"数据库 "</span> + dbName + <span class="string">" 连接失败："</span> + error);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">//如果连接成功会执行open回调</span></span><br><span class="line">  db.once(<span class="string">"open"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"数据库 "</span> + dbName + <span class="string">" 连接成功"</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//return mongoose;</span></span><br><span class="line">  <span class="keyword">return</span> db;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>集成 nodejs (express), <code>npm install express --save</code>, 示例如下：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">var</span> bodyParser = <span class="built_in">require</span>(<span class="string">'body-parser'</span>); <span class="comment">//req.body本来为undefined, 引入此 body-parsing middleware</span></span><br><span class="line"><span class="keyword">var</span> cookieParser = <span class="built_in">require</span>(<span class="string">'cookie-parser'</span>); <span class="comment">//cookie格式化</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line">app.use(bodyParser.json()); <span class="comment">//for parsing application/json</span></span><br><span class="line">app.use(bodyParser.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">true</span> &#125;)); <span class="comment">// for parsing application/x-www-form-urlencoded</span></span><br><span class="line">app.use(cookieParser());</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置静态资源目录</span></span><br><span class="line">app.use(express.static(path.join(__dirname, <span class="string">'../dist'</span>)));</span><br><span class="line"></span><br><span class="line"><span class="comment">//所有访问，都指定返回 index.html</span></span><br><span class="line">app.get(<span class="string">'/*'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  res.sendFile(path.join(__dirname, <span class="string">'../dist'</span>, <span class="string">'index.html'</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置服务器</span></span><br><span class="line"><span class="keyword">var</span> server = app.listen(<span class="number">3000</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> host = server.address().address;</span><br><span class="line">  <span class="keyword">var</span> port = server.address().port;</span><br><span class="line">  <span class="comment">// eslint-disable-next-line no-console</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'server listening at http://%s:%s'</span>, host, port);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="后续使用"><a href="#后续使用" class="headerlink" title="后续使用"></a>后续使用</h2><ol>
+<li><p>首先为 <code>node</code> 服务收到请求，通过不同路由（也可以说是接口），连接不同的数据库，进行增删改查等等操作。</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//node服务对应文件中添加路由</span></span><br><span class="line">app.use(<span class="string">'/api/login'</span>, <span class="built_in">require</span>(<span class="string">'./routes/login'</span>));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//路由文件，后端具体路由（接口）请求数据库，调用不同的方法</span></span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">var</span> router = express.Router();</span><br><span class="line"><span class="keyword">var</span> admin = <span class="built_in">require</span>(<span class="string">'../mongodb/schemas/admin'</span>)</span><br><span class="line"></span><br><span class="line">router.post(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  admin.selectAdmin(req.body, <span class="function"><span class="keyword">function</span>(<span class="params">docs</span>) </span>&#123;</span><br><span class="line">    res.send(docs);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">module</span>.exports = router;</span><br><span class="line"></span><br><span class="line"><span class="comment">//具体对应数据库的操作，dao层</span></span><br><span class="line"><span class="keyword">var</span> connectMongoose = <span class="built_in">require</span>(<span class="string">"../mongoose"</span>).connectMongoose</span><br><span class="line"><span class="comment">//var mongoose = connectMongoose("admin");</span></span><br><span class="line"><span class="comment">//createConnection 创建的不能直接操作 schema, 仍需引入mongoose</span></span><br><span class="line"><span class="keyword">var</span> mongoose = <span class="built_in">require</span>(<span class="string">"mongoose"</span>);</span><br><span class="line"><span class="keyword">var</span> db = connectMongoose(<span class="string">"admin"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义一个 schema,描述此集合里有哪些字段，字段是什么类型</span></span><br><span class="line"><span class="comment">//只有schema中有的属性才能被保存到数据库中</span></span><br><span class="line"><span class="keyword">var</span> adminSchema = <span class="keyword">new</span> mongoose.Schema(&#123;</span><br><span class="line">  account : &#123; <span class="attr">type</span>: <span class="built_in">String</span> &#125;,</span><br><span class="line">  password : &#123; <span class="attr">type</span>: <span class="built_in">String</span> &#125;,</span><br><span class="line">  time : &#123; <span class="attr">type</span>: <span class="built_in">Date</span>, <span class="attr">default</span>: <span class="built_in">Date</span>.now &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> adminModel = db.model(<span class="string">"person"</span>, adminSchema);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectAdmin</span>(<span class="params">data, callback</span>) </span>&#123;</span><br><span class="line">  adminModel.find(&#123;</span><br><span class="line">      <span class="string">'account'</span>:  &#123;<span class="string">"$gte"</span>: data.account, <span class="string">"$lte"</span>: data.account&#125;,</span><br><span class="line">      <span class="string">'password'</span>:  &#123;<span class="string">"$gte"</span>: data.password, <span class="string">"$lte"</span>: data.password&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;<span class="attr">account</span>: <span class="number">1</span>, <span class="attr">password</span>: <span class="number">1</span>&#125;,</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">err,docs</span>) </span>&#123;</span><br><span class="line">      callback(docs);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="string">"selectAdmin"</span> : selectAdmin</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>上述 <code>node-&gt;mongodb</code> 已走通, 下述从 <code>vue-&gt;node</code> 的流程。</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//vue.config.js , 需要配置代理到node</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    proxy: &#123;</span><br><span class="line">      <span class="string">"^/api"</span>: &#123;</span><br><span class="line">        target: <span class="string">"http://localhost:3000"</span>,</span><br><span class="line">        ws: <span class="literal">true</span>,</span><br><span class="line">        changeOrigin: <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//vue 文件</span></span><br><span class="line"><span class="keyword">import</span> &#123;login&#125; <span class="keyword">from</span> <span class="string">'@/request/api'</span>;</span><br><span class="line"><span class="keyword">async</span> login(data) &#123;</span><br><span class="line">  <span class="keyword">let</span> res = <span class="keyword">await</span> login(data);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">this</span>.login(data);</span><br><span class="line"></span><br><span class="line"><span class="comment">//api.js</span></span><br><span class="line"><span class="keyword">import</span> &#123;post&#125; <span class="keyword">from</span> <span class="string">'./request'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> post(<span class="string">'/api/login'</span>, data);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//request.js</span></span><br><span class="line"><span class="comment">//此处不做粘贴，是对 `axios` 的一个封装</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>至此，<code>vue</code> 通过 <code>axios</code> 发送请求，然后被代理到 <code>node</code> 服务，通过 <code>express</code> 的 路由转发，去请求数据库做一些列操作，完成。</p>
+</li>
+</ol>
+<h2 id="上述代码见项目"><a href="#上述代码见项目" class="headerlink" title="上述代码见项目"></a>上述代码见项目</h2><p><a href="https://github.com/zzugbb/vue/tree/master/my-manage-system" target="_blank" rel="noopener">my-manage-system</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://my.oschina.net/AndyShang/blog/865875" target="_blank" rel="noopener">在vue-cli中引入mongodb数据库</a></li>
+<li><a href="https://www.cnblogs.com/web-fengmin/p/6435681.html" target="_blank" rel="noopener">mongoDB与mongoose</a></li>
+<li><a href="https://blog.csdn.net/younglao/article/details/76443726" target="_blank" rel="noopener">mongoose中connect()、createConnection()和connection的区别和作用</a></li>
+<li><a href="https://mongoosejs.com/docs/api.html#mongoose_Mongoose" target="_blank" rel="noopener">mongoose 官方 api</a></li>
+</ul>
+    </div>
+  </div>
+  
+  
+  
+    <div class="social-share" style="margin-top: 3rem" data-image="https://zzugbb.github.io/favicon.ico" data-wechat-qrcode-title="<p>微信扫一扫</p>" data-wechat-qrcode-helper="<p>微信右上角, 扫一扫分享</p>" data-sites="qzone, qq, weibo, wechat, douban, google, facebook, twitter">
+  <span style="color: #6b7487; font-size: 1.4rem;">分享到: </span>
+</div>
+<script src="https://cdn.bootcss.com/social-share.js/1.0.16/js/social-share.min.js" async></script>
+  
+
+  
+    <div id="reward">
+  
+    <p id="reward-meta">知识 & 情怀 | 二者兼得</p>
+  
+  <button id="reward-btn">
+    
+    <span>投食</span>
+  </button>
+  <div id="reward-qrcode">
+    
+      <div class="reward-qrcode--container">
+        <img class="qrcode-img" src="/images/wechat.png" alt="微信扫一扫, 向我投食">
+        <p class="qrcode-meta">微信扫一扫, 向我投食</p>
+      </div>
+    
+      <div class="reward-qrcode--container">
+        <img class="qrcode-img" src="/images/alipay.png" alt="支付宝扫一扫, 向我投食">
+        <p class="qrcode-meta">支付宝扫一扫, 向我投食</p>
+      </div>
+    
+  </div>
+
+</div>
+
+<script>
+  (() => {
+    let button = document.querySelector('#reward-btn'),
+      qrcode = document.querySelector('#reward-qrcode'),
+      display = false;
+    
+    button.addEventListener('click', () => {
+      qrcode.style.display = display ? 'none' : 'block'
+      display = !display
+    }, false)
+  })()
+</script>
+  
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+      <span>
+        
+          <i class="iconfont icon-06tags"></i>标签: 
+          
+          <span class="span--tag">
+            <a href="/tags/vue-cli/">
+              <i class="fa fa-tag"></i>vue-cli
+            </a>
+          </span>
+          
+          <span class="span--tag">
+            <a href="/tags/nodejs/">
+              <i class="fa fa-tag"></i>nodejs
+            </a>
+          </span>
+          
+          <span class="span--tag">
+            <a href="/tags/mongodb/">
+              <i class="fa fa-tag"></i>mongodb
+            </a>
+          </span>
+          
+        
+      </span>
+    </div>
+    <div class="article-meta pull-right">
+    </div>
+  </div>
+</div>
+
+
+  <aside id="sidebar">
+    <p id="sidebar-header"></p>
+    <ol id="sidebar-toc"></ol>
+  </aside>
+  <script async>setTimeout(generateToc, 10);</script>
+
+
+  <nav class="post-navigation">
+    
+      <div class="nav-pre">
+        <i class="iconfont icon-prev"></i>
+        上一篇:
+        <a href="/passages/20190327个人手记/" target="_self">个人手记（一）</a>
+      </div>
+    
+    
+      <div class="nav-next">
+        下一篇:
+        <a href="/passages/websocket/" target="_self">WebSocket</a>
+        <i class="iconfont icon-next"></i>
+      </div>
+    
+  </nav>
+
+  
+    <div class="comment-title"></div><i class="iconfont icon-footprint"></i> 留下足迹 <i class="iconfont icon-footprint"></i>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: "3bea67f4c16a20a5d9a2",
+    clientSecret: "d38faaf81761abcbc9f09e26fe7ee51dbb56eb70",
+    accessToken: "66eeb781baa9eb65a895f9dc4c8926e8742126a5",
+    repo: "zzugbb.github.io",
+    owner: "zzugbb",
+    admin: "zzugbb",
+    id: md5(window.location.pathname),
+  });
+  gitalk.render('gitalk-container');
+</script> 
+
+
+   
+
+
+</div>
+
+
+      <div class="back-to-top hidden">
+  <span>
+    <i class="iconfont icon-60"></i><span></span>%
+  </span>
+</div>
+
+<script>
+const updateIconToTop = percent => {
+  let dom = document.querySelector(".back-to-top span span");
+  dom.innerText = percent;
+  if(percent < 1) {
+    document.querySelector(".back-to-top").className = "back-to-top hidden";
+  } else {
+    document.querySelector(".back-to-top").className = "back-to-top";
+  }
+}
+
+const handleScoll = () => {
+  let isRunning = false;
+  return () => {
+    if (isRunning) return;
+    isRunning = true;
+    window.requestAnimationFrame(timestamp => {
+      let scrollTop =
+          document.documentElement.scrollTop || document.body.scrollTop,
+        scrollHeight =
+          document.documentElement.scrollHeight ||
+          document.body.scrollHeight,
+        clientHeight =
+          document.documentElement.clientHeight ||
+          document.body.clientHeight;
+      isRunning = false;
+      if (scrollTop <= 1) {
+        updateIconToTop(0);
+        return;
+      }
+      if (scrollTop + clientHeight >= scrollHeight) {
+        updateIconToTop(100);
+      } else {
+        updateIconToTop(parseInt(
+          100 * scrollTop / (scrollHeight - clientHeight),
+          10
+        ));
+      }
+    });
+  };
+}
+
+const backToTop = () => {
+  let scrollTop =
+      document.documentElement.scrollTop || document.body.scrollTop,
+    delay = 10,
+    time = 200;
+  if (scrollTop <= 20) {
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    return;
+  }
+  let step = Math.ceil(scrollTop * delay / time);
+  let timer = setInterval(() => {
+    scrollTop =
+      document.documentElement.scrollTop || document.body.scrollTop;
+    if (scrollTop - step <= 0) {
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      clearInterval(timer);
+    } else {
+      document.documentElement.scrollTop = scrollTop - step;
+      document.body.scrollTop = scrollTop - step;
+    }
+  }, delay);
+}
+
+document.addEventListener("scroll", handleScoll(), false);
+
+document.querySelector(".back-to-top").addEventListener("click", backToTop, false);
+
+</script>
+
+    </div>
+    <footer style="margin-top:20px;z-index: 5;">
+  <p class="site-info">
+    博客已萌萌哒运行<span id="time-to-now"></span><span class="my-face">(●'◡'●)ﾉ♥</span>,
+    <span> &nbsp;共计 <i style="color: #1abc9c;font-style: normal;">24k</i> 个字啦</span>
+    <br>
+    
+      <span id="busuanzi_container_site_pv"> 
+        <i class="fa fa-eye"></i> 文章浏览量总计为&nbsp; <i id="busuanzi_value_site_pv" style="color: #1abc9c;font-style: normal;"></i> &nbsp;次啦&nbsp; </span>
+      <span id="busuanzi_container_site_uv">
+        <i class="fa fa-paw"></i> 您是本站第&nbsp; <i id="busuanzi_value_site_uv" style="color: #1abc9c;font-style: normal;"></i> &nbsp;位访客
+      </span>
+    
+    <br>
+    Theme - <a href="https://github.com/dongyuanxin/theme-bmw">BMW</a> | Made With 💗 | Powered by <a href="https://godbmw.com/">GodBMW</a>
+    <br>
+    
+      本站所有音乐均引用自<a href="https://music.163.com/#" target="_blank"> 网易云 </a>的资源，详情可到网易云查看了解，无商业行为，若涉及版权问题请联系删除
+    
+  </p>
+</footer>
+
+
+
+<script>
+const timeToNowDOM = document.querySelector("#time-to-now");
+const startTimestamp = new Date(2018, 8, 10).getTime();
+
+const updateTimeStr = () => {
+  let offset = parseInt(
+      (new Date().getTime() - startTimestamp) / 1000,
+      10
+    ),
+    day = Math.floor(offset / 86400),
+    hour = Math.floor((offset % 86400) / 3600),
+    minute = Math.floor(((offset % 86400) % 3600) / 60),
+    second = Math.floor(((offset % 86400) % 3600) % 60);
+  timeToNowDOM.innerHTML =
+    day + "天" + hour + "小时" + minute + "分钟" + second + "秒";
+  setTimeout(updateTimeStr, 500);
+}
+
+setTimeout(updateTimeStr, 500);
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+<script>
+  (() => {
+    const mathjaxConfig = {
+      showProcessingMessages: false, //关闭js加载过程信息
+      messageStyle: "none", //不显示信息
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+      }
+    }
+
+    let mathjaxInterval = setInterval(() => {
+      if(!window.MathJax){
+        return;
+      }
+      window.MathJax.Hub.Config(mathjaxConfig)
+      window.MathJax.Hub.Queue(["Typeset", MathJax.Hub, document.getElementById('app')])
+
+      clearInterval(mathjaxInterval)
+    }, 10)    
+  })()
+</script>
+    
+
+    <script src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script>
+<script async>
+  let fancyTimer = setInterval(function(){
+    if(!window.$){
+      return;
+    }
+    $(document).ready(function() {
+      $(".post img").each(function () {
+        if($(this).parent().get(0).tagName.toLowerCase() === "a") {
+          return;
+        }
+        // $(this).attr("data-fancybox", "gallery"); // if you add 'data-fancybox', img will display after showed
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "gallery");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      });
+      
+      clearInterval(fancyTimer);
+    });
+  }, 10);
+</script>
+
+    
+    
+      <script type="text/javascript"
+      color="0,0,255" opacity='0.7' zIndex="1" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+    
+  <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":180,"hOffset":-60,"vOffset":-60},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.4,"opacityOnHover":0.2},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>

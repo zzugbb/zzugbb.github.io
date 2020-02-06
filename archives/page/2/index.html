@@ -31,15 +31,21 @@
 
   <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <style>
+    .gt-container .gt-avatar {
+      width: 2em;
+      height: 2em;
+    }
+  </style>
+
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/base.css">
 <link rel="stylesheet" href="/icon/iconfont.css">
 <link rel="stylesheet" href="/css/github-markdown.css">
 <link rel="stylesheet" href="/css/highlight.css">
 
-  <script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+  <script src="/js/gitalk.min.js"></script>
   <script src="/js/util.js"></script>
-<script src="/js/valine.min.js"></script>
 <script src="/js/md5.min.js"></script>
   <script src="/js/clicklove.js"></script>
 
@@ -61,8 +67,9 @@
   
   <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js" async></script>
   
+
   
-    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.0/dist/av-min.js"></script>
+    <script src="/js/copy.js"></script>
   
 
 </head>
@@ -137,18 +144,6 @@
                 <li>
                   <a href="mailto:gbbaltitude@sina.com" target="_blank">
                     <i class="fa fa-envelope"> e-mail </i>
-                  </a>
-                </li>
-              
-                <li>
-                  <a href="https://weibo.com/u/3592607442" target="_blank">
-                    <i class="fa fa-weibo"> 微博 </i>
-                  </a>
-                </li>
-              
-                <li>
-                  <a href="/whoami/" target="_blank">
-                    关于我
                   </a>
                 </li>
               
@@ -356,182 +351,14 @@
   <span class="archive-move-on"></span>
   <span class="archive-page-counter">
     
-      <span>Wow! 一共有 17 篇文章</span>
-      <span class="article-timer" data-identity="archives" style="display: none"></span>
-      
-        <script defer>
-const valineAPI = (() => {
-  try {
-    AV.init("5gmxTwVFMDWYxzhkUr6kJqCu-gzGzoHsz", "UYfK9MIPOKVB0ChdRQQ8Ddcn");
-  } catch(error) {}
-  const isExist = (identity) => {
-    identity = identity || getRealPath();
-    let query = new AV.Query('Timer');
-    return new Promise((resolve, reject) => {
-      query.equalTo("identity", identity);
-      query.find().then(results => {
-        resolve(results.length > 0);
-      }, error => reject(error));
-    })
-  }
-
-  const _get = (identity) => {
-    let query = null;
-    if(identity && identity instanceof Array){
-      let querys = [];
-      for(let i = 0; i < identity.length; ++i) {
-        querys[i] = new AV.Query('Timer');
-        querys[i].equalTo('identity', identity[i]);
-      }
-      query = AV.Query.or.apply(null ,querys);
-    } else {
-      identity = identity || getRealPath();
-      query = new AV.Query("Timer");
-      query.equalTo("identity", identity);
-    }
-
-    return new Promise((resolve, reject) => {
-      query.find()
-      .then(results => resolve(results))
-      .catch(error => reject(error))
-    })
-  }
-
-  const _getAllTimes = (identity) => {
-    let query = null;
-    query = new AV.Query("Timer");
-    query.greaterThan("times", identity);
-    
-    return new Promise((resolve, reject) => {
-      query.find()
-      .then(results => resolve(results))
-      .catch(error => reject(error))
-    })
-  }
-
-  const create = (identity) => {
-    identity = identity || getRealPath();
-    return new Promise((resolve, reject) => {
-      let Todo = AV.Object.extend('Timer');
-      let todo = new Todo();
-      todo.set("times", 1);
-      todo.set("identity", identity);
-      todo.save().then(res => resolve(true), error => reject(error));
-    })
-  }
-
-  const update = (identity) => {
-    identity = identity || getRealPath();
-    return new Promise((resolve, reject) => {
-      let query = new AV.Query('Timer');
-      query.equalTo("identity", identity);
-      query.find().then(todos => {
-        todos.forEach(todo => {
-          todo.set("times", todo.attributes.times + 1);
-        });
-        return AV.Object.saveAll(todos);
-      }).then(todos => resolve(true), error => reject(error));
-    })
-  }
-
-  return {
-    isExist,
-    _get,
-    _getAllTimes,
-    update,
-    create
-  }
-})()
-
-const calcAndWriteTimes = () => {
-  let isPost = false;
-  let isTags = false;
-  let isTag = false;
-  let isCategories = false;
-  let isCategorie = false;
-  let isArchives = true;
-  let isMessageBoard = false;
-
-  let timerAllDOM = document.querySelectorAll(".article-timer");
-
-  //页面总浏览数
-  valineAPI._getAllTimes(0).then( results => { //获取所有浏览量大于0的评论记录
-    var allTimes = 0;
-    for(let result of results) {
-      let times = result.attributes.times;
-      allTimes += times;
-    }
-    document.getElementById('allTimer').innerHTML = allTimes;
-  }).catch(error => console.log(error.message))
-
-  if(isPost || isTags || isTag || isCategories || isCategorie || isArchives || isMessageBoard) {
-    let identity = timerAllDOM[0].getAttribute("data-identity");
-    valineAPI.isExist(identity)
-    .then(exist => {
-      if(exist) {
-        return valineAPI.update(identity);
-      } else {
-        return valineAPI.create(identity);
-      }
-      return new Promise(resolve => resolve(true));
-    })
-    .then( succuess => valineAPI._get(identity))
-    .then( result => timerAllDOM[0].innerText = result[0].attributes.times)
-    .catch(error => console.log(error.message))
-    return ;
-  }
-
-  let timerDOMCache = {};
-
-  for(let timerDOM of timerAllDOM) {
-    let identity = timerDOM.getAttribute("data-identity");
-    if(identity === "index") { //首页
-      valineAPI.isExist(identity).then(exist => {
-        if(exist) {
-          return valineAPI.update(identity);
-        }
-      })
-    }
-    if(timerDOMCache.hasOwnProperty(identity)){
-      timerDOMCache[identity].dom.push(timerDOM);
-    }else{
-      timerDOMCache[identity] = {
-        dom: [timerDOM],
-        times: undefined
-      };
-    }
-  }
-
-  let identities = Object.keys(timerDOMCache);
-  valineAPI._get(identities).then(results => {
-    for(let result of results) {
-      let {identity, times} = result.attributes;
-      timerDOMCache[identity].times = times;
-      timerDOMCache[identity].dom.map(item => item.innerText = times);
-    }
-    for(let identity of identities) {
-      if(timerDOMCache[identity].times){
-        continue;
-      }
-      timerDOMCache[identity].dom.map(item => item.innerText = 1);
-      valineAPI.create(identity);
-    }
-  }).catch(error => console.log(error.message))
-
-}
-
-if(true){
-  calcAndWriteTimes();
-}
-</script>
-       
+      <span>Wow! 一共有 33 篇文章</span>
     
   </span>
   
   
     <div class="collection-title">
       <h2>
-        <span>2018</span>
+        <span>2019</span>
       </h2>
     </div>
   
@@ -540,12 +367,12 @@ if(true){
   <article class="posts-collapse">
     <header>
       <h2>
-        <a href="/passages/react-router问题/">
-          <span>react-router 之 HashRouter & BrowserRouter</span>
+        <a href="/passages/单元测试-Mocha/">
+          <span>Mocha-单元测试</span>
         </a>
       </h2>
       <div class="post-meta">
-        10-16
+        02-28
       </div>
     </header>
   </article>
@@ -554,12 +381,12 @@ if(true){
   <article class="posts-collapse">
     <header>
       <h2>
-        <a href="/passages/react-router页面跳转/">
-          <span>react-router 页面跳转</span>
+        <a href="/passages/Travis CI/">
+          <span>Travis CI (持续集成)</span>
         </a>
       </h2>
       <div class="post-meta">
-        10-10
+        02-26
       </div>
     </header>
   </article>
@@ -568,12 +395,12 @@ if(true){
   <article class="posts-collapse">
     <header>
       <h2>
-        <a href="/passages/react-css/">
-          <span>react-css-loader</span>
+        <a href="/passages/面试常见问题（一）/">
+          <span>面试常见问题（一）</span>
         </a>
       </h2>
       <div class="post-meta">
-        09-26
+        02-26
       </div>
     </header>
   </article>
@@ -582,12 +409,12 @@ if(true){
   <article class="posts-collapse">
     <header>
       <h2>
-        <a href="/passages/es6-async/">
-          <span>axios请求之异步处理</span>
+        <a href="/passages/Vue生命周期/">
+          <span>Vue生命周期</span>
         </a>
       </h2>
       <div class="post-meta">
-        09-20
+        02-22
       </div>
     </header>
   </article>
@@ -596,12 +423,12 @@ if(true){
   <article class="posts-collapse">
     <header>
       <h2>
-        <a href="/passages/gulp&grunt/">
-          <span>Gulp && Grunt</span>
+        <a href="/passages/编程方式/">
+          <span>编程范式</span>
         </a>
       </h2>
       <div class="post-meta">
-        08-04
+        01-30
       </div>
     </header>
   </article>
@@ -610,12 +437,12 @@ if(true){
   <article class="posts-collapse">
     <header>
       <h2>
-        <a href="/passages/log4js/">
-          <span>log4js</span>
+        <a href="/passages/页面可视化工具Pipeline搭建/">
+          <span>页面可视化工具 Pipeline 本地搭建</span>
         </a>
       </h2>
       <div class="post-meta">
-        07-28
+        01-23
       </div>
     </header>
   </article>
@@ -624,12 +451,60 @@ if(true){
   <article class="posts-collapse">
     <header>
       <h2>
-        <a href="/passages/FIS3&&webpack/">
-          <span>Fis3 && webpack</span>
+        <a href="/passages/hexo博客配置各种小功能/">
+          <span>【置顶】hexo博客配置各种小功能</span>
         </a>
       </h2>
       <div class="post-meta">
-        05-13
+        01-20
+      </div>
+    </header>
+  </article>
+  
+  
+    <div class="collection-title">
+      <h2>
+        <span>2018</span>
+      </h2>
+    </div>
+  
+  <article class="posts-collapse">
+    <header>
+      <h2>
+        <a href="/passages/k8s命令备忘/">
+          <span>k8s 命令备忘</span>
+        </a>
+      </h2>
+      <div class="post-meta">
+        12-17
+      </div>
+    </header>
+  </article>
+  
+  
+  <article class="posts-collapse">
+    <header>
+      <h2>
+        <a href="/passages/k8s各模块关系/">
+          <span>k8s 各模块关系</span>
+        </a>
+      </h2>
+      <div class="post-meta">
+        12-07
+      </div>
+    </header>
+  </article>
+  
+  
+  <article class="posts-collapse">
+    <header>
+      <h2>
+        <a href="/passages/linux常用命令/">
+          <span>linux常用命令</span>
+        </a>
+      </h2>
+      <div class="post-meta">
+        12-06
       </div>
     </header>
   </article>
@@ -639,6 +514,8 @@ if(true){
     
       <a href="/archives/">上一页</a>
     
+    
+      <a href="/archives/page/3/">下一页</a>
     
   </nav>
 </div>
@@ -726,9 +603,14 @@ document.querySelector(".back-to-top").addEventListener("click", backToTop, fals
     <footer style="margin-top:20px;z-index: 5;">
   <p class="site-info">
     博客已萌萌哒运行<span id="time-to-now"></span><span class="my-face">(●'◡'●)ﾉ♥</span>,
-    <span> &nbsp;共计 <i style="color: #1abc9c;font-style: normal;">13.3k</i> 个字啦 ,</span>
+    <span> &nbsp;共计 <i style="color: #1abc9c;font-style: normal;">24k</i> 个字啦</span>
+    <br>
     
-      <span> &nbsp;文章浏览量总计为 <i id="allTimer" style="color: #1abc9c;font-style: normal;"></i> 次啦</span>
+      <span id="busuanzi_container_site_pv"> 
+        <i class="fa fa-eye"></i> 文章浏览量总计为&nbsp; <i id="busuanzi_value_site_pv" style="color: #1abc9c;font-style: normal;"></i> &nbsp;次啦&nbsp; </span>
+      <span id="busuanzi_container_site_uv">
+        <i class="fa fa-paw"></i> 您是本站第&nbsp; <i id="busuanzi_value_site_uv" style="color: #1abc9c;font-style: normal;"></i> &nbsp;位访客
+      </span>
     
     <br>
     Theme - <a href="https://github.com/dongyuanxin/theme-bmw">BMW</a> | Made With 💗 | Powered by <a href="https://godbmw.com/">GodBMW</a>
@@ -761,6 +643,8 @@ const updateTimeStr = () => {
 
 setTimeout(updateTimeStr, 500);
 </script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
     

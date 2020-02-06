@@ -31,15 +31,21 @@
 
   <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <style>
+    .gt-container .gt-avatar {
+      width: 2em;
+      height: 2em;
+    }
+  </style>
+
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/base.css">
 <link rel="stylesheet" href="/icon/iconfont.css">
 <link rel="stylesheet" href="/css/github-markdown.css">
 <link rel="stylesheet" href="/css/highlight.css">
 
-  <script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+  <script src="/js/gitalk.min.js"></script>
   <script src="/js/util.js"></script>
-<script src="/js/valine.min.js"></script>
 <script src="/js/md5.min.js"></script>
   <script src="/js/clicklove.js"></script>
 
@@ -61,8 +67,9 @@
   
   <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js" async></script>
   
+
   
-    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.0/dist/av-min.js"></script>
+    <script src="/js/copy.js"></script>
   
 
 </head>
@@ -137,18 +144,6 @@
                 <li>
                   <a href="mailto:gbbaltitude@sina.com" target="_blank">
                     <i class="fa fa-envelope"> e-mail </i>
-                  </a>
-                </li>
-              
-                <li>
-                  <a href="https://weibo.com/u/3592607442" target="_blank">
-                    <i class="fa fa-weibo"> 微博 </i>
-                  </a>
-                </li>
-              
-                <li>
-                  <a href="/whoami/" target="_blank">
-                    关于我
                   </a>
                 </li>
               
@@ -353,7 +348,6 @@
 
       
 <div class="container home-index">
-  <span class="article-timer" data-identity="index" style="display: none"></span>
   
   <div class="post">
     <h1 class="article-title">
@@ -380,11 +374,11 @@
           </a>
         </span>
       
-      
+      <!-- 
         <span>
           浏览 : <span class="article-timer" data-identity="hexo博客配置各种小功能"></span>
         </span>
-      
+       -->
     </div>
     
       <div id="hexo博客配置各种小功能" style="margin: 4rem 2px -1rem"></div>
@@ -445,9 +439,9 @@
       </div>
       
         <div class="article-meta pull-right">
-          <span class="pc-view">
+          <!-- <span class="pc-view">
             <i class="iconfont icon-view"></i>浏览: <span class="article-timer" data-identity="hexo博客配置各种小功能"></span>
-          </span>
+          </span> -->
           <span class="pc-view">
             <a href="/passages/hexo博客配置各种小功能/" class="more-preview" style="
                 padding: 2px 4px;
@@ -475,60 +469,40 @@
   
   <div class="post">
     <h1 class="article-title">
-      <a href="/passages/k8s命令备忘/">
-        <span>k8s 命令备忘</span>
+      <a href="/passages/20190902从0搭建springboot工程/">
+        <span>从零搭建 Spring boot 工程</span>
       </a>
     </h1>
     <!-- PC端文章信息 -->
     <div class="article-top-meta pc-view">
       <span>
-        <i class="fa fa-calendar"></i> &nbsp;发布时间 : 2018-12-17
+        <i class="fa fa-calendar"></i> &nbsp;发布时间 : 2019-09-02
       </span>
     </div>
     <!-- 移动端文章信息 -->
     <div class="article-top-meta mobile-view">
       <span>
-        发布 : 2018-12-17
+        发布 : 2019-09-02
       </span>
       
         <span>
         分类 :
-          <a href="/categories/工程部署/">
-            工程部署
+          <a href="/categories/工程搭建/">
+            工程搭建
           </a>
         </span>
       
-      
+      <!-- 
         <span>
-          浏览 : <span class="article-timer" data-identity="k8s命令备忘"></span>
+          浏览 : <span class="article-timer" data-identity="20190902从0搭建springboot工程"></span>
         </span>
-      
+       -->
     </div>
-    
-      <div id="k8s命令备忘" style="margin: 4rem 2px -1rem"></div>
-<script async>
-  (function(){
-    let playerTimer = setInterval(function(){
-      if(!window.APlayer){
-        return
-      }
-
-      new APlayer({
-        container: document.getElementById('k8s命令备忘'),
-        theme: '#e96900',
-        listFolded: false,
-        audio: [{"name":"追光者","artist":"岑宁儿","url":"//music.163.com/song/media/outer/url?id=483671599.mp3","cover":"http://p2.music.126.net/ZZAQGWl9mR7g5xCyWWH3Pw==/19149094509535913.jpg?param=130y130"},{"name":"RISE","artist":"The Glitch Mob / Mako / The Word Alive","url":"//music.163.com/song/media/outer/url?id=1313107065.mp3","cover":"http://p2.music.126.net/XLulJwVbfowNQhATCt809g==/109951163573081067.jpg?param=130y130"}]
-      });
-      
-      clearInterval(playerTimer)
-    }, 10);
-  })()
-</script>
     
     <!-- 文章简介 -->
     <div class="article-content">
       <div class="markdown-body article-content--inner" v-html="mdToHtml(psg.summary)">
-        <p><code>k8s</code> 命令备忘</p>
+        <p>从零搭建 Spring boot 工程, 小白搭建后端工程记录。</p>
       </div>
     </div>
     <div class="article-footer">
@@ -537,8 +511,8 @@
         <span class="pc-view">
           
             <i class="iconfont icon-tag"></i>分类:
-            <a href="/categories/工程部署/">
-              工程部署
+            <a href="/categories/工程搭建/">
+              工程搭建
             </a>
           </span>
           
@@ -547,14 +521,14 @@
             <i class="iconfont icon-06tags"></i>标签:
             
               <span class="span--tag">
-                <a href="/tags/k8s/">
-                  <i class="fa fa-tag"></i>k8s
+                <a href="/tags/spring/">
+                  <i class="fa fa-tag"></i>spring
                 </a>
               </span>
             
               <span class="span--tag">
-                <a href="/tags/kubectl/">
-                  <i class="fa fa-tag"></i>kubectl
+                <a href="/tags/工程搭建/">
+                  <i class="fa fa-tag"></i>工程搭建
                 </a>
               </span>
             
@@ -563,11 +537,11 @@
       </div>
       
         <div class="article-meta pull-right">
+          <!-- <span class="pc-view">
+            <i class="iconfont icon-view"></i>浏览: <span class="article-timer" data-identity="20190902从0搭建springboot工程"></span>
+          </span> -->
           <span class="pc-view">
-            <i class="iconfont icon-view"></i>浏览: <span class="article-timer" data-identity="k8s命令备忘"></span>
-          </span>
-          <span class="pc-view">
-            <a href="/passages/k8s命令备忘/" class="more-preview" style="
+            <a href="/passages/20190902从0搭建springboot工程/" class="more-preview" style="
                 padding: 2px 4px;
                 -webkit-border-radius: 2px;
                 -moz-border-radius: 2px;
@@ -593,60 +567,40 @@
   
   <div class="post">
     <h1 class="article-title">
-      <a href="/passages/k8s各模块关系/">
-        <span>k8s 各模块关系</span>
+      <a href="/passages/20190826Spring常识/">
+        <span>Spring 相关常识</span>
       </a>
     </h1>
     <!-- PC端文章信息 -->
     <div class="article-top-meta pc-view">
       <span>
-        <i class="fa fa-calendar"></i> &nbsp;发布时间 : 2018-12-07
+        <i class="fa fa-calendar"></i> &nbsp;发布时间 : 2019-08-26
       </span>
     </div>
     <!-- 移动端文章信息 -->
     <div class="article-top-meta mobile-view">
       <span>
-        发布 : 2018-12-07
+        发布 : 2019-08-26
       </span>
       
         <span>
         分类 :
-          <a href="/categories/工程部署/">
-            工程部署
+          <a href="/categories/spring/">
+            spring
           </a>
         </span>
       
-      
+      <!-- 
         <span>
-          浏览 : <span class="article-timer" data-identity="k8s各模块关系"></span>
+          浏览 : <span class="article-timer" data-identity="20190826Spring常识"></span>
         </span>
-      
+       -->
     </div>
-    
-      <div id="k8s各模块关系" style="margin: 4rem 2px -1rem"></div>
-<script async>
-  (function(){
-    let playerTimer = setInterval(function(){
-      if(!window.APlayer){
-        return
-      }
-
-      new APlayer({
-        container: document.getElementById('k8s各模块关系'),
-        theme: '#e96900',
-        listFolded: false,
-        audio: [{"name":"一百万个可能","artist":"Christine Welch","url":"//music.163.com/song/media/outer/url?id=29722582.mp3","cover":"http://p1.music.126.net/SSGt30LAVJwW31-qreZDFA==/2532175280446455.jpg?param=130y130"}]
-      });
-      
-      clearInterval(playerTimer)
-    }, 10);
-  })()
-</script>
     
     <!-- 文章简介 -->
     <div class="article-content">
       <div class="markdown-body article-content--inner" v-html="mdToHtml(psg.summary)">
-        <p>简单介绍 <code>k8s</code> 各模块关系</p>
+        <p>关于 spring 的一些常识</p>
       </div>
     </div>
     <div class="article-footer">
@@ -655,8 +609,8 @@
         <span class="pc-view">
           
             <i class="iconfont icon-tag"></i>分类:
-            <a href="/categories/工程部署/">
-              工程部署
+            <a href="/categories/spring/">
+              spring
             </a>
           </span>
           
@@ -665,14 +619,8 @@
             <i class="iconfont icon-06tags"></i>标签:
             
               <span class="span--tag">
-                <a href="/tags/k8s/">
-                  <i class="fa fa-tag"></i>k8s
-                </a>
-              </span>
-            
-              <span class="span--tag">
-                <a href="/tags/Deployment-ReplicaSet-Service-pod/">
-                  <i class="fa fa-tag"></i>Deployment/ReplicaSet/Service/pod
+                <a href="/tags/spring/">
+                  <i class="fa fa-tag"></i>spring
                 </a>
               </span>
             
@@ -681,11 +629,11 @@
       </div>
       
         <div class="article-meta pull-right">
+          <!-- <span class="pc-view">
+            <i class="iconfont icon-view"></i>浏览: <span class="article-timer" data-identity="20190826Spring常识"></span>
+          </span> -->
           <span class="pc-view">
-            <i class="iconfont icon-view"></i>浏览: <span class="article-timer" data-identity="k8s各模块关系"></span>
-          </span>
-          <span class="pc-view">
-            <a href="/passages/k8s各模块关系/" class="more-preview" style="
+            <a href="/passages/20190826Spring常识/" class="more-preview" style="
                 padding: 2px 4px;
                 -webkit-border-radius: 2px;
                 -moz-border-radius: 2px;
@@ -711,60 +659,40 @@
   
   <div class="post">
     <h1 class="article-title">
-      <a href="/passages/linux常用命令/">
-        <span>linux常用命令</span>
+      <a href="/passages/20190710版权固定底部/">
+        <span>JavaScript 实现版权信息固定在页面底部</span>
       </a>
     </h1>
     <!-- PC端文章信息 -->
     <div class="article-top-meta pc-view">
       <span>
-        <i class="fa fa-calendar"></i> &nbsp;发布时间 : 2018-12-06
+        <i class="fa fa-calendar"></i> &nbsp;发布时间 : 2019-07-10
       </span>
     </div>
     <!-- 移动端文章信息 -->
     <div class="article-top-meta mobile-view">
       <span>
-        发布 : 2018-12-06
+        发布 : 2019-07-10
       </span>
       
         <span>
         分类 :
-          <a href="/categories/工程部署/">
-            工程部署
+          <a href="/categories/JavaScript/">
+            JavaScript
           </a>
         </span>
       
-      
+      <!-- 
         <span>
-          浏览 : <span class="article-timer" data-identity="linux常用命令"></span>
+          浏览 : <span class="article-timer" data-identity="20190710版权固定底部"></span>
         </span>
-      
+       -->
     </div>
-    
-      <div id="linux常用命令" style="margin: 4rem 2px -1rem"></div>
-<script async>
-  (function(){
-    let playerTimer = setInterval(function(){
-      if(!window.APlayer){
-        return
-      }
-
-      new APlayer({
-        container: document.getElementById('linux常用命令'),
-        theme: '#e96900',
-        listFolded: false,
-        audio: [{"name":"Legends Never Die","artist":"Against the Current","url":"//music.163.com/song/media/outer/url?id=506196018.mp3","cover":"http://p1.music.126.net/raAqjrUB_OMiVbbPkrGtXg==/109951162926087188.jpg?param=130y130"}]
-      });
-      
-      clearInterval(playerTimer)
-    }, 10);
-  })()
-</script>
     
     <!-- 文章简介 -->
     <div class="article-content">
       <div class="markdown-body article-content--inner" v-html="mdToHtml(psg.summary)">
-        <p><code>linux</code> 常用命令备忘</p>
+        <p>日常工作中，关于版权的布局，要一直在页面底部，需要处理屏幕高度和网页真实高度的关系。</p>
       </div>
     </div>
     <div class="article-footer">
@@ -773,8 +701,8 @@
         <span class="pc-view">
           
             <i class="iconfont icon-tag"></i>分类:
-            <a href="/categories/工程部署/">
-              工程部署
+            <a href="/categories/JavaScript/">
+              JavaScript
             </a>
           </span>
           
@@ -783,8 +711,8 @@
             <i class="iconfont icon-06tags"></i>标签:
             
               <span class="span--tag">
-                <a href="/tags/linux/">
-                  <i class="fa fa-tag"></i>linux
+                <a href="/tags/版权固定/">
+                  <i class="fa fa-tag"></i>版权固定
                 </a>
               </span>
             
@@ -793,11 +721,11 @@
       </div>
       
         <div class="article-meta pull-right">
+          <!-- <span class="pc-view">
+            <i class="iconfont icon-view"></i>浏览: <span class="article-timer" data-identity="20190710版权固定底部"></span>
+          </span> -->
           <span class="pc-view">
-            <i class="iconfont icon-view"></i>浏览: <span class="article-timer" data-identity="linux常用命令"></span>
-          </span>
-          <span class="pc-view">
-            <a href="/passages/linux常用命令/" class="more-preview" style="
+            <a href="/passages/20190710版权固定底部/" class="more-preview" style="
                 padding: 2px 4px;
                 -webkit-border-radius: 2px;
                 -moz-border-radius: 2px;
@@ -823,60 +751,40 @@
   
   <div class="post">
     <h1 class="article-title">
-      <a href="/passages/pm2学习/">
-        <span>pm2学习</span>
+      <a href="/passages/20190608Grid布局/">
+        <span>CSS Grid 布局</span>
       </a>
     </h1>
     <!-- PC端文章信息 -->
     <div class="article-top-meta pc-view">
       <span>
-        <i class="fa fa-calendar"></i> &nbsp;发布时间 : 2018-12-05
+        <i class="fa fa-calendar"></i> &nbsp;发布时间 : 2019-06-08
       </span>
     </div>
     <!-- 移动端文章信息 -->
     <div class="article-top-meta mobile-view">
       <span>
-        发布 : 2018-12-05
+        发布 : 2019-06-08
       </span>
       
         <span>
         分类 :
-          <a href="/categories/工程部署/">
-            工程部署
+          <a href="/categories/CSS/">
+            CSS
           </a>
         </span>
       
-      
+      <!-- 
         <span>
-          浏览 : <span class="article-timer" data-identity="pm2学习"></span>
+          浏览 : <span class="article-timer" data-identity="20190608Grid布局"></span>
         </span>
-      
+       -->
     </div>
-    
-      <div id="pm2学习" style="margin: 4rem 2px -1rem"></div>
-<script async>
-  (function(){
-    let playerTimer = setInterval(function(){
-      if(!window.APlayer){
-        return
-      }
-
-      new APlayer({
-        container: document.getElementById('pm2学习'),
-        theme: '#e96900',
-        listFolded: false,
-        audio: [{"name":"凉凉","artist":"张碧晨 / 陈奕夫 / 傲日其愣 / 唐倩","url":"//music.163.com/song/media/outer/url?id=479408220.mp3","cover":"http://p2.music.126.net/9FhJLS1BrJdXAUJ2qjyJSg==/19212866183896782.jpg?param=130y130"}]
-      });
-      
-      clearInterval(playerTimer)
-    }, 10);
-  })()
-</script>
     
     <!-- 文章简介 -->
     <div class="article-content">
       <div class="markdown-body article-content--inner" v-html="mdToHtml(psg.summary)">
-        <p><code>pm2</code> 基础学习</p>
+        <p>CSS <code>网格布局（Grid）</code> 布局，学习练习。</p>
       </div>
     </div>
     <div class="article-footer">
@@ -885,8 +793,8 @@
         <span class="pc-view">
           
             <i class="iconfont icon-tag"></i>分类:
-            <a href="/categories/工程部署/">
-              工程部署
+            <a href="/categories/CSS/">
+              CSS
             </a>
           </span>
           
@@ -895,8 +803,8 @@
             <i class="iconfont icon-06tags"></i>标签:
             
               <span class="span--tag">
-                <a href="/tags/pm2/">
-                  <i class="fa fa-tag"></i>pm2
+                <a href="/tags/Grid/">
+                  <i class="fa fa-tag"></i>Grid
                 </a>
               </span>
             
@@ -905,11 +813,11 @@
       </div>
       
         <div class="article-meta pull-right">
+          <!-- <span class="pc-view">
+            <i class="iconfont icon-view"></i>浏览: <span class="article-timer" data-identity="20190608Grid布局"></span>
+          </span> -->
           <span class="pc-view">
-            <i class="iconfont icon-view"></i>浏览: <span class="article-timer" data-identity="pm2学习"></span>
-          </span>
-          <span class="pc-view">
-            <a href="/passages/pm2学习/" class="more-preview" style="
+            <a href="/passages/20190608Grid布局/" class="more-preview" style="
                 padding: 2px 4px;
                 -webkit-border-radius: 2px;
                 -moz-border-radius: 2px;
@@ -935,144 +843,20 @@
   
   <div class="post">
     <h1 class="article-title">
-      <a href="/passages/web页面加载、解析、渲染过程/">
-        <span>web 页面加载、解析、渲染过程</span>
+      <a href="/passages/20190606axios文件下载/">
+        <span>Axios 发送 post 请求下载文件 blob 流</span>
       </a>
     </h1>
     <!-- PC端文章信息 -->
     <div class="article-top-meta pc-view">
       <span>
-        <i class="fa fa-calendar"></i> &nbsp;发布时间 : 2018-11-26
+        <i class="fa fa-calendar"></i> &nbsp;发布时间 : 2019-06-06
       </span>
     </div>
     <!-- 移动端文章信息 -->
     <div class="article-top-meta mobile-view">
       <span>
-        发布 : 2018-11-26
-      </span>
-      
-        <span>
-        分类 :
-          <a href="/categories/页面加载/">
-            页面加载
-          </a>
-        </span>
-      
-      
-        <span>
-          浏览 : <span class="article-timer" data-identity="web页面加载、解析、渲染过程"></span>
-        </span>
-      
-    </div>
-    
-      <div id="web页面加载、解析、渲染过程" style="margin: 4rem 2px -1rem"></div>
-<script async>
-  (function(){
-    let playerTimer = setInterval(function(){
-      if(!window.APlayer){
-        return
-      }
-
-      new APlayer({
-        container: document.getElementById('web页面加载、解析、渲染过程'),
-        theme: '#e96900',
-        listFolded: false,
-        audio: [{"name":"光年之外","artist":"G.E.M.邓紫棋","url":"//music.163.com/song/media/outer/url?id=449818741.mp3","cover":"http://p1.music.126.net/fkqFqMaEt0CzxYS-0NpCog==/18587244069235039.jpg?param=130y130"}]
-      });
-      
-      clearInterval(playerTimer)
-    }, 10);
-  })()
-</script>
-    
-    <!-- 文章简介 -->
-    <div class="article-content">
-      <div class="markdown-body article-content--inner" v-html="mdToHtml(psg.summary)">
-        <p><code>web</code> 页面加载、解析、渲染过程</p>
-      </div>
-    </div>
-    <div class="article-footer">
-      <div class="article-meta pull-left">
-        <!-- 分类pc端可见 -->
-        <span class="pc-view">
-          
-            <i class="iconfont icon-tag"></i>分类:
-            <a href="/categories/页面加载/">
-              页面加载
-            </a>
-          </span>
-          
-        <span>
-          
-            <i class="iconfont icon-06tags"></i>标签:
-            
-              <span class="span--tag">
-                <a href="/tags/页面加载-页面解析-页面渲染/">
-                  <i class="fa fa-tag"></i>页面加载/页面解析/页面渲染
-                </a>
-              </span>
-            
-              <span class="span--tag">
-                <a href="/tags/重排/">
-                  <i class="fa fa-tag"></i>重排
-                </a>
-              </span>
-            
-              <span class="span--tag">
-                <a href="/tags/重绘/">
-                  <i class="fa fa-tag"></i>重绘
-                </a>
-              </span>
-            
-                    
-        </span>
-      </div>
-      
-        <div class="article-meta pull-right">
-          <span class="pc-view">
-            <i class="iconfont icon-view"></i>浏览: <span class="article-timer" data-identity="web页面加载、解析、渲染过程"></span>
-          </span>
-          <span class="pc-view">
-            <a href="/passages/web页面加载、解析、渲染过程/" class="more-preview" style="
-                padding: 2px 4px;
-                -webkit-border-radius: 2px;
-                -moz-border-radius: 2px;
-                border-radius: 2px;
-                background: #88acdb;
-                color: #fff;
-                font-size: 0.9rem;
-                line-height: 1em;
-                white-space: nowrap;
-                -webkit-transition: background 0.3s;
-                -moz-transition: background 0.3s;
-                -ms-transition: background 0.3s;
-                transition: background 0.3s;
-                opacity: 0.75;  
-               ">
-              more >> </a></span>
-            
-          
-        </div>
-      
-    </div>
-  </div>
-  
-  <div class="post">
-    <h1 class="article-title">
-      <a href="/passages/HTTP状态码/">
-        <span>HTTP 状态码</span>
-      </a>
-    </h1>
-    <!-- PC端文章信息 -->
-    <div class="article-top-meta pc-view">
-      <span>
-        <i class="fa fa-calendar"></i> &nbsp;发布时间 : 2018-11-21
-      </span>
-    </div>
-    <!-- 移动端文章信息 -->
-    <div class="article-top-meta mobile-view">
-      <span>
-        发布 : 2018-11-21
+        发布 : 2019-06-06
       </span>
       
         <span>
@@ -1082,37 +866,18 @@
           </a>
         </span>
       
-      
+      <!-- 
         <span>
-          浏览 : <span class="article-timer" data-identity="HTTP状态码"></span>
+          浏览 : <span class="article-timer" data-identity="20190606axios文件下载"></span>
         </span>
-      
+       -->
     </div>
-    
-      <div id="HTTP状态码" style="margin: 4rem 2px -1rem"></div>
-<script async>
-  (function(){
-    let playerTimer = setInterval(function(){
-      if(!window.APlayer){
-        return
-      }
-
-      new APlayer({
-        container: document.getElementById('HTTP状态码'),
-        theme: '#e96900',
-        listFolded: false,
-        audio: [{"name":"Immortals","artist":"Fall Out Boy","url":"//music.163.com/song/media/outer/url?id=30064351.mp3","cover":"http://p1.music.126.net/_E7DK4uAT6T5AQDvfmrKvA==/7860408627008125.jpg?param=130y130"}]
-      });
-      
-      clearInterval(playerTimer)
-    }, 10);
-  })()
-</script>
     
     <!-- 文章简介 -->
     <div class="article-content">
       <div class="markdown-body article-content--inner" v-html="mdToHtml(psg.summary)">
-        <p><code>HTTP Status Code</code> 简单知识</p>
+        <p>关于下载文件，有时候会分步骤进行。第一步发送 <code>post</code> 请求传递参数，服务端接受请求，查询到对应的 <code>文件id</code>。第二步发送 <code>get</code> 请求，服务端根据传递的文件标识返回文件地址，客户端从而实现下载。</p>
+<p>此文介绍的是利用 <code>Axios</code> 发送 <code>post</code> 请求实现文件下载。服务端返回的为 <code>blob</code> 流的形式。</p>
       </div>
     </div>
     <div class="article-footer">
@@ -1131,8 +896,14 @@
             <i class="iconfont icon-06tags"></i>标签:
             
               <span class="span--tag">
-                <a href="/tags/HTTP-Status-Code/">
-                  <i class="fa fa-tag"></i>HTTP Status Code
+                <a href="/tags/axios/">
+                  <i class="fa fa-tag"></i>axios
+                </a>
+              </span>
+            
+              <span class="span--tag">
+                <a href="/tags/文件下载/">
+                  <i class="fa fa-tag"></i>文件下载
                 </a>
               </span>
             
@@ -1141,11 +912,11 @@
       </div>
       
         <div class="article-meta pull-right">
+          <!-- <span class="pc-view">
+            <i class="iconfont icon-view"></i>浏览: <span class="article-timer" data-identity="20190606axios文件下载"></span>
+          </span> -->
           <span class="pc-view">
-            <i class="iconfont icon-view"></i>浏览: <span class="article-timer" data-identity="HTTP状态码"></span>
-          </span>
-          <span class="pc-view">
-            <a href="/passages/HTTP状态码/" class="more-preview" style="
+            <a href="/passages/20190606axios文件下载/" class="more-preview" style="
                 padding: 2px 4px;
                 -webkit-border-radius: 2px;
                 -moz-border-radius: 2px;
@@ -1171,20 +942,112 @@
   
   <div class="post">
     <h1 class="article-title">
-      <a href="/passages/get与post区别/">
-        <span>Get 与 Post 区别</span>
+      <a href="/passages/20190529元素居于页面正中/">
+        <span>CSS 实现元素居于页面中间</span>
       </a>
     </h1>
     <!-- PC端文章信息 -->
     <div class="article-top-meta pc-view">
       <span>
-        <i class="fa fa-calendar"></i> &nbsp;发布时间 : 2018-11-20
+        <i class="fa fa-calendar"></i> &nbsp;发布时间 : 2019-05-29
       </span>
     </div>
     <!-- 移动端文章信息 -->
     <div class="article-top-meta mobile-view">
       <span>
-        发布 : 2018-11-20
+        发布 : 2019-05-29
+      </span>
+      
+        <span>
+        分类 :
+          <a href="/categories/CSS/">
+            CSS
+          </a>
+        </span>
+      
+      <!-- 
+        <span>
+          浏览 : <span class="article-timer" data-identity="20190529元素居于页面正中"></span>
+        </span>
+       -->
+    </div>
+    
+    <!-- 文章简介 -->
+    <div class="article-content">
+      <div class="markdown-body article-content--inner" v-html="mdToHtml(psg.summary)">
+        <p>关于 CSS 实现元素居于页面中间，方法汇总记录。</p>
+      </div>
+    </div>
+    <div class="article-footer">
+      <div class="article-meta pull-left">
+        <!-- 分类pc端可见 -->
+        <span class="pc-view">
+          
+            <i class="iconfont icon-tag"></i>分类:
+            <a href="/categories/CSS/">
+              CSS
+            </a>
+          </span>
+          
+        <span>
+          
+            <i class="iconfont icon-06tags"></i>标签:
+            
+              <span class="span--tag">
+                <a href="/tags/元素居中/">
+                  <i class="fa fa-tag"></i>元素居中
+                </a>
+              </span>
+            
+                    
+        </span>
+      </div>
+      
+        <div class="article-meta pull-right">
+          <!-- <span class="pc-view">
+            <i class="iconfont icon-view"></i>浏览: <span class="article-timer" data-identity="20190529元素居于页面正中"></span>
+          </span> -->
+          <span class="pc-view">
+            <a href="/passages/20190529元素居于页面正中/" class="more-preview" style="
+                padding: 2px 4px;
+                -webkit-border-radius: 2px;
+                -moz-border-radius: 2px;
+                border-radius: 2px;
+                background: #88acdb;
+                color: #fff;
+                font-size: 0.9rem;
+                line-height: 1em;
+                white-space: nowrap;
+                -webkit-transition: background 0.3s;
+                -moz-transition: background 0.3s;
+                -ms-transition: background 0.3s;
+                transition: background 0.3s;
+                opacity: 0.75;  
+               ">
+              more >> </a></span>
+            
+          
+        </div>
+      
+    </div>
+  </div>
+  
+  <div class="post">
+    <h1 class="article-title">
+      <a href="/passages/websocket/">
+        <span>WebSocket</span>
+      </a>
+    </h1>
+    <!-- PC端文章信息 -->
+    <div class="article-top-meta pc-view">
+      <span>
+        <i class="fa fa-calendar"></i> &nbsp;发布时间 : 2019-05-08
+      </span>
+    </div>
+    <!-- 移动端文章信息 -->
+    <div class="article-top-meta mobile-view">
+      <span>
+        发布 : 2019-05-08
       </span>
       
         <span>
@@ -1194,14 +1057,14 @@
           </a>
         </span>
       
-      
+      <!-- 
         <span>
-          浏览 : <span class="article-timer" data-identity="get与post区别"></span>
+          浏览 : <span class="article-timer" data-identity="websocket"></span>
         </span>
-      
+       -->
     </div>
     
-      <div id="get与post区别" style="margin: 4rem 2px -1rem"></div>
+      <div id="websocket" style="margin: 4rem 2px -1rem"></div>
 <script async>
   (function(){
     let playerTimer = setInterval(function(){
@@ -1210,10 +1073,10 @@
       }
 
       new APlayer({
-        container: document.getElementById('get与post区别'),
+        container: document.getElementById('websocket'),
         theme: '#e96900',
         listFolded: false,
-        audio: [{"name":"往后余生","artist":"马良","url":"//music.163.com/song/media/outer/url?id=571338279.mp3","cover":"http://p1.music.126.net/hTiVEeQTUSsc-YGF3o6ItQ==/109951163337847600.jpg?param=130y130"}]
+        audio: [{"name":"Awaken","artist":"Valerie Broussard / Ray Chen","url":"//music.163.com/song/media/outer/url?id=1341733740.mp3","cover":"http://p2.music.126.net/0hFq4ilMDpCjObjr7O0aIA==/109951163813679906.jpg?param=130y130"}]
       });
       
       clearInterval(playerTimer)
@@ -1224,7 +1087,7 @@
     <!-- 文章简介 -->
     <div class="article-content">
       <div class="markdown-body article-content--inner" v-html="mdToHtml(psg.summary)">
-        <p><code>Get</code> 与 <code>POST</code> 的区别</p>
+        <p>对 <code>WebSocket</code> 一种网络通信协议 的初步学习，记录。</p>
       </div>
     </div>
     <div class="article-footer">
@@ -1243,14 +1106,8 @@
             <i class="iconfont icon-06tags"></i>标签:
             
               <span class="span--tag">
-                <a href="/tags/Get/">
-                  <i class="fa fa-tag"></i>Get
-                </a>
-              </span>
-            
-              <span class="span--tag">
-                <a href="/tags/Post/">
-                  <i class="fa fa-tag"></i>Post
+                <a href="/tags/WebSocket/">
+                  <i class="fa fa-tag"></i>WebSocket
                 </a>
               </span>
             
@@ -1259,11 +1116,11 @@
       </div>
       
         <div class="article-meta pull-right">
+          <!-- <span class="pc-view">
+            <i class="iconfont icon-view"></i>浏览: <span class="article-timer" data-identity="websocket"></span>
+          </span> -->
           <span class="pc-view">
-            <i class="iconfont icon-view"></i>浏览: <span class="article-timer" data-identity="get与post区别"></span>
-          </span>
-          <span class="pc-view">
-            <a href="/passages/get与post区别/" class="more-preview" style="
+            <a href="/passages/websocket/" class="more-preview" style="
                 padding: 2px 4px;
                 -webkit-border-radius: 2px;
                 -moz-border-radius: 2px;
@@ -1289,37 +1146,37 @@
   
   <div class="post">
     <h1 class="article-title">
-      <a href="/passages/create脚手架使用antd(less, css-module,主题)/">
-        <span>create脚手架使用antd(开启less,css module,定制主题)</span>
+      <a href="/passages/vuecli+nodejs+mongodb/">
+        <span>vue-cli + nodejs + mongodb 基础</span>
       </a>
     </h1>
     <!-- PC端文章信息 -->
     <div class="article-top-meta pc-view">
       <span>
-        <i class="fa fa-calendar"></i> &nbsp;发布时间 : 2018-11-14
+        <i class="fa fa-calendar"></i> &nbsp;发布时间 : 2019-04-12
       </span>
     </div>
     <!-- 移动端文章信息 -->
     <div class="article-top-meta mobile-view">
       <span>
-        发布 : 2018-11-14
+        发布 : 2019-04-12
       </span>
       
         <span>
         分类 :
-          <a href="/categories/react/">
-            react
+          <a href="/categories/工程搭建/">
+            工程搭建
           </a>
         </span>
       
-      
+      <!-- 
         <span>
-          浏览 : <span class="article-timer" data-identity="create脚手架使用antd(less, css-module,主题)"></span>
+          浏览 : <span class="article-timer" data-identity="vuecli+nodejs+mongodb"></span>
         </span>
-      
+       -->
     </div>
     
-      <div id="create脚手架使用antd(less, css-module,主题)" style="margin: 4rem 2px -1rem"></div>
+      <div id="vuecli+nodejs+mongodb" style="margin: 4rem 2px -1rem"></div>
 <script async>
   (function(){
     let playerTimer = setInterval(function(){
@@ -1328,10 +1185,10 @@
       }
 
       new APlayer({
-        container: document.getElementById('create脚手架使用antd(less, css-module,主题)'),
+        container: document.getElementById('vuecli+nodejs+mongodb'),
         theme: '#e96900',
         listFolded: false,
-        audio: [{"name":"【二胡】Faded","artist":"永安二胡","url":"//music.163.com/song/media/outer/url?id=487520041.mp3","cover":"http://p1.music.126.net/wBB5nbpM6m3rxPyebnjAJQ==/109951162852144591.jpg?param=130y130"},{"name":"Wolves","artist":"Selena Gomez / Marshmello","url":"//music.163.com/song/media/outer/url?id=515269424.mp3","cover":"http://p1.music.126.net/-nQ2E-8ZjuwGtMipBTYzBw==/17902248323721194.jpg?param=130y130"}]
+        audio: [{"name":"Bring Home the Glory","artist":"Sara Skinner","url":"//music.163.com/song/media/outer/url?id=1359739972.mp3","cover":"http://p2.music.126.net/TEABmwBrbQqbQ_jDTHzKAA==/109951164009032170.jpg?param=130y130"}]
       });
       
       clearInterval(playerTimer)
@@ -1342,7 +1199,7 @@
     <!-- 文章简介 -->
     <div class="article-content">
       <div class="markdown-body article-content--inner" v-html="mdToHtml(psg.summary)">
-        <p>使用 <code>create-react-app</code> 脚手架开发时, 如何配置 <code>antd</code>, 同时开启 less, css module, 及主题定制</p>
+        <p>使用 <code>vue-cli</code> 搭建工程，配合 <code>nodejs + mongodb</code> 作为后端服务, 基本流程记录。</p>
       </div>
     </div>
     <div class="article-footer">
@@ -1351,8 +1208,8 @@
         <span class="pc-view">
           
             <i class="iconfont icon-tag"></i>分类:
-            <a href="/categories/react/">
-              react
+            <a href="/categories/工程搭建/">
+              工程搭建
             </a>
           </span>
           
@@ -1361,32 +1218,20 @@
             <i class="iconfont icon-06tags"></i>标签:
             
               <span class="span--tag">
-                <a href="/tags/create-react-app/">
-                  <i class="fa fa-tag"></i>create-react-app
+                <a href="/tags/vue-cli/">
+                  <i class="fa fa-tag"></i>vue-cli
                 </a>
               </span>
             
               <span class="span--tag">
-                <a href="/tags/antd/">
-                  <i class="fa fa-tag"></i>antd
+                <a href="/tags/nodejs/">
+                  <i class="fa fa-tag"></i>nodejs
                 </a>
               </span>
             
               <span class="span--tag">
-                <a href="/tags/less/">
-                  <i class="fa fa-tag"></i>less
-                </a>
-              </span>
-            
-              <span class="span--tag">
-                <a href="/tags/css-module/">
-                  <i class="fa fa-tag"></i>css-module
-                </a>
-              </span>
-            
-              <span class="span--tag">
-                <a href="/tags/主题配置/">
-                  <i class="fa fa-tag"></i>主题配置
+                <a href="/tags/mongodb/">
+                  <i class="fa fa-tag"></i>mongodb
                 </a>
               </span>
             
@@ -1395,11 +1240,11 @@
       </div>
       
         <div class="article-meta pull-right">
+          <!-- <span class="pc-view">
+            <i class="iconfont icon-view"></i>浏览: <span class="article-timer" data-identity="vuecli+nodejs+mongodb"></span>
+          </span> -->
           <span class="pc-view">
-            <i class="iconfont icon-view"></i>浏览: <span class="article-timer" data-identity="create脚手架使用antd(less, css-module,主题)"></span>
-          </span>
-          <span class="pc-view">
-            <a href="/passages/create脚手架使用antd(less, css-module,主题)/" class="more-preview" style="
+            <a href="/passages/vuecli+nodejs+mongodb/" class="more-preview" style="
                 padding: 2px 4px;
                 -webkit-border-radius: 2px;
                 -moz-border-radius: 2px;
@@ -1425,60 +1270,40 @@
   
   <div class="post">
     <h1 class="article-title">
-      <a href="/passages/rap2部署说明/">
-        <span>rap2部署说明</span>
+      <a href="/passages/20190327个人手记/">
+        <span>个人手记（一）</span>
       </a>
     </h1>
     <!-- PC端文章信息 -->
     <div class="article-top-meta pc-view">
       <span>
-        <i class="fa fa-calendar"></i> &nbsp;发布时间 : 2018-11-12
+        <i class="fa fa-calendar"></i> &nbsp;发布时间 : 2019-03-27
       </span>
     </div>
     <!-- 移动端文章信息 -->
     <div class="article-top-meta mobile-view">
       <span>
-        发布 : 2018-11-12
+        发布 : 2019-03-27
       </span>
       
         <span>
         分类 :
-          <a href="/categories/工程部署/">
-            工程部署
+          <a href="/categories/手记/">
+            手记
           </a>
         </span>
       
-      
+      <!-- 
         <span>
-          浏览 : <span class="article-timer" data-identity="rap2部署说明"></span>
+          浏览 : <span class="article-timer" data-identity="20190327个人手记"></span>
         </span>
-      
+       -->
     </div>
-    
-      <div id="rap2部署说明" style="margin: 4rem 2px -1rem"></div>
-<script async>
-  (function(){
-    let playerTimer = setInterval(function(){
-      if(!window.APlayer){
-        return
-      }
-
-      new APlayer({
-        container: document.getElementById('rap2部署说明'),
-        theme: '#e96900',
-        listFolded: false,
-        audio: [{"name":"Ignite","artist":"Zedd","url":"//music.163.com/song/media/outer/url?id=431811484.mp3","cover":"http://p2.music.126.net/w2fTGYbtWaso00rSG_1bZg==/3439272383157636.jpg?param=130y130"}]
-      });
-      
-      clearInterval(playerTimer)
-    }, 10);
-  })()
-</script>
     
     <!-- 文章简介 -->
     <div class="article-content">
       <div class="markdown-body article-content--inner" v-html="mdToHtml(psg.summary)">
-        <p><code>rap2</code>，阿里前端团队开源接口管理工具RAP第二代，部署说明</p>
+        <p>2019.3.27 随手记 <i class="fa fa-empire" aria-hidden="true"></i></p>
       </div>
     </div>
     <div class="article-footer">
@@ -1487,8 +1312,8 @@
         <span class="pc-view">
           
             <i class="iconfont icon-tag"></i>分类:
-            <a href="/categories/工程部署/">
-              工程部署
+            <a href="/categories/手记/">
+              手记
             </a>
           </span>
           
@@ -1497,14 +1322,8 @@
             <i class="iconfont icon-06tags"></i>标签:
             
               <span class="span--tag">
-                <a href="/tags/rap2/">
-                  <i class="fa fa-tag"></i>rap2
-                </a>
-              </span>
-            
-              <span class="span--tag">
-                <a href="/tags/可视化接口管理工具/">
-                  <i class="fa fa-tag"></i>可视化接口管理工具
+                <a href="/tags/个人手记/">
+                  <i class="fa fa-tag"></i>个人手记
                 </a>
               </span>
             
@@ -1513,11 +1332,11 @@
       </div>
       
         <div class="article-meta pull-right">
+          <!-- <span class="pc-view">
+            <i class="iconfont icon-view"></i>浏览: <span class="article-timer" data-identity="20190327个人手记"></span>
+          </span> -->
           <span class="pc-view">
-            <i class="iconfont icon-view"></i>浏览: <span class="article-timer" data-identity="rap2部署说明"></span>
-          </span>
-          <span class="pc-view">
-            <a href="/passages/rap2部署说明/" class="more-preview" style="
+            <a href="/passages/20190327个人手记/" class="more-preview" style="
                 padding: 2px 4px;
                 -webkit-border-radius: 2px;
                 -moz-border-radius: 2px;
@@ -1548,174 +1367,6 @@
       <a href="/page/2/">下一页</a>
     
   </nav>
-
-  
-    <script defer>
-const valineAPI = (() => {
-  try {
-    AV.init("5gmxTwVFMDWYxzhkUr6kJqCu-gzGzoHsz", "UYfK9MIPOKVB0ChdRQQ8Ddcn");
-  } catch(error) {}
-  const isExist = (identity) => {
-    identity = identity || getRealPath();
-    let query = new AV.Query('Timer');
-    return new Promise((resolve, reject) => {
-      query.equalTo("identity", identity);
-      query.find().then(results => {
-        resolve(results.length > 0);
-      }, error => reject(error));
-    })
-  }
-
-  const _get = (identity) => {
-    let query = null;
-    if(identity && identity instanceof Array){
-      let querys = [];
-      for(let i = 0; i < identity.length; ++i) {
-        querys[i] = new AV.Query('Timer');
-        querys[i].equalTo('identity', identity[i]);
-      }
-      query = AV.Query.or.apply(null ,querys);
-    } else {
-      identity = identity || getRealPath();
-      query = new AV.Query("Timer");
-      query.equalTo("identity", identity);
-    }
-
-    return new Promise((resolve, reject) => {
-      query.find()
-      .then(results => resolve(results))
-      .catch(error => reject(error))
-    })
-  }
-
-  const _getAllTimes = (identity) => {
-    let query = null;
-    query = new AV.Query("Timer");
-    query.greaterThan("times", identity);
-    
-    return new Promise((resolve, reject) => {
-      query.find()
-      .then(results => resolve(results))
-      .catch(error => reject(error))
-    })
-  }
-
-  const create = (identity) => {
-    identity = identity || getRealPath();
-    return new Promise((resolve, reject) => {
-      let Todo = AV.Object.extend('Timer');
-      let todo = new Todo();
-      todo.set("times", 1);
-      todo.set("identity", identity);
-      todo.save().then(res => resolve(true), error => reject(error));
-    })
-  }
-
-  const update = (identity) => {
-    identity = identity || getRealPath();
-    return new Promise((resolve, reject) => {
-      let query = new AV.Query('Timer');
-      query.equalTo("identity", identity);
-      query.find().then(todos => {
-        todos.forEach(todo => {
-          todo.set("times", todo.attributes.times + 1);
-        });
-        return AV.Object.saveAll(todos);
-      }).then(todos => resolve(true), error => reject(error));
-    })
-  }
-
-  return {
-    isExist,
-    _get,
-    _getAllTimes,
-    update,
-    create
-  }
-})()
-
-const calcAndWriteTimes = () => {
-  let isPost = false;
-  let isTags = false;
-  let isTag = false;
-  let isCategories = false;
-  let isCategorie = false;
-  let isArchives = false;
-  let isMessageBoard = false;
-
-  let timerAllDOM = document.querySelectorAll(".article-timer");
-
-  //页面总浏览数
-  valineAPI._getAllTimes(0).then( results => { //获取所有浏览量大于0的评论记录
-    var allTimes = 0;
-    for(let result of results) {
-      let times = result.attributes.times;
-      allTimes += times;
-    }
-    document.getElementById('allTimer').innerHTML = allTimes;
-  }).catch(error => console.log(error.message))
-
-  if(isPost || isTags || isTag || isCategories || isCategorie || isArchives || isMessageBoard) {
-    let identity = timerAllDOM[0].getAttribute("data-identity");
-    valineAPI.isExist(identity)
-    .then(exist => {
-      if(exist) {
-        return valineAPI.update(identity);
-      } else {
-        return valineAPI.create(identity);
-      }
-      return new Promise(resolve => resolve(true));
-    })
-    .then( succuess => valineAPI._get(identity))
-    .then( result => timerAllDOM[0].innerText = result[0].attributes.times)
-    .catch(error => console.log(error.message))
-    return ;
-  }
-
-  let timerDOMCache = {};
-
-  for(let timerDOM of timerAllDOM) {
-    let identity = timerDOM.getAttribute("data-identity");
-    if(identity === "index") { //首页
-      valineAPI.isExist(identity).then(exist => {
-        if(exist) {
-          return valineAPI.update(identity);
-        }
-      })
-    }
-    if(timerDOMCache.hasOwnProperty(identity)){
-      timerDOMCache[identity].dom.push(timerDOM);
-    }else{
-      timerDOMCache[identity] = {
-        dom: [timerDOM],
-        times: undefined
-      };
-    }
-  }
-
-  let identities = Object.keys(timerDOMCache);
-  valineAPI._get(identities).then(results => {
-    for(let result of results) {
-      let {identity, times} = result.attributes;
-      timerDOMCache[identity].times = times;
-      timerDOMCache[identity].dom.map(item => item.innerText = times);
-    }
-    for(let identity of identities) {
-      if(timerDOMCache[identity].times){
-        continue;
-      }
-      timerDOMCache[identity].dom.map(item => item.innerText = 1);
-      valineAPI.create(identity);
-    }
-  }).catch(error => console.log(error.message))
-
-}
-
-if(true){
-  calcAndWriteTimes();
-}
-</script>
-   
 </div>
 
 
@@ -1802,9 +1453,14 @@ document.querySelector(".back-to-top").addEventListener("click", backToTop, fals
     <footer style="margin-top:20px;z-index: 5;">
   <p class="site-info">
     博客已萌萌哒运行<span id="time-to-now"></span><span class="my-face">(●'◡'●)ﾉ♥</span>,
-    <span> &nbsp;共计 <i style="color: #1abc9c;font-style: normal;">13.3k</i> 个字啦 ,</span>
+    <span> &nbsp;共计 <i style="color: #1abc9c;font-style: normal;">24k</i> 个字啦</span>
+    <br>
     
-      <span> &nbsp;文章浏览量总计为 <i id="allTimer" style="color: #1abc9c;font-style: normal;"></i> 次啦</span>
+      <span id="busuanzi_container_site_pv"> 
+        <i class="fa fa-eye"></i> 文章浏览量总计为&nbsp; <i id="busuanzi_value_site_pv" style="color: #1abc9c;font-style: normal;"></i> &nbsp;次啦&nbsp; </span>
+      <span id="busuanzi_container_site_uv">
+        <i class="fa fa-paw"></i> 您是本站第&nbsp; <i id="busuanzi_value_site_uv" style="color: #1abc9c;font-style: normal;"></i> &nbsp;位访客
+      </span>
     
     <br>
     Theme - <a href="https://github.com/dongyuanxin/theme-bmw">BMW</a> | Made With 💗 | Powered by <a href="https://godbmw.com/">GodBMW</a>
@@ -1837,6 +1493,8 @@ const updateTimeStr = () => {
 
 setTimeout(updateTimeStr, 500);
 </script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
     
