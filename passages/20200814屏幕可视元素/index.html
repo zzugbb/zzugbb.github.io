@@ -8,12 +8,12 @@
   
   
   
-  <title>Spring 相关常识 | gbb</title>
+  <title>JavaScript 屏幕可视元素 | gbb</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="spring,spring,">
+    <meta name="keywords" content="JavaScript,屏幕可视,">
   
 
   
@@ -387,18 +387,18 @@
 
 <div class="post">
   <h1 class="article-title">
-    <span>Spring 相关常识</span>
+    <span>JavaScript 屏幕可视元素</span>
   </h1>
   <div class="article-top-meta">
     <span>
       <i class="fa fa-calendar"></i> &nbsp;发布 : 
-      2019-08-26
+      2020-08-15
     </span>
     
       
 
 <span>
-  <i class="fa fa-keyboard-o"></i> &nbsp;字数统计 : 333 字
+  <i class="fa fa-keyboard-o"></i> &nbsp;字数统计 : 388 字
 </span>
 
 <span>
@@ -409,8 +409,8 @@
     
       <span>
           <i class="iconfont icon-tag" style="font-size:12px;"></i> &nbsp;分类 : 
-          <a href="/categories/spring/">
-            spring
+          <a href="/categories/JavaScript/">
+            JavaScript
           </a>
       </span>
     
@@ -425,11 +425,11 @@
 
   <div class="article-content">
     <div class="markdown-body">
-      <h2 id="spring"><a href="#spring" class="headerlink" title="spring"></a>spring</h2><p><code>Spring</code> 是一个轻量级控制反转(IoC)和面向切面(AOP)的容器框架。</p>
-<h2 id="spring-mvc"><a href="#spring-mvc" class="headerlink" title="spring mvc"></a>spring mvc</h2><p><code>springMvc</code> 是 spring 基础之上的一个 MVC 框架， Spring 框架提供了构建 Web 应用程序的全功能 MVC 模块.<br>主要处理 web 开发的路径映射和视图渲染，属于 spring 框架中 WEB 层开发的一部分.</p>
-<h2 id="ssm"><a href="#ssm" class="headerlink" title="ssm"></a>ssm</h2><p><code>SSM（Spring + SpringMVC + MyBatis）</code> 框架集由 Spring、MyBatis 两个开源框架整合而成（SpringMVC是Spring中的部分内容）.</p>
-<h2 id="spring-boot"><a href="#spring-boot" class="headerlink" title="spring boot"></a>spring boot</h2><p><code>Spring Boot</code> 就是一些库的集合, 默认优于配置，简化了插件配置流程，不需要配置xml. 不仅继承了 Spring 框架原有的优秀特性，而且还通过简化配置来进一步简化了 Spring 应用的整个搭建和开发过程。另外 SpringBoot 通过集成大量的框架使得依赖包的版本冲突，以及引用的不稳定性等问题得到了很好的解决</p>
-<h2 id="spring-cloud"><a href="#spring-cloud" class="headerlink" title="spring cloud"></a>spring cloud</h2><p><code>Spring Cloud</code> 是一系列框架的有序集合, 利用 Spring Boot 的开发便利性巧妙地简化了分布式系统基础设施的开发. <code>Spring Cloud</code> 关注于全局的微服务整合和管理，将多个 Spring Boot单体微服务进行整合以及管理, SpringCloud 依赖于 SpringBoot 开发，而 SpringBoot 可以独立开发；</p>
+      <h2 id="需求描述"><a href="#需求描述" class="headerlink" title="需求描述"></a>需求描述</h2><p>日常开发中, 遇到元素特别多的页面, 例如全是图表的页面，如果图表过多，造成页面卡顿。<br>若<code>只显示在屏幕可视范围内的图</code>，范围外的<code>销毁</code>，可大大提高页面性能。</p>
+<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isOnScreen</span>(<span class="params">element</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> on_screen_height = <span class="number">20</span>; <span class="comment">// 偏移量</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> rect = element.getBoundingClientRect();</span><br><span class="line">  <span class="keyword">let</span> windowHeight = <span class="built_in">window</span>.innerHeight || <span class="built_in">document</span>.documentElement.clientHeight;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> elementHeight = element.offsetHeight;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> onScreenHeight = on_screen_height &gt; elementHeight ?</span><br><span class="line">                      elementHeight : on_screen_height;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 元素在屏幕上方, 如果元素不是从屏幕最上侧开始的，需要减去对应值（rect.top 不是 0）</span></span><br><span class="line">  <span class="keyword">let</span> elementBottomToWindowTop = rect.top + elementHeight;</span><br><span class="line">  <span class="keyword">let</span> bottomBoundingOnScreen = elementBottomToWindowTop &gt;= onScreenHeight;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 元素在屏幕下方</span></span><br><span class="line">  <span class="keyword">let</span> elementTopToWindowBottom = windowHeight - (rect.bottom - elementHeight);</span><br><span class="line">  <span class="keyword">let</span> topBoundingOnScreen = elementTopToWindowBottom &gt;= onScreenHeight;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> bottomBoundingOnScreen &amp;&amp; topBoundingOnScreen;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;=<span class="number">6</span>; i++) &#123;</span><br><span class="line">  <span class="keyword">let</span> element = <span class="built_in">document</span>.getElementById(i);</span><br><span class="line">  <span class="built_in">console</span>.log(isOnScreen(element))</span><br><span class="line">  <span class="keyword">if</span> (isOnScreen(element)) &#123;</span><br><span class="line">    <span class="keyword">if</span> () &#123; <span class="comment">//没数据</span></span><br><span class="line">      <span class="comment">// 获取对应数据</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 销毁</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"0"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"1"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"2"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"3"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"4"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"5"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"6"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="滚动结束事件"><a href="#滚动结束事件" class="headerlink" title="滚动结束事件"></a>滚动结束事件</h2><p>由于原生 JavaScript 没有对应滑动结束事件，需要采取定时模拟</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> element = <span class="built_in">document</span>.getElementById(<span class="string">'id'</span>);</span><br><span class="line"></span><br><span class="line">element.onscroll = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">window</span>.scrollTimer) &#123;</span><br><span class="line">    clearTimeout(<span class="built_in">window</span>.scrollTimer) <span class="comment">// 普通写法</span></span><br><span class="line">    <span class="comment">// vue写法，由于vue对setTimeout修改，则需要id,否则无法清除</span></span><br><span class="line">    clearTimeout(<span class="built_in">window</span>.scrollTimer._id)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">window</span>.scrollTimer = setTimeout(callback, <span class="number">300</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 执行滑动结束后内容</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 平滑过渡</span></span><br><span class="line">element.scrollTo(&#123;</span><br><span class="line">  left: <span class="number">0</span>,</span><br><span class="line">  top: num,</span><br><span class="line">  behavior: <span class="string">'smooth'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
     </div>
   </div>
   
@@ -487,8 +487,8 @@
           <i class="iconfont icon-06tags"></i>标签: 
           
           <span class="span--tag">
-            <a href="/tags/spring/">
-              <i class="fa fa-tag"></i>spring
+            <a href="/tags/屏幕可视/">
+              <i class="fa fa-tag"></i>屏幕可视
             </a>
           </span>
           
@@ -513,15 +513,9 @@
       <div class="nav-pre">
         <i class="iconfont icon-prev"></i>
         上一篇:
-        <a href="/passages/20190710版权固定底部/" target="_self">JavaScript 实现版权信息固定在页面底部</a>
+        <a href="/passages/20200807原型与原型链/" target="_self">JavaScript 原型与原型链</a>
       </div>
     
-    
-      <div class="nav-next">
-        下一篇:
-        <a href="/passages/20190902从0搭建springboot工程/" target="_self">从零搭建 Spring boot 工程</a>
-        <i class="iconfont icon-next"></i>
-      </div>
     
   </nav>
 
