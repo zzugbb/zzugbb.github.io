@@ -36,9 +36,9 @@
     
       <category term="EGG" scheme="http://yoursite.com/tags/EGG/"/>
     
-      <category term="安全问题" scheme="http://yoursite.com/tags/%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98/"/>
-    
       <category term="HTTPS" scheme="http://yoursite.com/tags/HTTPS/"/>
+    
+      <category term="安全问题" scheme="http://yoursite.com/tags/%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98/"/>
     
   </entry>
   
@@ -60,9 +60,9 @@
       <category term="工程部署" scheme="http://yoursite.com/categories/%E5%B7%A5%E7%A8%8B%E9%83%A8%E7%BD%B2/"/>
     
     
-      <category term="HTTPS" scheme="http://yoursite.com/tags/HTTPS/"/>
-    
       <category term="证书管理" scheme="http://yoursite.com/tags/%E8%AF%81%E4%B9%A6%E7%AE%A1%E7%90%86/"/>
+    
+      <category term="HTTPS" scheme="http://yoursite.com/tags/HTTPS/"/>
     
   </entry>
   
