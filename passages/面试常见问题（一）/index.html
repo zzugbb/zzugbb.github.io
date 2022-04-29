@@ -2,9 +2,9 @@
 <html lang="zh-CN">
 
   
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
   <meta charset="utf-8">
-  <meta name="author" content="高炳炳">
+  <meta name="author" content="高炳炳" />
   
   
   
@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="面试,闭包,继承,">
+    <meta name="keywords" content="面试,闭包,继承," />
   
 
   
@@ -30,7 +30,9 @@
   
 
   <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
   <style>
     .gt-container .gt-avatar {
       width: 2em;
@@ -38,20 +40,32 @@
     }
   </style>
 
-  <link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/css/base.css">
+  
+<link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css">
+
+  
+<link rel="stylesheet" href="/css/base.css">
 <link rel="stylesheet" href="/icon/iconfont.css">
 <link rel="stylesheet" href="/css/github-markdown.css">
 <link rel="stylesheet" href="/css/highlight.css">
 
-  <script src="/js/gitalk.min.js"></script>
-  <script src="/js/util.js"></script>
-<script src="/js/md5.min.js"></script>
-  <script src="/js/clicklove.js"></script>
 
   
-    <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/gitalk.min.js"></script>
+
+  
+<script src="/js/util.js"></script>
+<script src="/js/md5.min.js"></script>
+
+  
+<script src="/js/clicklove.js"></script>
+
+
+  
+    
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="/js/search.js"></script>
+
   
   
   
@@ -69,10 +83,12 @@
   
 
   
-    <script src="/js/copy.js"></script>
+    
+<script src="/js/copy.js"></script>
+
   
 
-</head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
   <body>
 
@@ -92,7 +108,10 @@
       
         <li class="nav-item" data-path="/">
           
-            <a href="/" target="_self">
+            <a 
+              href="/"
+              target="_self"
+            >
               主页
             </a>
           
@@ -100,7 +119,10 @@
       
         <li class="nav-item" data-path="/archives/">
           
-            <a href="/archives/" target="_self">
+            <a 
+              href="/archives/"
+              target="_self"
+            >
               归档
             </a>
           
@@ -108,7 +130,10 @@
       
         <li class="nav-item" data-path="/categories/">
           
-            <a href="/categories/" target="_self">
+            <a 
+              href="/categories/"
+              target="_self"
+            >
               分类
             </a>
           
@@ -116,7 +141,10 @@
       
         <li class="nav-item" data-path="/tags/">
           
-            <a href="/tags/" target="_self">
+            <a 
+              href="/tags/"
+              target="_self"
+            >
               标签
             </a>
           
@@ -124,7 +152,10 @@
       
         <li class="nav-item" data-path="/messageBoard/">
           
-            <a href="/messageBoard/" target="_self">
+            <a 
+              href="/messageBoard/"
+              target="_self"
+            >
               留言板
             </a>
           
@@ -132,17 +163,23 @@
       
         <li class="nav-item" data-path="">
           
-            <a href="javascript:void(0);" v-else="">抓到我</a>
+            <a href="javascript:void(0);" v-else>抓到我</a>
             <ul class="nav-menu--dropdown">
               
                 <li>
-                  <a href="https://github.com/zzugbb" target="_blank">
+                  <a 
+                    href="https://github.com/zzugbb" 
+                    target="_blank"
+                  >
                     <i class="fa fa-github"> github </i>
                   </a>
                 </li>
               
                 <li>
-                  <a href="mailto:gbbaltitude@sina.com" target="_blank">
+                  <a 
+                    href="mailto:gbbaltitude@sina.com" 
+                    target="_blank"
+                  >
                     <i class="fa fa-envelope"> e-mail </i>
                   </a>
                 </li>
@@ -173,7 +210,7 @@
     <span class="search-icon">
       <i class="fa fa-search"></i>
     </span>
-    <input type="text" id="local-search-input" name="q" results="0" placeholder="search" class="st-search-input st-default-search-input form-control">
+    <input type="text" id="local-search-input" name="q" results="0" placeholder="search" class="st-search-input st-default-search-input form-control"/>
     <span class="close-icon">
       <i class="fa fa fa-times-circle"></i>
     </span>
@@ -303,10 +340,10 @@
 </div>
 <div style="position:fixed;right:0;top:0;z-index:1000" class="pc-view">
   <a href="https://github.com/zzugbb" class="github-corner" aria-label="Fork me on GitHub" target="_blank">
-    <svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
-      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/>
-      <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/>
-      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/>
+    <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+      <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
     </svg>
   </a>
   <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
@@ -407,7 +444,7 @@
       
 
 <span>
-  <i class="fa fa-keyboard-o"></i> &nbsp;字数统计 : 552 字
+  <i class="fa fa-keyboard-o"></i> &nbsp;字数统计 : 564 字
 </span>
 
 <span>
@@ -418,7 +455,7 @@
     
       <span>
           <i class="iconfont icon-tag" style="font-size:12px;"></i> &nbsp;分类 : 
-          <a href="/categories/面试/">
+          <a href="/categories/%E9%9D%A2%E8%AF%95/">
             面试
           </a>
       </span>
@@ -459,16 +496,16 @@
 </blockquote>
 <p>一个函数的返回值是另一个函数，而返回的这个函数如果调用了其父函数内部的其它变量，且返回的这个函数在外部被执行，就产生了闭包。</p>
 <p>表现形式: 函数外部能调用函数内部定义的变量。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeFunc</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">"Mozilla"</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">displayName</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(name);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> displayName; <span class="comment">//返回的displayName函数就是闭包</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> myFunc = makeFunc(); <span class="comment">//myFunc 是执行 makeFunc 时创建的 displayName 函数实例的引用</span></span><br><span class="line">myFunc();</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">makeFunc</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">&quot;Mozilla&quot;</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">displayName</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(name);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> displayName; <span class="comment">//返回的displayName函数就是闭包</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> myFunc = <span class="title function_">makeFunc</span>(); <span class="comment">//myFunc 是执行 makeFunc 时创建的 displayName 函数实例的引用</span></span><br><span class="line"><span class="title function_">myFunc</span>();</span><br></pre></td></tr></table></figure>
 <p>注意:</p>
 <ul>
 <li>滥用闭包会导致内存泄露，处理方法：在退出函数之前，将不使用的局部变量全部删除。</li>
 <li>闭包会在父函数外部，改变父函数内部变量的值。</li>
 </ul>
 <h3 id="闭包的用途"><a href="#闭包的用途" class="headerlink" title="闭包的用途"></a>闭包的用途</h3><p><strong>1. 封装</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">"default"</span>; <span class="comment">//变量作用域为函数内部，外部无法访问</span></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    getName : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> name;</span><br><span class="line">    &#125;,</span><br><span class="line">    setName : <span class="function"><span class="keyword">function</span>(<span class="params">newName</span>) </span>&#123;</span><br><span class="line">      name = newName;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;();</span><br><span class="line"></span><br><span class="line">print(person.name); <span class="comment">//直接访问，结果为undefined</span></span><br><span class="line">print(person.getName());</span><br><span class="line">person.setName(<span class="string">"abruzzi"</span>);</span><br><span class="line">print(person.getName());</span><br><span class="line"></span><br><span class="line">得到结果如下:</span><br><span class="line"><span class="literal">undefined</span>  </span><br><span class="line"><span class="keyword">default</span>  </span><br><span class="line">abruzzi</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">&quot;default&quot;</span>; <span class="comment">//变量作用域为函数内部，外部无法访问</span></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    getName : <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> name;</span><br><span class="line">    &#125;,</span><br><span class="line">    setName : <span class="keyword">function</span>(<span class="params">newName</span>) &#123;</span><br><span class="line">      name = newName;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;();</span><br><span class="line"></span><br><span class="line"><span class="title function_">print</span>(person.<span class="property">name</span>); <span class="comment">//直接访问，结果为undefined</span></span><br><span class="line"><span class="title function_">print</span>(person.<span class="title function_">getName</span>());</span><br><span class="line">person.<span class="title function_">setName</span>(<span class="string">&quot;abruzzi&quot;</span>);</span><br><span class="line"><span class="title function_">print</span>(person.<span class="title function_">getName</span>());</span><br><span class="line"></span><br><span class="line">得到结果如下:</span><br><span class="line"><span class="literal">undefined</span>  </span><br><span class="line"><span class="keyword">default</span>  </span><br><span class="line">abruzzi</span><br></pre></td></tr></table></figure>
 <p><strong>2. 实现类和继承</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">"default"</span>;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    getName : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> name;</span><br><span class="line">    &#125;,</span><br><span class="line">    setName : <span class="function"><span class="keyword">function</span>(<span class="params">newName</span>) </span>&#123;</span><br><span class="line">      name = newName;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Jack = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">Jack.prototype = <span class="keyword">new</span> Person(); <span class="comment">//继承自Person</span></span><br><span class="line">Jack.prototype.Say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">//添加私有方法</span></span><br><span class="line">  alert(<span class="string">"Hello,my name is Jack"</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> j = <span class="keyword">new</span> Jack();</span><br><span class="line">j.setName(<span class="string">"Jack"</span>);</span><br><span class="line">alert(j.getName());</span><br><span class="line">j.Say();</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Person</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">&quot;default&quot;</span>;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    getName : <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> name;</span><br><span class="line">    &#125;,</span><br><span class="line">    setName : <span class="keyword">function</span>(<span class="params">newName</span>) &#123;</span><br><span class="line">      name = newName;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> <span class="title class_">Jack</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;;</span><br><span class="line"><span class="title class_">Jack</span>.<span class="property"><span class="keyword">prototype</span></span> = <span class="keyword">new</span> <span class="title class_">Person</span>(); <span class="comment">//继承自Person</span></span><br><span class="line"><span class="title class_">Jack</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">Say</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123; <span class="comment">//添加私有方法</span></span><br><span class="line">  <span class="title function_">alert</span>(<span class="string">&quot;Hello,my name is Jack&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> j = <span class="keyword">new</span> <span class="title class_">Jack</span>();</span><br><span class="line">j.<span class="title function_">setName</span>(<span class="string">&quot;Jack&quot;</span>);</span><br><span class="line"><span class="title function_">alert</span>(j.<span class="title function_">getName</span>());</span><br><span class="line">j.<span class="title class_">Say</span>();</span><br></pre></td></tr></table></figure>
 <h2 id="JavaScript-继承"><a href="#JavaScript-继承" class="headerlink" title="JavaScript 继承"></a>JavaScript 继承</h2><ul>
 <li>构造函数继承</li>
 <li>原型链式继承</li>
@@ -476,23 +513,30 @@
 <li>等等…</li>
 </ul>
 <h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
-<li><a href="http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html" target="_blank" rel="noopener">学习Javascript闭包-阮一峰</a></li>
-<li><a href="http://www.cnblogs.com/yunfeifei/p/4019504.html" target="_blank" rel="noopener">全面理解Javascript闭包和闭包的几种写法及用途</a></li>
-<li><a href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_encapsulation.html" target="_blank" rel="noopener">Javascript 面向对象编程（一）：封装-阮一峰</a></li>
-<li><a href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html" target="_blank" rel="noopener">Javascript面向对象编程（二）：构造函数的继承-阮一峰</a></li>
-<li><a href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance_continued.html" target="_blank" rel="noopener">Javascript面向对象编程（三）：非构造函数的继承-阮一峰</a></li>
-<li><a href="https://www.imooc.com/article/20162" target="_blank" rel="noopener">前端面试必备之JS继承方式总结</a></li>
-<li><a href="https://www.cnblogs.com/humin/p/4556820.html" target="_blank" rel="noopener">JS实现继承的几种方式</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html">学习Javascript闭包-阮一峰</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.cnblogs.com/yunfeifei/p/4019504.html">全面理解Javascript闭包和闭包的几种写法及用途</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_encapsulation.html">Javascript 面向对象编程（一）：封装-阮一峰</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html">Javascript面向对象编程（二）：构造函数的继承-阮一峰</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance_continued.html">Javascript面向对象编程（三）：非构造函数的继承-阮一峰</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.imooc.com/article/20162">前端面试必备之JS继承方式总结</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/humin/p/4556820.html">JS实现继承的几种方式</a></li>
 </ul>
     </div>
   </div>
   
   
   
-    <div class="social-share" style="margin-top: 3rem" data-image="https://zzugbb.github.io/favicon.ico" data-wechat-qrcode-title="<p>微信扫一扫</p>" data-wechat-qrcode-helper="<p>微信右上角, 扫一扫分享</p>" data-sites="qzone, qq, weibo, wechat, douban, google, facebook, twitter">
+    <div class="social-share"
+  style="margin-top: 3rem"
+  data-image="https://zzugbb.github.io/favicon.ico"
+  data-wechat-qrcode-title="<p>微信扫一扫</p>"
+  data-wechat-qrcode-helper="<p>微信右上角, 扫一扫分享</p>"
+   data-sites="qzone, qq, weibo, wechat, douban, google, facebook, twitter" 
+  
+>
   <span style="color: #6b7487; font-size: 1.4rem;">分享到: </span>
 </div>
-<script src="https://cdn.bootcss.com/social-share.js/1.0.16/js/social-share.min.js" async></script>
+<script src="https://cdn.bootcss.com/social-share.js/1.0.16/js/social-share.min.js" async>
   
 
   
@@ -541,13 +585,13 @@
           <i class="iconfont icon-06tags"></i>标签: 
           
           <span class="span--tag">
-            <a href="/tags/闭包/">
+            <a href="/tags/%E9%97%AD%E5%8C%85/">
               <i class="fa fa-tag"></i>闭包
             </a>
           </span>
           
           <span class="span--tag">
-            <a href="/tags/继承/">
+            <a href="/tags/%E7%BB%A7%E6%89%BF/">
               <i class="fa fa-tag"></i>继承
             </a>
           </span>
@@ -573,20 +617,20 @@
       <div class="nav-pre">
         <i class="iconfont icon-prev"></i>
         上一篇:
-        <a href="/passages/Vue生命周期/" target="_self">Vue生命周期</a>
+        <a href="/passages/Vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" target="_self">Vue生命周期</a>
       </div>
     
     
       <div class="nav-next">
         下一篇:
-        <a href="/passages/Travis CI/" target="_self">Travis CI (持续集成)</a>
+        <a href="/passages/Travis%20CI/" target="_self">Travis CI (持续集成)</a>
         <i class="iconfont icon-next"></i>
       </div>
     
   </nav>
 
   
-    <div class="comment-title"></div><i class="iconfont icon-footprint"></i> 留下足迹 <i class="iconfont icon-footprint"></i>
+    <div class="comment-title"></div><i class="iconfont icon-footprint"></i> 留下足迹 <i class="iconfont icon-footprint"></i></div>
 <div id="gitalk-container"></div>
 <script type="text/javascript">
   var gitalk = new Gitalk({
@@ -691,7 +735,7 @@ document.querySelector(".back-to-top").addEventListener("click", backToTop, fals
     <footer style="margin-top:20px;z-index: 5;">
   <p class="site-info">
     博客已萌萌哒运行<span id="time-to-now"></span><span class="my-face">(●'◡'●)ﾉ♥</span>,
-    <span> &nbsp;共计 <i style="color: #1abc9c;font-style: normal;">26.7k</i> 个字啦</span>
+    <span> &nbsp;共计 <i style="color: #1abc9c;font-style: normal;">27.7k</i> 个字啦</span>
     <br>
     
       <span id="busuanzi_container_site_pv"> 
@@ -701,7 +745,7 @@ document.querySelector(".back-to-top").addEventListener("click", backToTop, fals
       </span>
     
     <br>
-    Theme - <a href="https://github.com/dongyuanxin/theme-bmw">BMW</a> | Made With 💗 | Powered by <a href="https://godbmw.com/">GodBMW</a>
+    Theme - <a target="_blank" rel="noopener" href="https://github.com/dongyuanxin/theme-bmw">BMW</a> | Made With 💗 | Powered by <a target="_blank" rel="noopener" href="https://godbmw.com/">GodBMW</a>
     <br>
     
       本站所有音乐均引用自<a href="https://music.163.com/#" target="_blank"> 网易云 </a>的资源，详情可到网易云查看了解，无商业行为，若涉及版权问题请联系删除
@@ -795,6 +839,6 @@ setTimeout(updateTimeStr, 500);
       <script type="text/javascript"
       color="0,0,255" opacity='0.7' zIndex="1" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
     
-  <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":180,"hOffset":-60,"vOffset":-60},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.4,"opacityOnHover":0.2},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":180,"hOffset":-60,"vOffset":-60},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.4,"opacityOnHover":0.2},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 
 </html>
